@@ -1,0 +1,32 @@
+baseURL = 'https://example.org/'
+languageCode = 'en-us'
+title = '資深菜鳥 Nick'
+theme = 'JuiceBar'
+
+[params]
+author = "Nick"
+description = "My site description"
+authorImage = "/images/avatar.jpg"
+paginate = 5
+
+Title = "Nick"
+content = "Now Loading..."
+imageUrl = "/images/avatar.jpg"
+
+[[params.social]]
+name = "linkedin"
+url = "https://www.linkedin.com/in/northn13"
+[[params.social]]
+name = "Github"
+url = "https://github.com/north13"
+[[params.social]]
+name = "facebook"
+url = "https://www.facebook.com/profile.php?id=1757061755"
+[[params.social]]
+name = "email"
+url = "mailto:northn13@gmail.com"
+
+
+
+[outputs]
+home = ["HTML", "RSS", "JSON"]

@@ -1,0 +1,192 @@
+
+<!DOCTYPE html>
+<html lang="en-us"><head>
+  <meta charset="utf-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  />
+
+  <title>
+    Posts | 資深菜鳥 Nick
+  </title>
+  <meta
+    name="description"
+    content="My site description"
+  />
+  <link rel="canonical" href="https://example.org/post/" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css"
+  />
+  
+  <link rel="stylesheet" href="https://example.org/scss/style.min.aa7209164f013c6883aa54384ea45a46e582eacf9a17e9565badebd557dd1059.css" />
+
+  <link rel="icon" href="/images/favicon.ico" />
+
+  <meta property="og:url" content="https://example.org/post/">
+  <meta property="og:site_name" content="資深菜鳥 Nick">
+  <meta property="og:title" content="Posts">
+  <meta property="og:description" content="My site description">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="website">
+ 
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Posts">
+  <meta name="twitter:description" content="My site description">
+   
+</head>
+<body><nav class="navbar is-light" role="navigation">
+    <div class="container" style="justify-content: space-around;">
+        <div class="navbar-brand">
+            <a href="/" title="home" class="navbar-item">
+                <span class="logo">
+                    <h1>資深菜鳥 Nick</h1>
+                </span>
+            </a>
+
+            
+            <a id="theme-toggle" class="theme-toggle" href="#">
+                <img src="https://example.org/svg/sun.svg" alt="sun icon" class="theme-icon" />
+            </a>
+
+            
+        </div>
+
+        
+        <div class="search">
+            <div id="fastSearch">
+                <input id="searchInput" tabindex="0" placeholder="文章搜尋">
+                <ul id="searchResults">
+
+                </ul>
+            </div>
+            <a id="search-btn" style="display: inline-block;" href="# ">
+                <div class="icon-search"><svg class="search-svg" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div>
+            </a>
+        </div>
+
+        <script src="/js/fuse.min.js"></script> 
+        <script src="/js/fastsearch.js"></script>
+
+    </div>
+</nav>
+
+<script>
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        var burger = document.querySelector('.navbar-burger');
+        burger.addEventListener('click', function() {
+            burger.classList.toggle('is-active');
+            document.querySelector('.navbar-menu').classList.toggle('is-active');
+        });
+    });
+
+    
+    function setTheme(theme) {
+        let body = document.body;
+        let themeIcon = document.querySelector(".theme-icon");
+        if (theme === "dark") {
+            body.classList.add("dark-mode");
+            themeIcon.src = "https:\/\/example.org\/svg/moon.svg";
+            themeIcon.alt = "moon icon";
+        } else {
+            body.classList.remove("dark-mode");
+            themeIcon.src = "https:\/\/example.org\/svg/sun.svg";
+            themeIcon.alt = "sun icon";
+        }
+        
+        localStorage.setItem("theme", theme);
+    }
+
+    
+    let theme = localStorage.getItem("theme") || "light";
+    const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (isDarkMode) {
+        
+        setTheme('dark');
+
+    } else {
+        
+        setTheme('light');
+    }
+    setTheme(theme);
+
+    
+    document.getElementById("theme-toggle").addEventListener("click", function() {
+        if (theme === "light") {
+            theme = "dark";
+        } else {
+            theme = "light";
+        }
+        setTheme(theme);
+    });
+
+
+
+</script>
+
+</header><main>
+<div class="container">
+    <div class="section">
+        <div class="content">
+            <h1 class="h1-title">Archives</h1>
+        </div>
+    </div>
+</div>
+
+    <div class="archive-container column is-centered">
+        <div class="archive">
+
+            
+            <h2 class="archive-title">2024</h2>
+            
+            
+
+            <article class="archive-item">
+                <a href="https://example.org/post/angular%E5%92%8Cvue%E7%9A%84%E9%9F%BF%E6%87%89%E5%BC%8F%E7%8B%80%E6%85%8B%E7%AE%A1%E7%90%86/" class="archive-item-link hover-underline-animation">Angular 和 Vue 的響應式狀態管理</a>
+                <span class="archive-item-date">
+                    December 27, 2024
+                </span>
+
+            </article>
+            
+            
+
+            <article class="archive-item">
+                <a href="https://example.org/post/es6-%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%9A%84%E6%AF%94%E8%BC%83/" class="archive-item-link hover-underline-animation">ES6 作用域的比較</a>
+                <span class="archive-item-date">
+                    December 26, 2024
+                </span>
+
+            </article>
+            
+            
+
+            <article class="archive-item">
+                <a href="https://example.org/post/%E9%96%B1%E8%AE%80%E7%AD%86%E8%A8%98---%E7%84%A1%E6%9A%87%E7%A8%8B%E5%BC%8F%E7%A2%BC%E7%95%AA%E5%A4%96%E7%AF%87/" class="archive-item-link hover-underline-animation">閱讀筆記 - The Clean Coder 無暇程式碼番外篇 - 專業程式設計師的生存之道</a>
+                <span class="archive-item-date">
+                    December 25, 2024
+                </span>
+
+            </article>
+            
+            
+        </div>
+
+    </div>
+
+
+
+        </main><footer class="footer">
+    <div class="content has-text-centered">
+    <span>&copy; 2024 <a href="https://example.org/">資深菜鳥 Nick</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" target="_blank">Hugo</a> &
+        <a href="https://github.com/hotjuicew/hugo-JuiceBar" target="_blank">JuiceBar</a>
+    </span>
+    </div>
+  </footer></body>
+</html>
+

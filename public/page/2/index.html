@@ -1,0 +1,368 @@
+
+<!DOCTYPE html>
+<html lang="en-us"><head>
+	<meta name="generator" content="Hugo 0.140.1"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  />
+  <title>
+    資深菜鳥 Nick
+  </title>
+  <meta
+    name="description"
+    content="My site description"
+  />
+  <link rel="canonical" href="http://localhost:1313/" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css"
+  />
+  
+  <link rel="stylesheet" href="http://localhost:1313/scss/style.min.aa7209164f013c6883aa54384ea45a46e582eacf9a17e9565badebd557dd1059.css" />
+
+  <meta property="og:url" content="http://localhost:1313/">
+  <meta property="og:site_name" content="資深菜鳥 Nick">
+  <meta property="og:title" content="資深菜鳥 Nick">
+  <meta property="og:description" content="My site description">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="website">
+ 
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="資深菜鳥 Nick">
+  <meta name="twitter:description" content="My site description">
+ 
+</head>
+<body><nav class="navbar is-light" role="navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a href="/" title="home" class="navbar-item">
+                <span class="logo">
+                    <h1>資深菜鳥 Nick</h1>
+                </span>
+            </a>
+
+            
+            <a id="theme-toggle" class="theme-toggle" href="#">
+                <img src="http://localhost:1313/svg/sun.svg" alt="sun icon" class="theme-icon" />
+            </a>
+
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+
+        <div class="navbar-menu">
+            <div class="navbar-start">
+                
+            </div>
+
+        </div>
+        <div class="search">
+            <div id="fastSearch">
+                <input id="searchInput" tabindex="0" placeholder="Search..">
+                <ul id="searchResults">
+
+                </ul>
+            </div>
+            <a id="search-btn" style="display: inline-block;" href="# ">
+                <div class="icon-search"><svg class="search-svg" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div>
+            </a>
+        </div>
+
+        <script src="/js/fuse.min.js"></script> 
+        <script src="/js/fastsearch.js"></script>
+
+    </div>
+</nav>
+
+<script>
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        var burger = document.querySelector('.navbar-burger');
+        burger.addEventListener('click', function() {
+            burger.classList.toggle('is-active');
+            document.querySelector('.navbar-menu').classList.toggle('is-active');
+        });
+    });
+
+    
+    function setTheme(theme) {
+        let body = document.body;
+        let themeIcon = document.querySelector(".theme-icon");
+        if (theme === "dark") {
+            body.classList.add("dark-mode");
+            themeIcon.src = "http:\/\/localhost:1313\/svg/moon.svg";
+            themeIcon.alt = "moon icon";
+        } else {
+            body.classList.remove("dark-mode");
+            themeIcon.src = "http:\/\/localhost:1313\/svg/sun.svg";
+            themeIcon.alt = "sun icon";
+        }
+        
+        localStorage.setItem("theme", theme);
+    }
+
+    
+    let theme = localStorage.getItem("theme") || "light";
+    const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (isDarkMode) {
+        
+        setTheme('dark');
+
+    } else {
+        
+        setTheme('light');
+    }
+    setTheme(theme);
+
+    
+    document.getElementById("theme-toggle").addEventListener("click", function() {
+        if (theme === "light") {
+            theme = "dark";
+        } else {
+            theme = "light";
+        }
+        setTheme(theme);
+    });
+
+
+
+</script>
+
+</header><main>
+<article>
+    <div class="is-centered">
+            <div class="title subtitle heading is-6">
+                <div id="home-box" >
+                            
+                            <div class="avatar-container">
+                                <img src="/images/avatar.jpg" class="author-avatar">
+
+                            </div>
+                            
+
+
+
+                        <h1 id="home-title" class="title is-1 ">Nick</h1>
+                    <div class="description column content typewriter-effect">
+                        <div class="text" id="typewriter-text"> Now Loading...</div>
+
+                    </div>
+                    <script>
+                        const typeWriter = document.getElementById('typewriter-text');
+                        typeWriter.style.setProperty('--characters', typeWriter.innerHTML.length);
+                    </script>
+
+                    <div class="social-icon">
+
+                        
+                        <a href="https://www.linkedin.com/in/northn13" title="linkedin"><span class="change-color icon">
+                                <svg height="32px" width="32px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+    <rect x="2" y="9" width="4" height="12"></rect>
+    <circle cx="4" cy="4" r="2"></circle>
+</svg>
+                            </span></a>
+                        
+                        <a href="https://github.com/north13" title="Github"><span class="change-color icon">
+                                <svg height="32px" width="32px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path
+        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+    </path>
+</svg>
+                            </span></a>
+                        
+                        <a href="https://www.facebook.com/profile.php?id=1757061755" title="facebook"><span class="change-color icon">
+                                <svg height="32px" width="32px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+</svg>
+                            </span></a>
+                        
+                        <a href="mailto:northn13@gmail.com" title="email"><span class="change-color icon">
+                                <svg height="32px" width="32px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 21" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+    <polyline points="22,6 12,13 2,6"></polyline>
+</svg>
+                            </span></a>
+                        
+
+                    </div>
+
+                </div>
+            </div>
+
+    </div></article>
+<div class="summary">
+    
+        <article class="post">
+  <div class="single-container column is-centered">
+    <div class="archive" id="post-container">
+      <header class="post-header">
+        <h1 class="post-title hover-underline-animation"><a class="post-link" href="/post/booknote-copy/">閱讀筆記 - The Clean Coder 無暇程式碼番外篇-專業程式設計師的生存之道</a></h1>
+       
+       
+      </header>
+      <div class="post-content">
+        <div class="excerpt post-summary">
+          <h2 id="以下是我根據這本書中節錄的重點整理">以下是我根據這本書中節錄的重點整理</h2>
+<p><!-- raw HTML omitted -->前景色<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<h3 id="ch1-專業主義">CH1 專業主義</h3>
+<ol>
+<li>不破壞軟體功能</li>
+<li>不破壞結構(軟體要易於修改)</li>
+</ol>
+<blockquote>
+<p>💡 <strong>不能銘記過去的人，註定重蹈先人的覆轍</strong></p>
+</blockquote>
+<h3 id="ch2-說不">CH2 說「不」</h3>
+<p>專業人士敢於說明真相而不屈從於權勢。有勇氣說「不」。</p>
+<blockquote>
+<p>💡 <strong>說「不」，才能真正做成一些事情。</strong></p>
+</blockquote>
+<h3 id="ch3-說是">CH3 說「是」</h3>
+<ol>
+<li>避免「缺乏承諾」，若是無法達成應盡早向承諾的對象發出預警，越早、越快越好。</li>
+<li>專業人士對自己的能力極限瞭若指掌。</li>
+<li>回歸測試 ( Regression Testing ) 是當程式進行修改後，檢查修改前能正常執行的功能是否仍能無誤的執行。</li>
+</ol>
+<blockquote>
+<p>💡 <strong>專業人士不需要對所有的請求都回答「是」。不過，他們應該努力尋找創新的方法，盡可能做到有求必應。當專業人士給出肯定回答時，會使用「承諾用語」，以確保各方能無誤的明白及理解承諾的內容。</strong></p>
+</blockquote>
+<h3 id="ch4-寫程式">CH4 寫程式</h3>
+<p><strong>敲錯鍵盤時我自己能感覺到。</strong></p>
+<p>精熟掌握每項技藝，關鍵都是要具備「信心」和「出錯感知」。</p>
+<p>樂觀預估、常規預估、悲觀預估</p>
+<h3 id="ch5-測試驅動開發-tdd">CH5 測試驅動開發 TDD</h3>
+<blockquote>
+<p>💡 <strong>事後寫的測試只是一種防守，先行編寫的測試則是進攻</strong></p>
+</blockquote>
+<h3 id="ch7-驗收測試">CH7 驗收測試</h3>
+<p>驗收測試和單元測試的對象通常是相同的，但絕對和「重複」沾不上邊。</p>
+<p>單元測試是深入系統內部進行，呼叫特定類別的方法；驗收測試則是在系統外部，通常是在 API 或 UI 層級進行。所以兩者的執行路徑截然不同。</p>
+<h3 id="ch9-時間管理">CH9 時間管理</h3>
+<ul>
+<li>會議是必須的，但會議會浪費大量時間，沒有必要的會議應禮貌拒絕。</li>
+<li>Stand Up Meeting :
+<ol>
+<li>我昨天做了什麼?</li>
+<li>我今天預計做什麼?</li>
+<li>我遇到了什麼問題，需不需要協助?</li>
+</ol>
+</li>
+</ul>
+        </div>
+        
+        <div class="post-time-container">
+          <span class="post-time"> 2024-12-25 </span>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</article>
+
+    
+        <article class="post">
+  <div class="single-container column is-centered">
+    <div class="archive" id="post-container">
+      <header class="post-header">
+        <h1 class="post-title hover-underline-animation"><a class="post-link" href="/post/booknote/">閱讀筆記 - The Clean Coder 無暇程式碼番外篇-專業程式設計師的生存之道</a></h1>
+       
+       
+      </header>
+      <div class="post-content">
+        <div class="excerpt post-summary">
+          <h2 id="以下是我根據這本書中節錄的重點整理">以下是我根據這本書中節錄的重點整理</h2>
+<p><!-- raw HTML omitted -->前景色<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<h3 id="ch1-專業主義">CH1 專業主義</h3>
+<ol>
+<li>不破壞軟體功能</li>
+<li>不破壞結構(軟體要易於修改)</li>
+</ol>
+<blockquote>
+<p>💡 <strong>不能銘記過去的人，註定重蹈先人的覆轍</strong></p>
+</blockquote>
+<h3 id="ch2-說不">CH2 說「不」</h3>
+<p>專業人士敢於說明真相而不屈從於權勢。有勇氣說「不」。</p>
+<blockquote>
+<p>💡 <strong>說「不」，才能真正做成一些事情。</strong></p>
+</blockquote>
+<h3 id="ch3-說是">CH3 說「是」</h3>
+<ol>
+<li>避免「缺乏承諾」，若是無法達成應盡早向承諾的對象發出預警，越早、越快越好。</li>
+<li>專業人士對自己的能力極限瞭若指掌。</li>
+<li>回歸測試 ( Regression Testing ) 是當程式進行修改後，檢查修改前能正常執行的功能是否仍能無誤的執行。</li>
+</ol>
+<blockquote>
+<p>💡 <strong>專業人士不需要對所有的請求都回答「是」。不過，他們應該努力尋找創新的方法，盡可能做到有求必應。當專業人士給出肯定回答時，會使用「承諾用語」，以確保各方能無誤的明白及理解承諾的內容。</strong></p>
+</blockquote>
+<h3 id="ch4-寫程式">CH4 寫程式</h3>
+<p><strong>敲錯鍵盤時我自己能感覺到。</strong></p>
+<p>精熟掌握每項技藝，關鍵都是要具備「信心」和「出錯感知」。</p>
+<p>樂觀預估、常規預估、悲觀預估</p>
+<h3 id="ch5-測試驅動開發-tdd">CH5 測試驅動開發 TDD</h3>
+<blockquote>
+<p>💡 <strong>事後寫的測試只是一種防守，先行編寫的測試則是進攻</strong></p>
+</blockquote>
+<h3 id="ch7-驗收測試">CH7 驗收測試</h3>
+<p>驗收測試和單元測試的對象通常是相同的，但絕對和「重複」沾不上邊。</p>
+<p>單元測試是深入系統內部進行，呼叫特定類別的方法；驗收測試則是在系統外部，通常是在 API 或 UI 層級進行。所以兩者的執行路徑截然不同。</p>
+<h3 id="ch9-時間管理">CH9 時間管理</h3>
+<ul>
+<li>會議是必須的，但會議會浪費大量時間，沒有必要的會議應禮貌拒絕。</li>
+<li>Stand Up Meeting :
+<ol>
+<li>我昨天做了什麼?</li>
+<li>我今天預計做什麼?</li>
+<li>我遇到了什麼問題，需不需要協助?</li>
+</ol>
+</li>
+</ul>
+        </div>
+        
+        <div class="post-time-container">
+          <span class="post-time"> 2024-12-25 </span>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</article>
+
+    
+    <hr>
+<section class="pagination" >
+    
+
+    <button class="button ">
+        <a href="/" class="pag-link"> Prev </a>
+    </button>
+    
+    <label class="pag-link">Page 2 of 2</label>
+    
+</section>
+
+</div>
+
+        </main><footer class="footer">
+    <div class="content has-text-centered">
+    <span>&copy; 2024 <a href="http://localhost:1313/">資深菜鳥 Nick</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" target="_blank">Hugo</a> &
+        <a href="https://github.com/hotjuicew/hugo-JuiceBar" target="_blank">JuiceBar</a>
+    </span>
+    </div>
+  </footer></body>
+</html>
+

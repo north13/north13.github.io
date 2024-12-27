@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>JavaScript on 資深菜鳥 Nick</title>
+    <link>https://example.org/categories/javascript/</link>
+    <description>Recent content in JavaScript on 資深菜鳥 Nick</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 26 Dec 2024 15:37:37 +0800</lastBuildDate>
+    <atom:link href="https://example.org/categories/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ES6 作用域的比較</title>
+      <link>https://example.org/post/es6-%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%9A%84%E6%AF%94%E8%BC%83/</link>
+      <pubDate>Thu, 26 Dec 2024 15:37:37 +0800</pubDate>
+      <guid>https://example.org/post/es6-%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%9A%84%E6%AF%94%E8%BC%83/</guid>
+      <description>&lt;h2 id=&#34;constlet-與-var&#34;&gt;const、let 與 var&lt;/h2&gt;&#xA;&lt;p&gt;&lt;code&gt;var&lt;/code&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;作用域：&lt;/strong&gt;&#xA;&lt;code&gt;var&lt;/code&gt;是函式作用域（Function Scope）。在函式內宣告的變數僅在該函式內可用，若在函式外使用，則為全域作用域（Global Scope）。&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Hoisting（提升）：&lt;/strong&gt;&#xA;&lt;code&gt;var&lt;/code&gt; 宣告的變數會被提升到作用域的頂部（包括全域和函式內部），但初始化的值不會提升。&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;屬性綁定：&lt;/strong&gt;&#xA;在全域範疇中，使用 &lt;code&gt;var&lt;/code&gt; 宣告的變數會成為全域物件（window 或 globalThis）的屬性。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;var-範例函式作用域&#34;&gt;var 範例（函式作用域）&lt;/h3&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;var x = 10;&#xA;console.log(window.x); // 10&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;code&gt;let&lt;/code&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;作用域：&lt;/strong&gt;&#xA;&lt;code&gt;let&lt;/code&gt; 是區塊作用域（Block Scope），也就是變數僅在其所宣告的區塊 {} 內有效。&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;Hoisting（提升）：&lt;/strong&gt;&#xA;與 &lt;code&gt;var&lt;/code&gt; 不同，&lt;code&gt;let&lt;/code&gt; 變數在宣告之前不可訪問，會觸發「暫時性死區」（Temporal Dead Zone, TDZ）。&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;屬性綁定：&lt;/strong&gt;&#xA;在全域範疇中，使用 &lt;code&gt;let&lt;/code&gt; 宣告的變數不會成為全域物件的屬性。&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;let-範例區塊作用域&#34;&gt;let 範例（區塊作用域）&lt;/h3&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;let y = 20;&#xA;console.log(window.y); // undefined&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;code&gt;const&lt;/code&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;作用域：&lt;/strong&gt;&#xA;與 &lt;code&gt;let&lt;/code&gt; 一樣，&lt;code&gt;const&lt;/code&gt; 是區塊作用域（Block Scope）。&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;不可重新賦值：&lt;/strong&gt;&#xA;&lt;code&gt;const&lt;/code&gt; 宣告的變數必須在宣告時初始化，且不能重新賦值。但如果該變數儲存的是物件，其屬性可以被修改。&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;Hoisting（提升）：&lt;/strong&gt;&#xA;同樣存在暫時性死區（TDZ），在宣告之前不可訪問。&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;strong&gt;屬性綁定：&lt;/strong&gt;&#xA;使用 &lt;code&gt;const&lt;/code&gt; 宣告的變數，與 &lt;code&gt;let&lt;/code&gt; 一樣，不會成為全域物件的屬性。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

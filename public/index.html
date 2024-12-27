@@ -1,0 +1,432 @@
+
+<!DOCTYPE html>
+<html lang="en-us"><head>
+	<meta name="generator" content="Hugo 0.140.1">
+  <meta charset="utf-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  />
+
+  <title>
+    資深菜鳥 Nick
+  </title>
+  <meta
+    name="description"
+    content="My site description"
+  />
+  <link rel="canonical" href="https://example.org/" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css"
+  />
+  
+  <link rel="stylesheet" href="https://example.org/scss/style.min.aa7209164f013c6883aa54384ea45a46e582eacf9a17e9565badebd557dd1059.css" />
+
+  <link rel="icon" href="/images/favicon.ico" />
+
+  <meta property="og:url" content="https://example.org/">
+  <meta property="og:site_name" content="資深菜鳥 Nick">
+  <meta property="og:title" content="資深菜鳥 Nick">
+  <meta property="og:description" content="My site description">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="website">
+ 
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="資深菜鳥 Nick">
+  <meta name="twitter:description" content="My site description">
+   
+</head>
+<body><nav class="navbar is-light" role="navigation">
+    <div class="container" style="justify-content: space-around;">
+        <div class="navbar-brand">
+            <a href="/" title="home" class="navbar-item">
+                <span class="logo">
+                    <h1>資深菜鳥 Nick</h1>
+                </span>
+            </a>
+
+            
+            <a id="theme-toggle" class="theme-toggle" href="#">
+                <img src="https://example.org/svg/sun.svg" alt="sun icon" class="theme-icon" />
+            </a>
+
+            
+        </div>
+
+        
+        <div class="search">
+            <div id="fastSearch">
+                <input id="searchInput" tabindex="0" placeholder="文章搜尋">
+                <ul id="searchResults">
+
+                </ul>
+            </div>
+            <a id="search-btn" style="display: inline-block;" href="# ">
+                <div class="icon-search"><svg class="search-svg" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div>
+            </a>
+        </div>
+
+        <script src="/js/fuse.min.js"></script> 
+        <script src="/js/fastsearch.js"></script>
+
+    </div>
+</nav>
+
+<script>
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        var burger = document.querySelector('.navbar-burger');
+        burger.addEventListener('click', function() {
+            burger.classList.toggle('is-active');
+            document.querySelector('.navbar-menu').classList.toggle('is-active');
+        });
+    });
+
+    
+    function setTheme(theme) {
+        let body = document.body;
+        let themeIcon = document.querySelector(".theme-icon");
+        if (theme === "dark") {
+            body.classList.add("dark-mode");
+            themeIcon.src = "https:\/\/example.org\/svg/moon.svg";
+            themeIcon.alt = "moon icon";
+        } else {
+            body.classList.remove("dark-mode");
+            themeIcon.src = "https:\/\/example.org\/svg/sun.svg";
+            themeIcon.alt = "sun icon";
+        }
+        
+        localStorage.setItem("theme", theme);
+    }
+
+    
+    let theme = localStorage.getItem("theme") || "light";
+    const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (isDarkMode) {
+        
+        setTheme('dark');
+
+    } else {
+        
+        setTheme('light');
+    }
+    setTheme(theme);
+
+    
+    document.getElementById("theme-toggle").addEventListener("click", function() {
+        if (theme === "light") {
+            theme = "dark";
+        } else {
+            theme = "light";
+        }
+        setTheme(theme);
+    });
+
+
+
+</script>
+
+</header><main>
+<article>
+    <div class="is-centered">
+            <div class="title subtitle heading is-6">
+                <div id="home-box" >
+                            
+                            <div class="avatar-container">
+                                <img src="/images/avatar.jpg" class="author-avatar">
+
+                            </div>
+                            
+
+
+
+                        <h1 id="home-title" class="title is-1 ">Nick</h1>
+                    <div class="description column content typewriter-effect">
+                        <div class="text" id="typewriter-text"> Now Loading...</div>
+
+                    </div>
+                    <script>
+                        const typeWriter = document.getElementById('typewriter-text');
+                        typeWriter.style.setProperty('--characters', typeWriter.innerHTML.length);
+                    </script>
+
+                    <div class="social-icon">
+
+                        
+                        <a href="https://www.linkedin.com/in/northn13" title="linkedin"><span class="change-color icon">
+                                <svg height="32px" width="32px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+    <rect x="2" y="9" width="4" height="12"></rect>
+    <circle cx="4" cy="4" r="2"></circle>
+</svg>
+                            </span></a>
+                        
+                        <a href="https://github.com/north13" title="Github"><span class="change-color icon">
+                                <svg height="32px" width="32px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path
+        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+    </path>
+</svg>
+                            </span></a>
+                        
+                        <a href="https://www.facebook.com/profile.php?id=1757061755" title="facebook"><span class="change-color icon">
+                                <svg height="32px" width="32px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+</svg>
+                            </span></a>
+                        
+                        <a href="mailto:northn13@gmail.com" title="email"><span class="change-color icon">
+                                <svg height="32px" width="32px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 21" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+    <polyline points="22,6 12,13 2,6"></polyline>
+</svg>
+                            </span></a>
+                        
+
+                    </div>
+
+                </div>
+            </div>
+
+    </div></article>
+<div class="summary">
+    
+        <article class="post">
+  <div class="single-container column is-centered">
+    <div class="archive" id="post-container">
+      <header class="post-header">
+        <h1 class="post-title hover-underline-animation"><a class="post-link" href="/post/angular%E5%92%8Cvue%E7%9A%84%E9%9F%BF%E6%87%89%E5%BC%8F%E7%8B%80%E6%85%8B%E7%AE%A1%E7%90%86/">Angular 和 Vue 的響應式狀態管理</a></h1>
+       
+       
+      </header>
+      <div class="post-content">
+        <div class="excerpt post-summary">
+          <p>之前趁著 <code>Udemy</code> 黑五活動買了些有興趣的課程來進修，加上 <code>YT</code> 上免費的課程，聽聽不同的講師會有不同的收穫，就像是看醫生不要只看一間，不同的醫生看或許會有不同的見解。</p>
+<p>在自學時光是 <code>Vue</code> 就看了三個不同的教學影片，對於 <code>ref</code>、<code>reactive</code> 雖無實務經驗，但有一定程度的瞭解。之前工作上使用的框架是 <code>Angular</code> 且版本 <strong>&lt; 16</strong> , 對於 <code>Signals</code> 的應用很模糊，嘗試用 <code>Vue</code> 的 <code>ref</code> 去解釋 <code>Angular</code> 的 <code>Signals</code> 好像一切都說得過去了！</p>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="angular-signals-的用途"><strong>Angular Signals 的用途</strong></h3>
+<p><code>Angular</code> 引入 <strong>Signals</strong> 是為了解決 <strong>響應式狀態管理</strong> 的問題。傳統上 <code>Angular</code> 主要使用 <code>RxJS</code> 的 <code>Observables</code> 或 <code>Component State</code> 來管理狀態，但這種方式可能導致程式碼複雜性增加、追蹤數據變化困難。</p>
+<p><strong>Signals 主要用途：</strong></p>
+<ol>
+<li><strong>響應式狀態管理：</strong> <code>Signals</code> 允許你輕鬆追蹤和響應狀態變化，無需手動訂閱或處理變更檢測。</li>
+<li><strong>效能提升：</strong> <code>Signals</code> 會在狀態變化時自動觸發 UI 更新，並只更新受影響的部分，而非整體重新渲染，這比傳統變更檢測更高效。</li>
+<li><strong>同步數據流：</strong> 和 <code>RxJS</code> 的異步操作不同，<code>Signals</code> 提供 <strong>同步</strong> 的數據流，使用起來更加直觀。</li>
+<li><strong>預測性：</strong> <code>Angular Signals</code> 透過明確的讀寫 <code>API</code>，讓數據變更更易於預測和調試。</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-jsx" data-lang="jsx"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">signal</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;@angular/core&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyComponent</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">count</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">signal</span>(<span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">increment</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">count</span>.<span style="color:#a6e22e">set</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">count</span>() <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li><code>signal()</code> 用於建立可追蹤的響應式狀態。</li>
+<li>使用 <code>.set()</code>、<code>.update()</code> 來修改值，使用 <code>signal()</code> 本身讀取當前值。</li>
+</ul>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="vue-3-ref-的用途"><strong>Vue 3 ref 的用途</strong></h3>
+<p><code>Vue 3</code> 的 <code>ref</code> 也用於 響應式數據 管理。<code>ref</code> 會將一個變數包裹成 響應式對象，當數據變化時，<code>Vue</code> 會自動追蹤變更並更新 UI。</p>
+        </div>
+        
+        <div class="post-time-container">
+          <span class="post-time"> 2024-12-27 </span>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</article>
+
+    
+        <article class="post">
+  <div class="single-container column is-centered">
+    <div class="archive" id="post-container">
+      <header class="post-header">
+        <h1 class="post-title hover-underline-animation"><a class="post-link" href="/post/es6-%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%9A%84%E6%AF%94%E8%BC%83/">ES6 作用域的比較</a></h1>
+       
+       
+      </header>
+      <div class="post-content">
+        <div class="excerpt post-summary">
+          <h2 id="constlet-與-var">const、let 與 var</h2>
+<p><code>var</code></p>
+<ul>
+<li><strong>作用域：</strong>
+<code>var</code>是函式作用域（Function Scope）。在函式內宣告的變數僅在該函式內可用，若在函式外使用，則為全域作用域（Global Scope）。</li>
+<li><strong>Hoisting（提升）：</strong>
+<code>var</code> 宣告的變數會被提升到作用域的頂部（包括全域和函式內部），但初始化的值不會提升。</li>
+<li><strong>屬性綁定：</strong>
+在全域範疇中，使用 <code>var</code> 宣告的變數會成為全域物件（window 或 globalThis）的屬性。</li>
+</ul>
+<h3 id="var-範例函式作用域">var 範例（函式作用域）</h3>
+<pre tabindex="0"><code>var x = 10;
+console.log(window.x); // 10
+</code></pre><p><code>let</code></p>
+<ul>
+<li>
+<p><strong>作用域：</strong>
+<code>let</code> 是區塊作用域（Block Scope），也就是變數僅在其所宣告的區塊 {} 內有效。</p>
+</li>
+<li>
+<p><strong>Hoisting（提升）：</strong>
+與 <code>var</code> 不同，<code>let</code> 變數在宣告之前不可訪問，會觸發「暫時性死區」（Temporal Dead Zone, TDZ）。</p>
+</li>
+<li>
+<p><strong>屬性綁定：</strong>
+在全域範疇中，使用 <code>let</code> 宣告的變數不會成為全域物件的屬性。</p>
+</li>
+</ul>
+<h3 id="let-範例區塊作用域">let 範例（區塊作用域）</h3>
+<pre tabindex="0"><code>let y = 20;
+console.log(window.y); // undefined
+</code></pre><p><code>const</code></p>
+<ul>
+<li>
+<p><strong>作用域：</strong>
+與 <code>let</code> 一樣，<code>const</code> 是區塊作用域（Block Scope）。</p>
+</li>
+<li>
+<p><strong>不可重新賦值：</strong>
+<code>const</code> 宣告的變數必須在宣告時初始化，且不能重新賦值。但如果該變數儲存的是物件，其屬性可以被修改。</p>
+</li>
+<li>
+<p><strong>Hoisting（提升）：</strong>
+同樣存在暫時性死區（TDZ），在宣告之前不可訪問。</p>
+</li>
+<li>
+<p><strong>屬性綁定：</strong>
+使用 <code>const</code> 宣告的變數，與 <code>let</code> 一樣，不會成為全域物件的屬性。</p>
+        </div>
+        
+        <div class="post-time-container">
+          <span class="post-time"> 2024-12-26 </span>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</article>
+
+    
+        <article class="post">
+  <div class="single-container column is-centered">
+    <div class="archive" id="post-container">
+      <header class="post-header">
+        <h1 class="post-title hover-underline-animation"><a class="post-link" href="/post/%E9%96%B1%E8%AE%80%E7%AD%86%E8%A8%98---%E7%84%A1%E6%9A%87%E7%A8%8B%E5%BC%8F%E7%A2%BC%E7%95%AA%E5%A4%96%E7%AF%87/">閱讀筆記 - The Clean Coder 無暇程式碼番外篇 - 專業程式設計師的生存之道</a></h1>
+       
+       
+      </header>
+      <div class="post-content">
+        <div class="excerpt post-summary">
+          <h2 id="以下是我根據這本書中節錄的重點整理">以下是我根據這本書中節錄的重點整理</h2>
+<h3 id="ch1-專業主義">CH1 專業主義</h3>
+<ol>
+<li>不破壞軟體功能</li>
+<li>不破壞結構(軟體要易於修改)</li>
+</ol>
+<blockquote>
+<p>💡 <strong>不能銘記過去的人，註定重蹈先人的覆轍</strong></p>
+</blockquote>
+<h3 id="ch2-說不">CH2 說「不」</h3>
+<p>專業人士敢於說明真相而不屈從於權勢。有勇氣說「不」。</p>
+<blockquote>
+<p>💡 <strong>說「不」，才能真正做成一些事情。</strong></p>
+</blockquote>
+<h3 id="ch3-說是">CH3 說「是」</h3>
+<ol>
+<li>避免「缺乏承諾」，若是無法達成應盡早向承諾的對象發出預警，越早、越快越好。</li>
+<li>專業人士對自己的能力極限瞭若指掌。</li>
+<li>回歸測試 ( Regression Testing ) 是當程式進行修改後，檢查修改前能正常執行的功能是否仍能無誤的執行。</li>
+</ol>
+<blockquote>
+<p>💡 <strong>專業人士不需要對所有的請求都回答「是」。不過，他們應該努力尋找創新的方法，盡可能做到有求必應。當專業人士給出肯定回答時，會使用「承諾用語」，以確保各方能無誤的明白及理解承諾的內容。</strong></p>
+</blockquote>
+<h3 id="ch4-寫程式">CH4 寫程式</h3>
+<p><strong>敲錯鍵盤時我自己能感覺到。</strong></p>
+<p>精熟掌握每項技藝，關鍵都是要具備「信心」和「出錯感知」。</p>
+<p>樂觀預估、常規預估、悲觀預估</p>
+<h3 id="ch5-測試驅動開發-tdd">CH5 測試驅動開發 TDD</h3>
+<blockquote>
+<p>💡 <strong>事後寫的測試只是一種防守，先行編寫的測試則是進攻</strong></p>
+</blockquote>
+<h3 id="ch7-驗收測試">CH7 驗收測試</h3>
+<p>驗收測試和單元測試的對象通常是相同的，但絕對和「重複」沾不上邊。</p>
+<p>單元測試是深入系統內部進行，呼叫特定類別的方法；驗收測試則是在系統外部，通常是在 API 或 UI 層級進行。所以兩者的執行路徑截然不同。</p>
+<h3 id="ch9-時間管理">CH9 時間管理</h3>
+<ul>
+<li>會議是必須的，但會議會浪費大量時間，沒有必要的會議應禮貌拒絕。</li>
+<li>Stand Up Meeting :
+<ol>
+<li>我昨天做了什麼?</li>
+<li>我今天預計做什麼?</li>
+<li>我遇到了什麼問題，需不需要協助?</li>
+</ol>
+</li>
+</ul>
+        </div>
+        
+        <div class="post-time-container">
+          <span class="post-time"> 2024-12-25 </span>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</article>
+
+    
+    <hr>
+<section class="pagination" >
+    
+    <label class="pag-link">Page 1 of 1</label>
+    
+</section>
+
+</div>
+
+        </main><footer class="footer">
+    <div class="content has-text-centered">
+    <span>&copy; 2024 <a href="https://example.org/">資深菜鳥 Nick</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" target="_blank">Hugo</a> &
+        <a href="https://github.com/hotjuicew/hugo-JuiceBar" target="_blank">JuiceBar</a>
+    </span>
+    </div>
+  </footer></body>
+</html>
+
