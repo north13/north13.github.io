@@ -17,7 +17,7 @@ categories: ["前端", "JavaScript"]
 
 ### var 範例（函式作用域）
 
-```
+```js
 var x = 10;
 console.log(window.x); // 10
 ```
@@ -35,7 +35,7 @@ console.log(window.x); // 10
 
 ### let 範例（區塊作用域）
 
-```
+```js
 let y = 20;
 console.log(window.y); // undefined
 
@@ -57,7 +57,7 @@ console.log(window.y); // undefined
 
 ### const 範例（區塊作用域）
 
-```
+```js
 const z = 30;
 console.log(window.z); // undefined
 ```
