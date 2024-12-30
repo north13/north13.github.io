@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en-us"><head>
+<html lang="en-us"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8" />
   <meta
     name="viewport"
@@ -67,17 +67,17 @@ signal() 用於建立可追蹤的響應式狀態。
 Vue 3 ref 的用途
 Vue 3 的 ref 也用於 響應式數據 管理。ref 會將一個變數包裹成 響應式對象，當數據變化時，Vue 會自動追蹤變更並更新 UI。"
   />
-  <link rel="canonical" href="https://north13.github.io/post/angular%E5%92%8Cvue%E7%9A%84%E9%9F%BF%E6%87%89%E5%BC%8F%E7%8B%80%E6%85%8B%E7%AE%A1%E7%90%86/" />
+  <link rel="canonical" href="http://localhost:1313/post/angular%E5%92%8Cvue%E7%9A%84%E9%9F%BF%E6%87%89%E5%BC%8F%E7%8B%80%E6%85%8B%E7%AE%A1%E7%90%86/" />
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css"
   />
   
-  <link rel="stylesheet" href="https://north13.github.io/scss/style.min.aa7209164f013c6883aa54384ea45a46e582eacf9a17e9565badebd557dd1059.css" />
+  <link rel="stylesheet" href="http://localhost:1313/scss/style.min.aa7209164f013c6883aa54384ea45a46e582eacf9a17e9565badebd557dd1059.css" />
 
   <link rel="icon" href="/images/favicon.ico" />
 
-  <meta property="og:url" content="https://north13.github.io/post/angular%E5%92%8Cvue%E7%9A%84%E9%9F%BF%E6%87%89%E5%BC%8F%E7%8B%80%E6%85%8B%E7%AE%A1%E7%90%86/">
+  <meta property="og:url" content="http://localhost:1313/post/angular%E5%92%8Cvue%E7%9A%84%E9%9F%BF%E6%87%89%E5%BC%8F%E7%8B%80%E6%85%8B%E7%AE%A1%E7%90%86/">
   <meta property="og:site_name" content="資深菜鳥 Nick">
   <meta property="og:title" content="Angular 和 Vue 的響應式狀態管理">
   <meta property="og:description" content="之前趁著 Udemy 黑五活動買了些有興趣的課程來進修，加上 YT 上免費的課程，聽聽不同的講師會有不同的收穫，就像是看醫生不要只看一間，不同的醫生看或許會有不同的見解。
@@ -98,7 +98,7 @@ Signals 主要用途：
 Angular Signals 的用途 Angular 引入 Signals 是為了解決 響應式狀態管理 的問題。傳統上 Angular 主要使用 RxJS 的 Observables 或 Component State 來管理狀態，但這種方式可能導致程式碼複雜性增加、追蹤數據變化困難。
 Signals 主要用途：
 響應式狀態管理： Signals 允許你輕鬆追蹤和響應狀態變化，無需手動訂閱或處理變更檢測。 效能提升： Signals 會在狀態變化時自動觸發 UI 更新，並只更新受影響的部分，而非整體重新渲染，這比傳統變更檢測更高效。 同步數據流： 和 RxJS 的異步操作不同，Signals 提供 同步 的數據流，使用起來更加直觀。 預測性： Angular Signals 透過明確的讀寫 API，讓數據變更更易於預測和調試。 import { signal } from &#34;@angular/core&#34;; export class MyComponent { count = signal(0); increment() { this.count.set(this.count() &#43; 1); } } signal() 用於建立可追蹤的響應式狀態。 使用 .set()、.update() 來修改值，使用 signal() 本身讀取當前值。 Vue 3 ref 的用途 Vue 3 的 ref 也用於 響應式數據 管理。ref 會將一個變數包裹成 響應式對象，當數據變化時，Vue 會自動追蹤變更並更新 UI。">
-   
+ 
 </head>
 <body><nav class="navbar is-light" role="navigation">
     <div class="container" style="justify-content: space-around;">
@@ -111,7 +111,7 @@ Signals 主要用途：
 
             
             <a id="theme-toggle" class="theme-toggle" href="#">
-                <img src="https://north13.github.io/svg/sun.svg" alt="sun icon" class="theme-icon" />
+                <img src="http://localhost:1313/svg/sun.svg" alt="sun icon" class="theme-icon" />
             </a>
 
             
@@ -152,11 +152,11 @@ Signals 主要用途：
         let themeIcon = document.querySelector(".theme-icon");
         if (theme === "dark") {
             body.classList.add("dark-mode");
-            themeIcon.src = "https:\/\/north13.github.io\/svg/moon.svg";
+            themeIcon.src = "http:\/\/localhost:1313\/svg/moon.svg";
             themeIcon.alt = "moon icon";
         } else {
             body.classList.remove("dark-mode");
-            themeIcon.src = "https:\/\/north13.github.io\/svg/sun.svg";
+            themeIcon.src = "http:\/\/localhost:1313\/svg/sun.svg";
             themeIcon.alt = "sun icon";
         }
         
@@ -399,7 +399,7 @@ Signals 主要用途：
             <div class="has-text-left">
                 
                 <p>Previous post</p>
-                <a href="https://north13.github.io/post/es6-%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%9A%84%E6%AF%94%E8%BC%83/">ES6 作用域的比較</a>
+                <a href="http://localhost:1313/post/es6-%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%9A%84%E6%AF%94%E8%BC%83/">ES6 作用域的比較</a>
                 
             </div>
             <div class="has-text-right">
@@ -412,7 +412,7 @@ Signals 主要用途：
 
         </main><footer class="footer">
     <div class="content has-text-centered">
-    <span>&copy; 2024 <a href="https://north13.github.io/">資深菜鳥 Nick</a></span>
+    <span>&copy; 2024 <a href="http://localhost:1313/">資深菜鳥 Nick</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" target="_blank">Hugo</a> &

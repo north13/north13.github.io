@@ -1,7 +1,7 @@
 
 <!DOCTYPE html>
 <html lang="en-us"><head>
-	<meta name="generator" content="Hugo 0.140.1">
+	<meta name="generator" content="Hugo 0.140.1"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8" />
   <meta
     name="viewport"
@@ -15,17 +15,17 @@
     name="description"
     content="My site description"
   />
-  <link rel="canonical" href="https://north13.github.io/" />
+  <link rel="canonical" href="http://localhost:1313/" />
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css"
   />
   
-  <link rel="stylesheet" href="https://north13.github.io/scss/style.min.aa7209164f013c6883aa54384ea45a46e582eacf9a17e9565badebd557dd1059.css" />
+  <link rel="stylesheet" href="http://localhost:1313/scss/style.min.aa7209164f013c6883aa54384ea45a46e582eacf9a17e9565badebd557dd1059.css" />
 
   <link rel="icon" href="/images/favicon.ico" />
 
-  <meta property="og:url" content="https://north13.github.io/">
+  <meta property="og:url" content="http://localhost:1313/">
   <meta property="og:site_name" content="資深菜鳥 Nick">
   <meta property="og:title" content="資深菜鳥 Nick">
   <meta property="og:description" content="My site description">
@@ -35,7 +35,7 @@
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="資深菜鳥 Nick">
   <meta name="twitter:description" content="My site description">
-   
+ 
 </head>
 <body><nav class="navbar is-light" role="navigation">
     <div class="container" style="justify-content: space-around;">
@@ -48,7 +48,7 @@
 
             
             <a id="theme-toggle" class="theme-toggle" href="#">
-                <img src="https://north13.github.io/svg/sun.svg" alt="sun icon" class="theme-icon" />
+                <img src="http://localhost:1313/svg/sun.svg" alt="sun icon" class="theme-icon" />
             </a>
 
             
@@ -89,11 +89,11 @@
         let themeIcon = document.querySelector(".theme-icon");
         if (theme === "dark") {
             body.classList.add("dark-mode");
-            themeIcon.src = "https:\/\/north13.github.io\/svg/moon.svg";
+            themeIcon.src = "http:\/\/localhost:1313\/svg/moon.svg";
             themeIcon.alt = "moon icon";
         } else {
             body.classList.remove("dark-mode");
-            themeIcon.src = "https:\/\/north13.github.io\/svg/sun.svg";
+            themeIcon.src = "http:\/\/localhost:1313\/svg/sun.svg";
             themeIcon.alt = "sun icon";
         }
         
@@ -293,9 +293,9 @@
 在全域範疇中，使用 <code>var</code> 宣告的變數會成為全域物件（window 或 globalThis）的屬性。</li>
 </ul>
 <h3 id="var-範例函式作用域">var 範例（函式作用域）</h3>
-<pre tabindex="0"><code>var x = 10;
-console.log(window.x); // 10
-</code></pre><p><code>let</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(window.<span style="color:#a6e22e">x</span>); <span style="color:#75715e">// 10
+</span></span></span></code></pre></div><p><code>let</code></p>
 <ul>
 <li>
 <p><strong>作用域：</strong>
@@ -311,9 +311,9 @@ console.log(window.x); // 10
 </li>
 </ul>
 <h3 id="let-範例區塊作用域">let 範例（區塊作用域）</h3>
-<pre tabindex="0"><code>let y = 20;
-console.log(window.y); // undefined
-</code></pre><p><code>const</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">y</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(window.<span style="color:#a6e22e">y</span>); <span style="color:#75715e">// undefined
+</span></span></span></code></pre></div><p><code>const</code></p>
 <ul>
 <li>
 <p><strong>作用域：</strong>
@@ -330,6 +330,14 @@ console.log(window.y); // undefined
 <li>
 <p><strong>屬性綁定：</strong>
 使用 <code>const</code> 宣告的變數，與 <code>let</code> 一樣，不會成為全域物件的屬性。</p>
+</li>
+</ul>
+<h3 id="const-範例區塊作用域">const 範例（區塊作用域）</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">z</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">30</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(window.<span style="color:#a6e22e">z</span>); <span style="color:#75715e">// undefined
+</span></span></span></code></pre></div><h3 id="-結論">💡 結論</h3>
+<blockquote>
+<p>在現代 JavaScript 開發中，推薦使用 <code>let</code> 和 <code>const</code> 取代 <code>var</code>，因為它們具有區塊作用域且不會污染全域物件的屬性。</p>
         </div>
         
         <div class="post-time-container">
@@ -420,7 +428,7 @@ console.log(window.y); // undefined
 
         </main><footer class="footer">
     <div class="content has-text-centered">
-    <span>&copy; 2024 <a href="https://north13.github.io/">資深菜鳥 Nick</a></span>
+    <span>&copy; 2024 <a href="http://localhost:1313/">資深菜鳥 Nick</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" target="_blank">Hugo</a> &
