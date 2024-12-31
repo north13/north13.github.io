@@ -2,45 +2,45 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on 資深菜鳥 Nick</title>
-    <link>https://north13.github.io/categories/</link>
+    <link>http://localhost:1313/categories/</link>
     <description>Recent content in Categories on 資深菜鳥 Nick</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 27 Dec 2024 10:06:49 +0800</lastBuildDate>
-    <atom:link href="https://north13.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Angular</title>
-      <link>https://north13.github.io/categories/angular/</link>
-      <pubDate>Fri, 27 Dec 2024 10:06:49 +0800</pubDate>
-      <guid>https://north13.github.io/categories/angular/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Vue</title>
-      <link>https://north13.github.io/categories/vue/</link>
-      <pubDate>Fri, 27 Dec 2024 10:06:49 +0800</pubDate>
-      <guid>https://north13.github.io/categories/vue/</guid>
-      <description></description>
-    </item>
+    <lastBuildDate>Mon, 30 Dec 2024 14:41:54 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>JavaScript</title>
-      <link>https://north13.github.io/categories/javascript/</link>
-      <pubDate>Thu, 26 Dec 2024 15:37:37 +0800</pubDate>
-      <guid>https://north13.github.io/categories/javascript/</guid>
+      <link>http://localhost:1313/categories/javascript/</link>
+      <pubDate>Mon, 30 Dec 2024 14:41:54 +0800</pubDate>
+      <guid>http://localhost:1313/categories/javascript/</guid>
       <description></description>
     </item>
     <item>
       <title>前端</title>
-      <link>https://north13.github.io/categories/%E5%89%8D%E7%AB%AF/</link>
-      <pubDate>Thu, 26 Dec 2024 15:37:37 +0800</pubDate>
-      <guid>https://north13.github.io/categories/%E5%89%8D%E7%AB%AF/</guid>
+      <link>http://localhost:1313/categories/%E5%89%8D%E7%AB%AF/</link>
+      <pubDate>Mon, 30 Dec 2024 14:41:54 +0800</pubDate>
+      <guid>http://localhost:1313/categories/%E5%89%8D%E7%AB%AF/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Angular</title>
+      <link>http://localhost:1313/categories/angular/</link>
+      <pubDate>Fri, 27 Dec 2024 10:06:49 +0800</pubDate>
+      <guid>http://localhost:1313/categories/angular/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Vue</title>
+      <link>http://localhost:1313/categories/vue/</link>
+      <pubDate>Fri, 27 Dec 2024 10:06:49 +0800</pubDate>
+      <guid>http://localhost:1313/categories/vue/</guid>
       <description></description>
     </item>
     <item>
       <title>Note</title>
-      <link>https://north13.github.io/categories/note/</link>
+      <link>http://localhost:1313/categories/note/</link>
       <pubDate>Wed, 25 Dec 2024 14:47:55 +0800</pubDate>
-      <guid>https://north13.github.io/categories/note/</guid>
+      <guid>http://localhost:1313/categories/note/</guid>
       <description></description>
     </item>
   </channel>

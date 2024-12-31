@@ -200,6 +200,90 @@
   <div class="single-container column is-centered">
     <div class="archive" id="post-container">
       <header class="post-header">
+        <h1 class="post-title hover-underline-animation"><a class="post-link" href="/post/%E9%82%8F%E8%BC%AF%E9%81%8B%E7%AE%97%E5%AD%90-%E7%9F%AD%E8%B7%AF/">邏輯運算子 - 短路</a></h1>
+       
+       
+      </header>
+      <div class="post-content">
+        <div class="excerpt post-summary">
+          <h2 id="短路邏輯-short-circuit-evaluation">短路邏輯 （Short-Circuit Evaluation）</h2>
+<p>短路邏輯是一種邏輯運算的優化技巧，用於進行邏輯判斷時，當確定結果時立即停止後續的運算，也因為在某些情況並不需要計算所有的運算元就能確定結果，所以稱為「短路」。</p>
+<h3 id="優點">優點</h3>
+<ol>
+<li><strong>避免不必要的計算:</strong> 當邏輯運算的結果可以由前面的運算元確定時，後面的運算元就不會被計算，這可以節省計算資源，提高程式執行效率。</li>
+<li><strong>提早結束迴圈:</strong> 在迴圈中使用短路邏輯可以提早結束迴圈。</li>
+<li><strong>避免錯誤:</strong>
+在檢查物件是否為 null 的時候，使用短路邏輯可以避免在 null 物件上呼叫方法而引發 NullPointerException。</li>
+<li><strong>簡化程式碼:</strong>
+<ul>
+<li>條件判斷： 短路邏輯可以簡化條件判斷，讓程式碼更簡潔。</li>
+<li>設定預設值： 可以用來設定變數的預設值。</li>
+</ul>
+</li>
+</ol>
+<h3 id="缺點">缺點</h3>
+<ol>
+<li><strong>可讀性降低:</strong> 判斷過於複雜時反而使可讀性降低。</li>
+<li><strong>不易維護:</strong> 過度使用短路邏輯可能會讓程式碼難以理解，降低可維護性。</li>
+</ol>
+<h3 id="使用情境">使用情境</h3>
+<p>當條件簡單或主要為賦值判斷時，短路邏輯是非常好的方式；但如果判斷過於複雜，建議使用 <code>if...else</code> 以提升可讀性。</p>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="邏輯-and-">邏輯 AND (&amp;&amp;)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">condition</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#e6db74">&#34;Yes&#34;</span>;
+</span></span></code></pre></div><p>說明：
+當 condition 為 <code>true</code> 時，result 將會是 &ldquo;Yes&rdquo;；如果 condition 為 <code>false</code>，則 result 的值會是 condition 自己 <strong>（通常為 false 或 undefined 等）</strong>。</p>
+<blockquote>
+<p>💡 典型用途：用於在條件為 true 時執行某些操作，否則忽略。</p>
+<p>例如檢查某物件是否存在，再執行方法：isAdmin &amp;&amp; performAdminAction()。</p>
+</blockquote>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="邏輯-or-">邏輯 OR (||)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">condition</span> <span style="color:#f92672">||</span> <span style="color:#e6db74">&#34;Default&#34;</span>;
+</span></span></code></pre></div><p>說明：
+當 condition 為 false <strong>（如 null、undefined、0、&quot;&quot; 等）</strong> 時，返回 &ldquo;Default&rdquo;；如果 condition 為 true，則返回 condition 的值。</p>
+        </div>
+        
+        <div class="post-time-container">
+          <span class="post-time"> 2024-12-30 </span>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</article>
+
+    
+        <article class="post">
+  <div class="single-container column is-centered">
+    <div class="archive" id="post-container">
+      <header class="post-header">
         <h1 class="post-title hover-underline-animation"><a class="post-link" href="/post/angular%E5%92%8Cvue%E7%9A%84%E9%9F%BF%E6%87%89%E5%BC%8F%E7%8B%80%E6%85%8B%E7%AE%A1%E7%90%86/">Angular 和 Vue 的響應式狀態管理</a></h1>
        
        
@@ -295,7 +379,21 @@
 <h3 id="var-範例函式作用域">var 範例（函式作用域）</h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(window.<span style="color:#a6e22e">x</span>); <span style="color:#75715e">// 10
-</span></span></span></code></pre></div><p><code>let</code></p>
+</span></span></span></code></pre></div><table>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<p><code>let</code></p>
 <ul>
 <li>
 <p><strong>作用域：</strong>
@@ -313,7 +411,21 @@
 <h3 id="let-範例區塊作用域">let 範例（區塊作用域）</h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">y</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>;
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(window.<span style="color:#a6e22e">y</span>); <span style="color:#75715e">// undefined
-</span></span></span></code></pre></div><p><code>const</code></p>
+</span></span></span></code></pre></div><table>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<p><code>const</code></p>
 <ul>
 <li>
 <p><strong>作用域：</strong>
@@ -330,14 +442,6 @@
 <li>
 <p><strong>屬性綁定：</strong>
 使用 <code>const</code> 宣告的變數，與 <code>let</code> 一樣，不會成為全域物件的屬性。</p>
-</li>
-</ul>
-<h3 id="const-範例區塊作用域">const 範例（區塊作用域）</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">z</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">30</span>;
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(window.<span style="color:#a6e22e">z</span>); <span style="color:#75715e">// undefined
-</span></span></span></code></pre></div><h3 id="-結論">💡 結論</h3>
-<blockquote>
-<p>在現代 JavaScript 開發中，推薦使用 <code>let</code> 和 <code>const</code> 取代 <code>var</code>，因為它們具有區塊作用域且不會污染全域物件的屬性。</p>
         </div>
         
         <div class="post-time-container">
@@ -369,11 +473,39 @@
 <blockquote>
 <p>💡 <strong>不能銘記過去的人，註定重蹈先人的覆轍</strong></p>
 </blockquote>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
 <h3 id="ch2-說不">CH2 說「不」</h3>
 <p>專業人士敢於說明真相而不屈從於權勢。有勇氣說「不」。</p>
 <blockquote>
 <p>💡 <strong>說「不」，才能真正做成一些事情。</strong></p>
 </blockquote>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
 <h3 id="ch3-說是">CH3 說「是」</h3>
 <ol>
 <li>避免「缺乏承諾」，若是無法達成應盡早向承諾的對象發出預警，越早、越快越好。</li>
@@ -383,17 +515,73 @@
 <blockquote>
 <p>💡 <strong>專業人士不需要對所有的請求都回答「是」。不過，他們應該努力尋找創新的方法，盡可能做到有求必應。當專業人士給出肯定回答時，會使用「承諾用語」，以確保各方能無誤的明白及理解承諾的內容。</strong></p>
 </blockquote>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
 <h3 id="ch4-寫程式">CH4 寫程式</h3>
 <p><strong>敲錯鍵盤時我自己能感覺到。</strong></p>
 <p>精熟掌握每項技藝，關鍵都是要具備「信心」和「出錯感知」。</p>
 <p>樂觀預估、常規預估、悲觀預估</p>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
 <h3 id="ch5-測試驅動開發-tdd">CH5 測試驅動開發 TDD</h3>
 <blockquote>
 <p>💡 <strong>事後寫的測試只是一種防守，先行編寫的測試則是進攻</strong></p>
 </blockquote>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
 <h3 id="ch7-驗收測試">CH7 驗收測試</h3>
 <p>驗收測試和單元測試的對象通常是相同的，但絕對和「重複」沾不上邊。</p>
 <p>單元測試是深入系統內部進行，呼叫特定類別的方法；驗收測試則是在系統外部，通常是在 API 或 UI 層級進行。所以兩者的執行路徑截然不同。</p>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
 <h3 id="ch9-時間管理">CH9 時間管理</h3>
 <ul>
 <li>會議是必須的，但會議會浪費大量時間，沒有必要的會議應禮貌拒絕。</li>

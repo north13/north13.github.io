@@ -25,6 +25,20 @@ var 宣告的變數會被提升到作用域的頂部（包括全域和函式內�
 var 範例（函式作用域）
 var x = 10;
 console.log(window.x); // 10
+
+  
+      
+          
+          
+      
+  
+  
+      
+          
+          
+      
+  
+
 let
 
 
@@ -43,6 +57,20 @@ Hoisting（提升）：
 let 範例（區塊作用域）
 let y = 20;
 console.log(window.y); // undefined
+
+  
+      
+          
+          
+      
+  
+  
+      
+          
+          
+      
+  
+
 const
 
 
@@ -59,15 +87,7 @@ Hoisting（提升）：
 
 
 屬性綁定：
-使用 const 宣告的變數，與 let 一樣，不會成為全域物件的屬性。
-
-
-const 範例（區塊作用域）
-const z = 30;
-console.log(window.z); // undefined
-💡 結論
-
-在現代 JavaScript 開發中，推薦使用 let 和 const 取代 var，因為它們具有區塊作用域且不會污染全域物件的屬性。"
+使用 const 宣告的變數，與 let 一樣，不會成為全域物件的屬性。"
   />
   <link rel="canonical" href="http://localhost:1313/post/es6-%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%9A%84%E6%AF%94%E8%BC%83/" />
   <link
@@ -91,8 +111,7 @@ let 範例（區塊作用域） let y = 20; console.log(window.y); // undefined 
 作用域： 與 let 一樣，const 是區塊作用域（Block Scope）。
 不可重新賦值： const 宣告的變數必須在宣告時初始化，且不能重新賦值。但如果該變數儲存的是物件，其屬性可以被修改。
 Hoisting（提升）： 同樣存在暫時性死區（TDZ），在宣告之前不可訪問。
-屬性綁定： 使用 const 宣告的變數，與 let 一樣，不會成為全域物件的屬性。
-const 範例（區塊作用域） const z = 30; console.log(window.z); // undefined 💡 結論 在現代 JavaScript 開發中，推薦使用 let 和 const 取代 var，因為它們具有區塊作用域且不會污染全域物件的屬性。">
+屬性綁定： 使用 const 宣告的變數，與 let 一樣，不會成為全域物件的屬性。">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="post">
@@ -110,8 +129,7 @@ let 範例（區塊作用域） let y = 20; console.log(window.y); // undefined 
 作用域： 與 let 一樣，const 是區塊作用域（Block Scope）。
 不可重新賦值： const 宣告的變數必須在宣告時初始化，且不能重新賦值。但如果該變數儲存的是物件，其屬性可以被修改。
 Hoisting（提升）： 同樣存在暫時性死區（TDZ），在宣告之前不可訪問。
-屬性綁定： 使用 const 宣告的變數，與 let 一樣，不會成為全域物件的屬性。
-const 範例（區塊作用域） const z = 30; console.log(window.z); // undefined 💡 結論 在現代 JavaScript 開發中，推薦使用 let 和 const 取代 var，因為它們具有區塊作用域且不會污染全域物件的屬性。">
+屬性綁定： 使用 const 宣告的變數，與 let 一樣，不會成為全域物件的屬性。">
  
 </head>
 <body><nav class="navbar is-light" role="navigation">
@@ -283,7 +301,21 @@ const 範例（區塊作用域） const z = 30; console.log(window.z); // undefi
 <h3 id="var-範例函式作用域">var 範例（函式作用域）</h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(window.<span style="color:#a6e22e">x</span>); <span style="color:#75715e">// 10
-</span></span></span></code></pre></div><p><code>let</code></p>
+</span></span></span></code></pre></div><table>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<p><code>let</code></p>
 <ul>
 <li>
 <p><strong>作用域：</strong>
@@ -301,7 +333,21 @@ const 範例（區塊作用域） const z = 30; console.log(window.z); // undefi
 <h3 id="let-範例區塊作用域">let 範例（區塊作用域）</h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">y</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>;
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(window.<span style="color:#a6e22e">y</span>); <span style="color:#75715e">// undefined
-</span></span></span></code></pre></div><p><code>const</code></p>
+</span></span></span></code></pre></div><table>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<p><code>const</code></p>
 <ul>
 <li>
 <p><strong>作用域：</strong>
@@ -323,7 +369,21 @@ const 範例（區塊作用域） const z = 30; console.log(window.z); // undefi
 <h3 id="const-範例區塊作用域">const 範例（區塊作用域）</h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">z</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">30</span>;
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(window.<span style="color:#a6e22e">z</span>); <span style="color:#75715e">// undefined
-</span></span></span></code></pre></div><h3 id="-結論">💡 結論</h3>
+</span></span></span></code></pre></div><table>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="-結論">💡 結論</h3>
 <blockquote>
 <p>在現代 JavaScript 開發中，推薦使用 <code>let</code> 和 <code>const</code> 取代 <code>var</code>，因為它們具有區塊作用域且不會污染全域物件的屬性。</p>
 <p><strong><code>let</code> 適合用於需要重新賦值的變數。</strong></p>

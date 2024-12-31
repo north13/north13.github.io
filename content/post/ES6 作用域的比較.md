@@ -22,6 +22,10 @@ var x = 10;
 console.log(window.x); // 10
 ```
 
+|     |     |
+| --- | --- |
+|     |     |
+
 `let`
 
 - **作用域：**
@@ -38,8 +42,11 @@ console.log(window.x); // 10
 ```js
 let y = 20;
 console.log(window.y); // undefined
-
 ```
+
+|     |     |
+| --- | --- |
+|     |     |
 
 `const`
 
@@ -61,6 +68,10 @@ console.log(window.y); // undefined
 const z = 30;
 console.log(window.z); // undefined
 ```
+
+|     |     |
+| --- | --- |
+|     |     |
 
 ### 💡 結論
 
