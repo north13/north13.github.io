@@ -1,0 +1,113 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><title>ES6 作用域的比較 | 資深菜鳥 Nick
+</title><meta name=description content="const、let 與 var
+var
+
+作用域：
+var是函式作用域（Function Scope）。在函式內宣告的變數僅在該函式內可用，若在函式外使用，則為全域作用域（Global Scope）。
+Hoisting（提升）：
+var 宣告的變數會被提升到作用域的頂部（包括全域和函式內部），但初始化的值不會提升。
+屬性綁定：
+在全域範疇中，使用 var 宣告的變數會成為全域物件（window 或 globalThis）的屬性。
+
+var 範例（函式作用域）
+var x = 10;
+console.log(window.x); // 10
+
+  
+      
+          
+          
+      
+  
+  
+      
+          
+          
+      
+  
+
+let
+
+
+作用域：
+let 是區塊作用域（Block Scope），也就是變數僅在其所宣告的區塊 {} 內有效。
+
+
+Hoisting（提升）：
+與 var 不同，let 變數在宣告之前不可訪問，會觸發「暫時性死區」（Temporal Dead Zone, TDZ）。
+(關於 TDZ，我們以後會專門做一期影片跟大家講解)
+
+
+屬性綁定：
+在全域範疇中，使用 let 宣告的變數不會成為全域物件的屬性。
+
+
+let 範例（區塊作用域）
+let y = 20;
+console.log(window.y); // undefined
+
+  
+      
+          
+          
+      
+  
+  
+      
+          
+          
+      
+  
+
+const
+
+
+作用域：
+與 let 一樣，const 是區塊作用域（Block Scope）。
+
+
+不可重新賦值：
+const 宣告的變數必須在宣告時初始化，且不能重新賦值。但如果該變數儲存的是物件，其屬性可以被修改。
+
+
+Hoisting（提升）：
+同樣存在暫時性死區（TDZ），在宣告之前不可訪問。"><link rel=canonical href=https://north13.github.io/post/es6-%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%9A%84%E6%AF%94%E8%BC%83/><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css><link rel=stylesheet href=https://north13.github.io/scss/style.min.aa7209164f013c6883aa54384ea45a46e582eacf9a17e9565badebd557dd1059.css><link rel=icon href=/images/favicon.png><meta property="og:url" content="https://north13.github.io/post/es6-%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%9A%84%E6%AF%94%E8%BC%83/"><meta property="og:site_name" content="資深菜鳥 Nick"><meta property="og:title" content="ES6 作用域的比較"><meta property="og:description" content="const、let 與 var var
+作用域： var是函式作用域（Function Scope）。在函式內宣告的變數僅在該函式內可用，若在函式外使用，則為全域作用域（Global Scope）。 Hoisting（提升）： var 宣告的變數會被提升到作用域的頂部（包括全域和函式內部），但初始化的值不會提升。 屬性綁定： 在全域範疇中，使用 var 宣告的變數會成為全域物件（window 或 globalThis）的屬性。 var 範例（函式作用域） var x = 10; console.log(window.x); // 10 let
+作用域： let 是區塊作用域（Block Scope），也就是變數僅在其所宣告的區塊 {} 內有效。
+Hoisting（提升）： 與 var 不同，let 變數在宣告之前不可訪問，會觸發「暫時性死區」（Temporal Dead Zone, TDZ）。 (關於 TDZ，我們以後會專門做一期影片跟大家講解)
+屬性綁定： 在全域範疇中，使用 let 宣告的變數不會成為全域物件的屬性。
+let 範例（區塊作用域） let y = 20; console.log(window.y); // undefined const
+作用域： 與 let 一樣，const 是區塊作用域（Block Scope）。
+不可重新賦值： const 宣告的變數必須在宣告時初始化，且不能重新賦值。但如果該變數儲存的是物件，其屬性可以被修改。
+Hoisting（提升）： 同樣存在暫時性死區（TDZ），在宣告之前不可訪問。"><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="post"><meta property="article:published_time" content="2024-12-26T15:37:37+08:00"><meta property="article:modified_time" content="2024-12-26T15:37:37+08:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="ES6 作用域的比較"><meta name=twitter:description content="const、let 與 var var
+作用域： var是函式作用域（Function Scope）。在函式內宣告的變數僅在該函式內可用，若在函式外使用，則為全域作用域（Global Scope）。 Hoisting（提升）： var 宣告的變數會被提升到作用域的頂部（包括全域和函式內部），但初始化的值不會提升。 屬性綁定： 在全域範疇中，使用 var 宣告的變數會成為全域物件（window 或 globalThis）的屬性。 var 範例（函式作用域） var x = 10; console.log(window.x); // 10 let
+作用域： let 是區塊作用域（Block Scope），也就是變數僅在其所宣告的區塊 {} 內有效。
+Hoisting（提升）： 與 var 不同，let 變數在宣告之前不可訪問，會觸發「暫時性死區」（Temporal Dead Zone, TDZ）。 (關於 TDZ，我們以後會專門做一期影片跟大家講解)
+屬性綁定： 在全域範疇中，使用 let 宣告的變數不會成為全域物件的屬性。
+let 範例（區塊作用域） let y = 20; console.log(window.y); // undefined const
+作用域： 與 let 一樣，const 是區塊作用域（Block Scope）。
+不可重新賦值： const 宣告的變數必須在宣告時初始化，且不能重新賦值。但如果該變數儲存的是物件，其屬性可以被修改。
+Hoisting（提升）： 同樣存在暫時性死區（TDZ），在宣告之前不可訪問。"></head><body><nav class="navbar is-light" role=navigation><div class=container style=justify-content:space-around><div class=navbar-brand><a href=/ title=home class=navbar-item><span class=logo><h1>資深菜鳥 Nick</h1></span></a><a id=theme-toggle class=theme-toggle href=#><img src=https://north13.github.io/svg/sun.svg alt="sun icon" class=theme-icon>
+</a><a role=button class=navbar-burger aria-label=menu aria-expanded=false><span aria-hidden=true></span>
+<span aria-hidden=true></span>
+<span aria-hidden=true></span></a></div><div class=navbar-menu><div class=navbar-start><a href=/categories class=navbar-item>文章分類</a></div></div><div class=search><div id=fastSearch><input id=searchInput tabindex=0 placeholder=文章搜尋><ul id=searchResults></ul></div><a id=search-btn style=display:inline-block href=#><div class=icon-search><svg class="search-svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div></a></div><script src=/js/fuse.min.js></script><script src=/js/fastsearch.js></script></div></nav><script>document.addEventListener("DOMContentLoaded",function(){var e=document.querySelector(".navbar-burger");e.addEventListener("click",function(){e.classList.toggle("is-active"),document.querySelector(".navbar-menu").classList.toggle("is-active")})});function setTheme(e){let n=document.body,t=document.querySelector(".theme-icon");e==="dark"?(n.classList.add("dark-mode"),t.src="https://north13.github.io/svg/moon.svg",t.alt="moon icon"):(n.classList.remove("dark-mode"),t.src="https://north13.github.io/svg/sun.svg",t.alt="sun icon"),localStorage.setItem("theme",e)}let theme=localStorage.getItem("theme")||"light";const isDarkMode=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;setTheme(isDarkMode?"dark":"light"),setTheme(theme),document.getElementById("theme-toggle").addEventListener("click",function(){theme==="light"?theme="dark":theme="light",setTheme(theme)})</script></header><main><div class=single-container><div class=archive><h1 class="title is-1">ES6 作用域的比較</h1><div class="title subtitle heading is-6"><div class="author-info columns is-vcentered"><div class=column><div class="columns is-vcentered is-mobile"><div class="column is-narrow"><img src=/images/avatar.jpg class=author-image></div><div class=column><p>Nick</p><p><time>December 26, 2024</time></p></div></div></div><div class=small-categories-container><a href=/categories/%E5%89%8D%E7%AB%AF>前端</a>, <a href=/categories/javascript>JavaScript</a></div></div></div><div class="content article-content"><div class=toc-container><div class=post-toc><aside><button id=tocButton><h4 id=contents style=margin-left:1vw;color:#6086b4;margin-bottom:0>CONTENTS</h4></button><div id=hide><nav id=TableOfContents><ul><li><a href=#constlet-與-var>const、let 與 var</a><ul><li><a href=#var-範例函式作用域>var 範例（函式作用域）</a></li><li><a href=#let-範例區塊作用域>let 範例（區塊作用域）</a></li><li><a href=#const-範例區塊作用域>const 範例（區塊作用域）</a></li><li><a href=#-結論>💡 結論</a></li></ul></li></ul></nav></div></aside></div><script>let button=document.getElementById("tocButton"),hide=document.getElementById("hide"),contents=document.getElementById("contents");button.addEventListener("click",function(){hide.style.display!="block"?hide.style.display="block":(hide.style.display="none",contents.style.color="rgb(96, 134, 180)")})</script></div><h2 id=constlet-與-var>const、let 與 var</h2><p><code>var</code></p><ul><li><strong>作用域：</strong>
+<code>var</code>是函式作用域（Function Scope）。在函式內宣告的變數僅在該函式內可用，若在函式外使用，則為全域作用域（Global Scope）。</li><li><strong>Hoisting（提升）：</strong>
+<code>var</code> 宣告的變數會被提升到作用域的頂部（包括全域和函式內部），但初始化的值不會提升。</li><li><strong>屬性綁定：</strong>
+在全域範疇中，使用 <code>var</code> 宣告的變數會成為全域物件（window 或 globalThis）的屬性。</li></ul><h3 id=var-範例函式作用域>var 範例（函式作用域）</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#66d9ef>var</span> <span style=color:#a6e22e>x</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>10</span>;
+</span></span><span style=display:flex><span><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(window.<span style=color:#a6e22e>x</span>); <span style=color:#75715e>// 10
+</span></span></span></code></pre></div><table><thead><tr><th></th><th></th></tr></thead><tbody><tr><td></td><td></td></tr></tbody></table><p><code>let</code></p><ul><li><p><strong>作用域：</strong>
+<code>let</code> 是區塊作用域（Block Scope），也就是變數僅在其所宣告的區塊 {} 內有效。</p></li><li><p><strong>Hoisting（提升）：</strong>
+與 <code>var</code> 不同，<code>let</code> 變數在宣告之前不可訪問，會觸發「暫時性死區」（Temporal Dead Zone, TDZ）。
+(<del><em>關於 TDZ，我們以後會專門做一期影片跟大家講解</em></del>)</p></li><li><p><strong>屬性綁定：</strong>
+在全域範疇中，使用 <code>let</code> 宣告的變數不會成為全域物件的屬性。</p></li></ul><h3 id=let-範例區塊作用域>let 範例（區塊作用域）</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>y</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>20</span>;
+</span></span><span style=display:flex><span><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(window.<span style=color:#a6e22e>y</span>); <span style=color:#75715e>// undefined
+</span></span></span></code></pre></div><table><thead><tr><th></th><th></th></tr></thead><tbody><tr><td></td><td></td></tr></tbody></table><p><code>const</code></p><ul><li><p><strong>作用域：</strong>
+與 <code>let</code> 一樣，<code>const</code> 是區塊作用域（Block Scope）。</p></li><li><p><strong>不可重新賦值：</strong>
+<code>const</code> 宣告的變數必須在宣告時初始化，且不能重新賦值。但如果該變數儲存的是物件，其屬性可以被修改。</p></li><li><p><strong>Hoisting（提升）：</strong>
+同樣存在暫時性死區（TDZ），在宣告之前不可訪問。</p></li><li><p><strong>屬性綁定：</strong>
+使用 <code>const</code> 宣告的變數，與 <code>let</code> 一樣，不會成為全域物件的屬性。</p></li></ul><h3 id=const-範例區塊作用域>const 範例（區塊作用域）</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>z</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>30</span>;
+</span></span><span style=display:flex><span><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(window.<span style=color:#a6e22e>z</span>); <span style=color:#75715e>// undefined
+</span></span></span></code></pre></div><table><thead><tr><th></th><th></th></tr></thead><tbody><tr><td></td><td></td></tr></tbody></table><h3 id=-結論>💡 結論</h3><blockquote><p>在現代 JavaScript 開發中，推薦使用 <code>let</code> 和 <code>const</code> 取代 <code>var</code>，因為它們具有區塊作用域且不會污染全域物件的屬性。</p><p><strong><code>let</code> 適合用於需要重新賦值的變數。</strong></p><p><strong><code>const</code> 適合用於不需要重新賦值的變數。</strong></p><p>這樣的選擇可以提高程式的可讀性與安全性，並避免不必要的作用域污染。</p></blockquote></div></div><a href=# id=scrollToTopButton><svg t="1686753152588" class="icon" viewBox="0 0 1024 1024" p-id="3988" width="48" height="48"><path d="M518.5 360.3c-3.2-4.4-9.7-4.4-12.9.0l-178 246c-3.8 5.3.0 12.7 6.5 12.7H381c10.2.0 19.9-4.9 25.9-13.2L512 460.4l105.2 145.4c6 8.3 15.6 13.2 25.9 13.2H690c6.5.0 10.3-7.4 6.5-12.7l-178-246z" p-id="3989" fill="#363636"/><path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4.0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z" p-id="3990" fill="#363636"/></svg></a><div class=pp-container><section class=pre-and-post><div class=has-text-left><p>Previous post</p><a href=https://north13.github.io/post/%E9%96%B1%E8%AE%80%E7%AD%86%E8%A8%98---%E7%84%A1%E6%9A%87%E7%A8%8B%E5%BC%8F%E7%A2%BC%E7%95%AA%E5%A4%96%E7%AF%87/>閱讀筆記 - The Clean Coder 無暇程式碼番外篇 - 專業程式設計師的生存之道</a></div><div class=has-text-right><p>Next post</p><a href=https://north13.github.io/post/angular%E5%92%8Cvue%E7%9A%84%E9%9F%BF%E6%87%89%E5%BC%8F%E7%8B%80%E6%85%8B%E7%AE%A1%E7%90%86/>Angular 和 Vue 的響應式狀態管理</a></div></section></div></div></main><footer class=footer><div class="content has-text-centered"><span>&copy; 2025 <a href=https://north13.github.io/>資深菜鳥 Nick</a></span>
+<span>Powered by
+<a href=https://gohugo.io/ target=_blank>Hugo</a> &
+        <a href=https://github.com/hotjuicew/hugo-JuiceBar target=_blank>JuiceBar</a></span></div></footer></body></html>

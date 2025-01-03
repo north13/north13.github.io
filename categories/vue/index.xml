@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Vue on 資深菜鳥 Nick</title><link>https://north13.github.io/categories/vue/</link><description>Recent content in Vue on 資深菜鳥 Nick</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Fri, 27 Dec 2024 10:06:49 +0800</lastBuildDate><atom:link href="https://north13.github.io/categories/vue/index.xml" rel="self" type="application/rss+xml"/><item><title>Angular 和 Vue 的響應式狀態管理</title><link>https://north13.github.io/post/angular%E5%92%8Cvue%E7%9A%84%E9%9F%BF%E6%87%89%E5%BC%8F%E7%8B%80%E6%85%8B%E7%AE%A1%E7%90%86/</link><pubDate>Fri, 27 Dec 2024 10:06:49 +0800</pubDate><guid>https://north13.github.io/post/angular%E5%92%8Cvue%E7%9A%84%E9%9F%BF%E6%87%89%E5%BC%8F%E7%8B%80%E6%85%8B%E7%AE%A1%E7%90%86/</guid><description>&lt;p>之前趁著 &lt;code>Udemy&lt;/code> 黑五活動買了些有興趣的課程來進修，加上 &lt;code>YT&lt;/code> 上免費的課程，聽聽不同的講師會有不同的收穫，就像是看醫生不要只看一間，不同的醫生看或許會有不同的見解。&lt;/p>
+&lt;p>在自學時光是 &lt;code>Vue&lt;/code> 就看了三個不同的教學影片，對於 &lt;code>ref&lt;/code>、&lt;code>reactive&lt;/code> 雖無實務經驗，但有一定程度的瞭解。之前工作上使用的框架是 &lt;code>Angular&lt;/code> 且版本 &lt;strong>&amp;lt; 16&lt;/strong> , 對於 &lt;code>Signals&lt;/code> 的應用很模糊，嘗試用 &lt;code>Vue&lt;/code> 的 &lt;code>ref&lt;/code> 去解釋 &lt;code>Angular&lt;/code> 的 &lt;code>Signals&lt;/code> 好像一切都說得過去了！&lt;/p>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>&lt;/th>
+ &lt;th>&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>&lt;/td>
+ &lt;td>&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="angular-signals-的用途">&lt;strong>Angular Signals 的用途&lt;/strong>&lt;/h3>
+&lt;p>&lt;code>Angular&lt;/code> 引入 &lt;strong>Signals&lt;/strong> 是為了解決 &lt;strong>響應式狀態管理&lt;/strong> 的問題。傳統上 &lt;code>Angular&lt;/code> 主要使用 &lt;code>RxJS&lt;/code> 的 &lt;code>Observables&lt;/code> 或 &lt;code>Component State&lt;/code> 來管理狀態，但這種方式可能導致程式碼複雜性增加、追蹤數據變化困難。&lt;/p>
+&lt;p>&lt;strong>Signals 主要用途：&lt;/strong>&lt;/p>
+&lt;ol>
+&lt;li>&lt;strong>響應式狀態管理：&lt;/strong> &lt;code>Signals&lt;/code> 允許你輕鬆追蹤和響應狀態變化，無需手動訂閱或處理變更檢測。&lt;/li>
+&lt;li>&lt;strong>效能提升：&lt;/strong> &lt;code>Signals&lt;/code> 會在狀態變化時自動觸發 UI 更新，並只更新受影響的部分，而非整體重新渲染，這比傳統變更檢測更高效。&lt;/li>
+&lt;li>&lt;strong>同步數據流：&lt;/strong> 和 &lt;code>RxJS&lt;/code> 的異步操作不同，&lt;code>Signals&lt;/code> 提供 &lt;strong>同步&lt;/strong> 的數據流，使用起來更加直觀。&lt;/li>
+&lt;li>&lt;strong>預測性：&lt;/strong> &lt;code>Angular Signals&lt;/code> 透過明確的讀寫 &lt;code>API&lt;/code>，讓數據變更更易於預測和調試。&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-jsx" data-lang="jsx">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">import&lt;/span> { &lt;span style="color:#a6e22e">signal&lt;/span> } &lt;span style="color:#a6e22e">from&lt;/span> &lt;span style="color:#e6db74">&amp;#34;@angular/core&amp;#34;&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">export&lt;/span> &lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">MyComponent&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">count&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">signal&lt;/span>(&lt;span style="color:#ae81ff">0&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">increment&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">count&lt;/span>.&lt;span style="color:#a6e22e">set&lt;/span>(&lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">count&lt;/span>() &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>&lt;code>signal()&lt;/code> 用於建立可追蹤的響應式狀態。&lt;/li>
+&lt;li>使用 &lt;code>.set()&lt;/code>、&lt;code>.update()&lt;/code> 來修改值，使用 &lt;code>signal()&lt;/code> 本身讀取當前值。&lt;/li>
+&lt;/ul>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>&lt;/th>
+ &lt;th>&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>&lt;/td>
+ &lt;td>&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="vue-3-ref-的用途">&lt;strong>Vue 3 ref 的用途&lt;/strong>&lt;/h3>
+&lt;p>&lt;code>Vue 3&lt;/code> 的 &lt;code>ref&lt;/code> 也用於 響應式數據 管理。&lt;code>ref&lt;/code> 會將一個變數包裹成 響應式對象，當數據變化時，&lt;code>Vue&lt;/code> 會自動追蹤變更並更新 UI。&lt;/p></description></item></channel></rss>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>JavaScript on 資深菜鳥 Nick</title><link>https://north13.github.io/categories/javascript/</link><description>Recent content in JavaScript on 資深菜鳥 Nick</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Mon, 30 Dec 2024 14:41:54 +0800</lastBuildDate><atom:link href="https://north13.github.io/categories/javascript/index.xml" rel="self" type="application/rss+xml"/><item><title>邏輯運算子 - 短路</title><link>https://north13.github.io/post/%E9%82%8F%E8%BC%AF%E9%81%8B%E7%AE%97%E5%AD%90-%E7%9F%AD%E8%B7%AF/</link><pubDate>Mon, 30 Dec 2024 14:41:54 +0800</pubDate><guid>https://north13.github.io/post/%E9%82%8F%E8%BC%AF%E9%81%8B%E7%AE%97%E5%AD%90-%E7%9F%AD%E8%B7%AF/</guid><description>&lt;h2 id="短路邏輯-short-circuit-evaluation">短路邏輯 （Short-Circuit Evaluation）&lt;/h2>
+&lt;p>短路邏輯是一種邏輯運算的優化技巧，用於進行邏輯判斷時，當確定結果時立即停止後續的運算，也因為在某些情況並不需要計算所有的運算元就能確定結果，所以稱為「短路」。&lt;/p>
+&lt;h3 id="優點">優點&lt;/h3>
+&lt;ol>
+&lt;li>&lt;strong>避免不必要的計算:&lt;/strong> 當邏輯運算的結果可以由前面的運算元確定時，後面的運算元就不會被計算，這可以節省計算資源，提高程式執行效率。&lt;/li>
+&lt;li>&lt;strong>提早結束迴圈:&lt;/strong> 在迴圈中使用短路邏輯可以提早結束迴圈。&lt;/li>
+&lt;li>&lt;strong>避免錯誤:&lt;/strong>
+在檢查物件是否為 null 的時候，使用短路邏輯可以避免在 null 物件上呼叫方法而引發 NullPointerException。&lt;/li>
+&lt;li>&lt;strong>簡化程式碼:&lt;/strong>
+&lt;ul>
+&lt;li>條件判斷： 短路邏輯可以簡化條件判斷，讓程式碼更簡潔。&lt;/li>
+&lt;li>設定預設值： 可以用來設定變數的預設值。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ol>
+&lt;h3 id="缺點">缺點&lt;/h3>
+&lt;ol>
+&lt;li>&lt;strong>可讀性降低:&lt;/strong> 判斷過於複雜時反而使可讀性降低。&lt;/li>
+&lt;li>&lt;strong>不易維護:&lt;/strong> 過度使用短路邏輯可能會讓程式碼難以理解，降低可維護性。&lt;/li>
+&lt;/ol>
+&lt;h3 id="使用情境">使用情境&lt;/h3>
+&lt;p>當條件簡單或主要為賦值判斷時，短路邏輯是非常好的方式；但如果判斷過於複雜，建議使用 &lt;code>if...else&lt;/code> 以提升可讀性。&lt;/p>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>&lt;/th>
+ &lt;th>&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>&lt;/td>
+ &lt;td>&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="邏輯-and-">邏輯 AND (&amp;amp;&amp;amp;)&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-js" data-lang="js">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">let&lt;/span> &lt;span style="color:#a6e22e">result&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">condition&lt;/span> &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> &lt;span style="color:#e6db74">&amp;#34;Yes&amp;#34;&lt;/span>;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>說明：
+當 condition 為 &lt;code>true&lt;/code> 時，result 將會是 &amp;ldquo;Yes&amp;rdquo;；如果 condition 為 &lt;code>false&lt;/code>，則 result 的值會是 condition 自己 &lt;strong>（通常為 false 或 undefined 等）&lt;/strong>。&lt;/p>
+&lt;blockquote>
+&lt;p>💡 典型用途：用於在條件為 true 時執行某些操作，否則忽略。&lt;/p>
+&lt;p>例如檢查某物件是否存在，再執行方法：isAdmin &amp;amp;&amp;amp; performAdminAction()。&lt;/p>
+&lt;/blockquote>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>&lt;/th>
+ &lt;th>&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>&lt;/td>
+ &lt;td>&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="邏輯-or-">邏輯 OR (||)&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-js" data-lang="js">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">let&lt;/span> &lt;span style="color:#a6e22e">result&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">condition&lt;/span> &lt;span style="color:#f92672">||&lt;/span> &lt;span style="color:#e6db74">&amp;#34;Default&amp;#34;&lt;/span>;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>說明：
+當 condition 為 false &lt;strong>（如 null、undefined、0、&amp;quot;&amp;quot; 等）&lt;/strong> 時，返回 &amp;ldquo;Default&amp;rdquo;；如果 condition 為 true，則返回 condition 的值。&lt;/p></description></item><item><title>ES6 作用域的比較</title><link>https://north13.github.io/post/es6-%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%9A%84%E6%AF%94%E8%BC%83/</link><pubDate>Thu, 26 Dec 2024 15:37:37 +0800</pubDate><guid>https://north13.github.io/post/es6-%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%9A%84%E6%AF%94%E8%BC%83/</guid><description>&lt;h2 id="constlet-與-var">const、let 與 var&lt;/h2>
+&lt;p>&lt;code>var&lt;/code>&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>作用域：&lt;/strong>
+&lt;code>var&lt;/code>是函式作用域（Function Scope）。在函式內宣告的變數僅在該函式內可用，若在函式外使用，則為全域作用域（Global Scope）。&lt;/li>
+&lt;li>&lt;strong>Hoisting（提升）：&lt;/strong>
+&lt;code>var&lt;/code> 宣告的變數會被提升到作用域的頂部（包括全域和函式內部），但初始化的值不會提升。&lt;/li>
+&lt;li>&lt;strong>屬性綁定：&lt;/strong>
+在全域範疇中，使用 &lt;code>var&lt;/code> 宣告的變數會成為全域物件（window 或 globalThis）的屬性。&lt;/li>
+&lt;/ul>
+&lt;h3 id="var-範例函式作用域">var 範例（函式作用域）&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-js" data-lang="js">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">var&lt;/span> &lt;span style="color:#a6e22e">x&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">10&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(window.&lt;span style="color:#a6e22e">x&lt;/span>); &lt;span style="color:#75715e">// 10
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>&lt;/th>
+ &lt;th>&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>&lt;/td>
+ &lt;td>&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;p>&lt;code>let&lt;/code>&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>作用域：&lt;/strong>
+&lt;code>let&lt;/code> 是區塊作用域（Block Scope），也就是變數僅在其所宣告的區塊 {} 內有效。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Hoisting（提升）：&lt;/strong>
+與 &lt;code>var&lt;/code> 不同，&lt;code>let&lt;/code> 變數在宣告之前不可訪問，會觸發「暫時性死區」（Temporal Dead Zone, TDZ）。
+(&lt;del>&lt;em>關於 TDZ，我們以後會專門做一期影片跟大家講解&lt;/em>&lt;/del>)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>屬性綁定：&lt;/strong>
+在全域範疇中，使用 &lt;code>let&lt;/code> 宣告的變數不會成為全域物件的屬性。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="let-範例區塊作用域">let 範例（區塊作用域）&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-js" data-lang="js">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">let&lt;/span> &lt;span style="color:#a6e22e">y&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">20&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(window.&lt;span style="color:#a6e22e">y&lt;/span>); &lt;span style="color:#75715e">// undefined
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>&lt;/th>
+ &lt;th>&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>&lt;/td>
+ &lt;td>&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;p>&lt;code>const&lt;/code>&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>作用域：&lt;/strong>
+與 &lt;code>let&lt;/code> 一樣，&lt;code>const&lt;/code> 是區塊作用域（Block Scope）。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>不可重新賦值：&lt;/strong>
+&lt;code>const&lt;/code> 宣告的變數必須在宣告時初始化，且不能重新賦值。但如果該變數儲存的是物件，其屬性可以被修改。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Hoisting（提升）：&lt;/strong>
+同樣存在暫時性死區（TDZ），在宣告之前不可訪問。&lt;/p></description></item></channel></rss>
