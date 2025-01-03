@@ -1,7 +1,7 @@
 ---
-date: "2024-12-26T15:37:37+08:00"
-title: "ES6 作用域的比較"
-categories: ["前端", "JavaScript"]
+date: '2024-12-26T15:37:37+08:00'
+title: 'ES6 作用域的比較'
+categories: ['前端', 'JavaScript']
 ---
 
 ## const、let 與 var
@@ -33,7 +33,7 @@ console.log(window.x); // 10
 
 - **Hoisting（提升）：**
   與 `var` 不同，`let` 變數在宣告之前不可訪問，會觸發「暫時性死區」（Temporal Dead Zone, TDZ）。
-
+  (~_關於 TDZ，我們以後會專門做一期影片跟大家講解_~)
 - **屬性綁定：**
   在全域範疇中，使用 `let` 宣告的變數不會成為全域物件的屬性。
 

@@ -6,8 +6,15 @@
     <description>Recent content in 前端 on 資深菜鳥 Nick</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 30 Dec 2024 14:41:54 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 02 Jan 2025 10:59:25 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/%E5%89%8D%E7%AB%AF/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Type 和 Interface要用哪一個?</title>
+      <link>http://localhost:1313/post/type%E5%92%8Cinterface%E8%A6%81%E7%94%A8%E5%93%AA%E4%B8%80%E5%80%8B/</link>
+      <pubDate>Thu, 02 Jan 2025 10:59:25 +0800</pubDate>
+      <guid>http://localhost:1313/post/type%E5%92%8Cinterface%E8%A6%81%E7%94%A8%E5%93%AA%E4%B8%80%E5%80%8B/</guid>
+      <description></description>
+    </item>
     <item>
       <title>邏輯運算子 - 短路</title>
       <link>http://localhost:1313/post/%E9%82%8F%E8%BC%AF%E9%81%8B%E7%AE%97%E5%AD%90-%E7%9F%AD%E8%B7%AF/</link>

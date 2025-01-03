@@ -26,7 +26,11 @@ url = "https://www.facebook.com/profile.php?id=1757061755"
 name = "email"
 url = "mailto:northn13@gmail.com"
 
-
+[taxonomies]
+category = "categories"
+[[menu.main]]
+name = "文章分類"
+url = "/categories"
 
 [outputs]
 home = ["HTML", "RSS", "JSON"]
