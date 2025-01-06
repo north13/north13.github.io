@@ -15,6 +15,7 @@ TypeScript 中，Type 與 Interface 都是用來定義型別的關鍵字，但�
 interface Animal {
   name: string;
 }
+
 interface Dog extends Animal {
   bark(): void;
 }
@@ -23,6 +24,7 @@ interface Dog extends Animal {
 type Animal = {
   name: string;
 };
+
 type Dog = Animal & {
   bark(): void;
 };
@@ -35,15 +37,17 @@ type Dog = Animal & {
 interface User {
   name: string;
 }
+
 interface User {
   age: number;
 }
-// 最終 User 將包含 name 和 age
+/* 最終 User 將包含 name 和 age */
 
 // Type 不能重複宣告
 type User = {
   name: string;
 };
+
 // 錯誤:不能重複宣告 type User
 type User = {
   age: number;

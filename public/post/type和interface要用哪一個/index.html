@@ -19,6 +19,7 @@ TypeScript 中，Type 與 Interface 都是用來定義型別的關鍵字，但�
 interface Animal {
   name: string;
 }
+
 interface Dog extends Animal {
   bark(): void;
 }
@@ -27,6 +28,7 @@ interface Dog extends Animal {
 type Animal = {
   name: string;
 };
+
 type Dog = Animal &amp; {
   bark(): void;
 };
@@ -35,15 +37,17 @@ type Dog = Animal &amp; {
 interface User {
   name: string;
 }
+
 interface User {
   age: number;
 }
-// 最終 User 將包含 name 和 age
+/* 最終 User 將包含 name 和 age */
 
 // Type 不能重複宣告
 type User = {
   name: string;
 };
+
 // 錯誤:不能重複宣告 type User
 type User = {
   age: number;
@@ -88,7 +92,7 @@ interface StringArray extends Array&lt;string&gt; {
   <meta property="og:site_name" content="資深菜鳥 Nick">
   <meta property="og:title" content="Type 和 Interface 要用哪一個?">
   <meta property="og:description" content="前言 TypeScript 中，Type 與 Interface 都是用來定義型別的關鍵字，但兩者之間存在著些許的差異。以下將深入探討 Type 與 Interface 的特性，並建議在不同的情境下如何選擇適合的型別定義方式，以提升 TypeScript 程式碼的可讀性與維護性。
-1. 擴展(Extends)的語法差異: // Interface 使用 extends interface Animal { name: string; } interface Dog extends Animal { bark(): void; } // Type 使用 &amp; type Animal = { name: string; }; type Dog = Animal &amp; { bark(): void; }; 2. 合併聲明(Declaration Merging): // Interface 可以重複宣告,會自動合併 interface User { name: string; } interface User { age: number; } // 最終 User 將包含 name 和 age // Type 不能重複宣告 type User = { name: string; }; // 錯誤:不能重複宣告 type User type User = { age: number; }; 3.映射類型 (Mapped Types) // Type 可以使用更複雜的類型運算 type Keys = &#39;firstname&#39; | &#39;lastname&#39;; type DuplicateString = { [key in Keys]: string; }; // Interface 不支援映射類型，不能這樣寫 interface DuplicateString { [key in Keys]: string; // 錯誤 } 4.Tuple 和 Union 的定義: // Type 可以直接定義 type StringOrNumber = string | number; type StringArray = [string, string]; // Interface 需要間接定義 interface StringArray extends Array&lt;string&gt; { 0: string; 1: string; length: 2; } 結語 無論使用哪一種方式都好，主要是跟團隊建立好專案的 Coding Guideline，良好的溝通和團隊合作才是上策。">
+1. 擴展(Extends)的語法差異: // Interface 使用 extends interface Animal { name: string; } interface Dog extends Animal { bark(): void; } // Type 使用 &amp; type Animal = { name: string; }; type Dog = Animal &amp; { bark(): void; }; 2. 合併聲明(Declaration Merging): // Interface 可以重複宣告,會自動合併 interface User { name: string; } interface User { age: number; } /* 最終 User 將包含 name 和 age */ // Type 不能重複宣告 type User = { name: string; }; // 錯誤:不能重複宣告 type User type User = { age: number; }; 3.映射類型 (Mapped Types) // Type 可以使用更複雜的類型運算 type Keys = &#39;firstname&#39; | &#39;lastname&#39;; type DuplicateString = { [key in Keys]: string; }; // Interface 不支援映射類型，不能這樣寫 interface DuplicateString { [key in Keys]: string; // 錯誤 } 4.Tuple 和 Union 的定義: // Type 可以直接定義 type StringOrNumber = string | number; type StringArray = [string, string]; // Interface 需要間接定義 interface StringArray extends Array&lt;string&gt; { 0: string; 1: string; length: 2; } 結語 無論使用哪一種方式都好，主要是跟團隊建立好專案的 Coding Guideline，良好的溝通和團隊合作才是上策。">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="post">
@@ -98,7 +102,7 @@ interface StringArray extends Array&lt;string&gt; {
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Type 和 Interface 要用哪一個?">
   <meta name="twitter:description" content="前言 TypeScript 中，Type 與 Interface 都是用來定義型別的關鍵字，但兩者之間存在著些許的差異。以下將深入探討 Type 與 Interface 的特性，並建議在不同的情境下如何選擇適合的型別定義方式，以提升 TypeScript 程式碼的可讀性與維護性。
-1. 擴展(Extends)的語法差異: // Interface 使用 extends interface Animal { name: string; } interface Dog extends Animal { bark(): void; } // Type 使用 &amp; type Animal = { name: string; }; type Dog = Animal &amp; { bark(): void; }; 2. 合併聲明(Declaration Merging): // Interface 可以重複宣告,會自動合併 interface User { name: string; } interface User { age: number; } // 最終 User 將包含 name 和 age // Type 不能重複宣告 type User = { name: string; }; // 錯誤:不能重複宣告 type User type User = { age: number; }; 3.映射類型 (Mapped Types) // Type 可以使用更複雜的類型運算 type Keys = &#39;firstname&#39; | &#39;lastname&#39;; type DuplicateString = { [key in Keys]: string; }; // Interface 不支援映射類型，不能這樣寫 interface DuplicateString { [key in Keys]: string; // 錯誤 } 4.Tuple 和 Union 的定義: // Type 可以直接定義 type StringOrNumber = string | number; type StringArray = [string, string]; // Interface 需要間接定義 interface StringArray extends Array&lt;string&gt; { 0: string; 1: string; length: 2; } 結語 無論使用哪一種方式都好，主要是跟團隊建立好專案的 Coding Guideline，良好的溝通和團隊合作才是上策。">
+1. 擴展(Extends)的語法差異: // Interface 使用 extends interface Animal { name: string; } interface Dog extends Animal { bark(): void; } // Type 使用 &amp; type Animal = { name: string; }; type Dog = Animal &amp; { bark(): void; }; 2. 合併聲明(Declaration Merging): // Interface 可以重複宣告,會自動合併 interface User { name: string; } interface User { age: number; } /* 最終 User 將包含 name 和 age */ // Type 不能重複宣告 type User = { name: string; }; // 錯誤:不能重複宣告 type User type User = { age: number; }; 3.映射類型 (Mapped Types) // Type 可以使用更複雜的類型運算 type Keys = &#39;firstname&#39; | &#39;lastname&#39;; type DuplicateString = { [key in Keys]: string; }; // Interface 不支援映射類型，不能這樣寫 interface DuplicateString { [key in Keys]: string; // 錯誤 } 4.Tuple 和 Union 的定義: // Type 可以直接定義 type StringOrNumber = string | number; type StringArray = [string, string]; // Interface 需要間接定義 interface StringArray extends Array&lt;string&gt; { 0: string; 1: string; length: 2; } 結語 無論使用哪一種方式都好，主要是跟團隊建立好專案的 Coding Guideline，良好的溝通和團隊合作才是上策。">
  
 </head>
 <body><nav class="navbar is-light" role="navigation">
@@ -126,6 +130,8 @@ interface StringArray extends Array&lt;string&gt; {
             <div class="navbar-start">
                 
                 <a href="/categories" class="navbar-item">文章分類</a>
+                
+                <a href="/about" class="navbar-item">關於菜鳥</a>
                 
             </div>
 
@@ -274,6 +280,7 @@ interface StringArray extends Array&lt;string&gt; {
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Animal</span> {
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>;
 </span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Dog</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Animal</span> {
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">bark</span>()<span style="color:#f92672">:</span> <span style="color:#66d9ef">void</span>;
 </span></span><span style="display:flex;"><span>}
@@ -282,6 +289,7 @@ interface StringArray extends Array&lt;string&gt; {
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Animal</span> <span style="color:#f92672">=</span> {
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>;
 </span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Dog</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Animal</span> <span style="color:#f92672">&amp;</span> {
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">bark</span>()<span style="color:#f92672">:</span> <span style="color:#66d9ef">void</span>;
 </span></span><span style="display:flex;"><span>};
@@ -290,15 +298,17 @@ interface StringArray extends Array&lt;string&gt; {
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">User</span> {
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>;
 </span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">User</span> {
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">age</span>: <span style="color:#66d9ef">number</span>;
 </span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// 最終 User 將包含 name 和 age
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/* 最終 User 將包含 name 和 age */</span>
+</span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">// Type 不能重複宣告
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">User</span> <span style="color:#f92672">=</span> {
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>;
 </span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">// 錯誤:不能重複宣告 type User
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">User</span> <span style="color:#f92672">=</span> {
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">age</span>: <span style="color:#66d9ef">number</span>;

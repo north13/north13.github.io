@@ -28,6 +28,10 @@ url = "mailto:northn13@gmail.com"
 
 [taxonomies]
 category = "categories"
+
+[[menu.main]]
+name = "關於菜鳥"
+url = "/about"
 [[menu.main]]
 name = "文章分類"
 url = "/categories"
