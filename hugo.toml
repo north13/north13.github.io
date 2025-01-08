@@ -10,7 +10,7 @@ authorImage = "/images/avatar.jpg"
 paginate = 5
 
 Title = "Nick"
-content = "Now Loading..."
+content = "now Learning..."
 imageUrl = "/images/avatar.jpg"
 
 [[params.social]]
