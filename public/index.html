@@ -213,6 +213,122 @@
   <div class="single-container column is-centered">
     <div class="archive" id="post-container">
       <header class="post-header">
+        <h1 class="post-title hover-underline-animation"><a class="post-link" href="/post/javascript-%E9%96%89%E5%8C%85closure/">JavaScript 閉包(Closure)</a></h1>
+       
+       
+      </header>
+      <div class="post-content">
+        <div class="excerpt post-summary">
+          <h4 id="什麼是閉包closure">什麼是閉包(Closure)</h4>
+<p><em><code>你知道什麼是 JS 的閉包(Closure)嗎？</code></em></p>
+<p>追蹤了不少國內外的工程師 Youtuber，某次在 YT 首頁看到 Closure 的影片縮圖大吃一驚</p>
+<p>一開始看到這個名詞時完全沒有頭緒，學過 var、let、const、作用域、this&hellip;等</p>
+<p>居然漏掉了什麼沒學到嗎!? 這怎麼可以!!</p>
+<p>拜讀了幾篇文章和影片後才發現，其實閉包無所不在，或許在不經意的情況下都寫過了勒!</p>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<h4 id="範例">範例</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">bankAccount</span> <span style="color:#f92672">=</span> (<span style="color:#66d9ef">function</span> () {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">balance</span>: <span style="color:#66d9ef">number</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">validateAmount</span>(<span style="color:#a6e22e">amount</span>: <span style="color:#66d9ef">number</span>)<span style="color:#f92672">:</span> <span style="color:#66d9ef">boolean</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">amount</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">deposit</span>: <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">amount</span>: <span style="color:#66d9ef">number</span>)<span style="color:#f92672">:</span> <span style="color:#66d9ef">string</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">validateAmount</span>(<span style="color:#a6e22e">amount</span>)) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;請輸入有效金額&#39;</span>;
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">balance</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">amount</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#e6db74">`存款成功，當前餘額: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">balance</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>;
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">withdraw</span>: <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">amount</span>: <span style="color:#66d9ef">number</span>)<span style="color:#f92672">:</span> <span style="color:#66d9ef">string</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">validateAmount</span>(<span style="color:#a6e22e">amount</span>)) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;請輸入有效金額&#39;</span>;
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">amount</span> <span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">balance</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;餘額不足&#39;</span>;
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">balance</span> <span style="color:#f92672">-=</span> <span style="color:#a6e22e">amount</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#e6db74">`當前餘額: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">balance</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>;
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">getBalance</span>: <span style="color:#66d9ef">function</span> ()<span style="color:#f92672">:</span> <span style="color:#66d9ef">string</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#e6db74">`當前餘額: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">balance</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>;
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>})();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">bankAccount</span>.<span style="color:#a6e22e">getBalance</span>()); <span style="color:#75715e">// 當前餘額: 0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">bankAccount</span>.<span style="color:#a6e22e">deposit</span>(<span style="color:#ae81ff">1000</span>)); <span style="color:#75715e">// 存款成功，當前餘額: 1000
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">bankAccount</span>.<span style="color:#a6e22e">withdraw</span>(<span style="color:#ae81ff">500</span>)); <span style="color:#75715e">// 提款成功，當前餘額: 500
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">bankAccount</span>.<span style="color:#a6e22e">withdraw</span>(<span style="color:#ae81ff">1000</span>)); <span style="color:#75715e">// 餘額不足
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 無法直接訪問私有變數和方法
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">bankAccount</span>.<span style="color:#a6e22e">balance</span>); <span style="color:#75715e">// undefined
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">bankAccount</span>.<span style="color:#a6e22e">validateAmount</span>); <span style="color:#75715e">// undefined
+</span></span></span></code></pre></div><table>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<h4 id="這個例子展示了閉包的幾個重要特點">這個例子展示了閉包的幾個重要特點：</h4>
+<ol>
+<li>閉包能夠「記住」外層函式的變數
+在例子中，<code>balance</code> 是 <code>bankAccount</code> 的私有變數，但因為 <code>deposit</code>、<code>withdraw</code>、<code>getBalance</code> 在內部被 <strong>return</strong>，這些 <strong>function</strong> 形成閉包，可以持續訪問這些變數，即使外層函式已經執行完成。</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">balance</span>: <span style="color:#66d9ef">number</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">return</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">deposit</span>: <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">amount</span>: <span style="color:#66d9ef">number</span>)<span style="color:#f92672">:</span> <span style="color:#66d9ef">string</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">validateAmount</span>(<span style="color:#a6e22e">amount</span>)) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;請輸入有效金額&#39;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">balance</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">amount</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">`存款成功，當前餘額: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">balance</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>;
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// 其他方法同理
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>};
+</span></span></code></pre></div><p>這段程式碼中，<code>balance</code> 是閉包捕獲的變數，這些變數的值會根據執行的操作（例如存款或提款）而變化，並且被所有內部函式共享。</p>
+        </div>
+        
+        <div class="post-time-container">
+          <span class="post-time"> 2025-01-09 </span>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</article>
+
+    
+        <article class="post">
+  <div class="single-container column is-centered">
+    <div class="archive" id="post-container">
+      <header class="post-header">
         <h1 class="post-title hover-underline-animation"><a class="post-link" href="/post/type%E5%92%8Cinterface%E8%A6%81%E7%94%A8%E5%93%AA%E4%B8%80%E5%80%8B/">Type 和 Interface 要用哪一個?</a></h1>
        
        
@@ -281,7 +397,7 @@
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">1</span>: <span style="color:#66d9ef">string</span>;
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">length</span>: <span style="color:#66d9ef">2</span>;
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h2 id="結語">結語</h2>
+</span></span></code></pre></div><h3 id="-結論">💡 結論</h3>
 <blockquote>
 <p>無論使用哪一種方式都好，主要是跟團隊建立好專案的 <code>Coding Guideline</code>，良好的溝通和團隊合作才是上策。</p>
         </div>

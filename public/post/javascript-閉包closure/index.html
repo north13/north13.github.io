@@ -1,0 +1,576 @@
+
+<!DOCTYPE html>
+<html lang="en-us"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  />
+
+  <title>
+    JavaScript 閉包(Closure) | 資深菜鳥 Nick
+  </title>
+  <meta
+    name="description"
+    content="什麼是閉包(Closure)
+你知道什麼是 JS 的閉包(Closure)嗎？
+追蹤了不少國內外的工程師 Youtuber，某次在 YT 首頁看到 Closure 的影片縮圖大吃一驚
+一開始看到這個名詞時完全沒有頭緒，學過 var、let、const、作用域、this&hellip;等
+居然漏掉了什麼沒學到嗎!? 這怎麼可以!!
+拜讀了幾篇文章和影片後才發現，其實閉包無所不在，或許在不經意的情況下都寫過了勒!
+
+  
+      
+          
+          
+      
+  
+  
+      
+          
+          
+      
+  
+
+範例
+const bankAccount = (function () {
+  let balance: number = 0;
+
+  function validateAmount(amount: number): boolean {
+    return amount &gt; 0;
+  }
+
+  return {
+    deposit: function (amount: number): string {
+      if (!validateAmount(amount)) {
+        return &#39;請輸入有效金額&#39;;
+      }
+      balance &#43;= amount;
+      return `存款成功，當前餘額: ${balance}`;
+    },
+
+    withdraw: function (amount: number): string {
+      if (!validateAmount(amount)) {
+        return &#39;請輸入有效金額&#39;;
+      }
+      if (amount &gt; balance) {
+        return &#39;餘額不足&#39;;
+      }
+      balance -= amount;
+      return `當前餘額: ${balance}`;
+    },
+
+    getBalance: function (): string {
+      return `當前餘額: ${balance}`;
+    },
+  };
+})();
+
+console.log(bankAccount.getBalance()); // 當前餘額: 0
+console.log(bankAccount.deposit(1000)); // 存款成功，當前餘額: 1000
+console.log(bankAccount.withdraw(500)); // 提款成功，當前餘額: 500
+console.log(bankAccount.withdraw(1000)); // 餘額不足
+
+// 無法直接訪問私有變數和方法
+console.log(bankAccount.balance); // undefined
+console.log(bankAccount.validateAmount); // undefined
+
+  
+      
+          
+          
+      
+  
+  
+      
+          
+          
+      
+  
+
+這個例子展示了閉包的幾個重要特點：
+
+閉包能夠「記住」外層函式的變數
+在例子中，balance 是 bankAccount 的私有變數，但因為 deposit、withdraw、getBalance 在內部被 return，這些 function 形成閉包，可以持續訪問這些變數，即使外層函式已經執行完成。
+
+let balance: number = 0;
+
+return {
+  deposit: function (amount: number): string {
+    if (!validateAmount(amount)) {
+      return &#39;請輸入有效金額&#39;;
+    }
+    balance &#43;= amount;
+    return `存款成功，當前餘額: ${balance}`;
+  },
+  // 其他方法同理
+};
+這段程式碼中，balance 是閉包捕獲的變數，這些變數的值會根據執行的操作（例如存款或提款）而變化，並且被所有內部函式共享。"
+  />
+  <link rel="canonical" href="http://localhost:1313/post/javascript-%E9%96%89%E5%8C%85closure/" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css"
+  />
+  
+  <link rel="stylesheet" href="http://localhost:1313/scss/style.min.aa7209164f013c6883aa54384ea45a46e582eacf9a17e9565badebd557dd1059.css" />
+
+  <link rel="icon" href="/images/favicon.png" />
+
+  <meta property="og:url" content="http://localhost:1313/post/javascript-%E9%96%89%E5%8C%85closure/">
+  <meta property="og:site_name" content="資深菜鳥 Nick">
+  <meta property="og:title" content="JavaScript 閉包(Closure)">
+  <meta property="og:description" content="什麼是閉包(Closure) 你知道什麼是 JS 的閉包(Closure)嗎？
+追蹤了不少國內外的工程師 Youtuber，某次在 YT 首頁看到 Closure 的影片縮圖大吃一驚
+一開始看到這個名詞時完全沒有頭緒，學過 var、let、const、作用域、this…等
+居然漏掉了什麼沒學到嗎!? 這怎麼可以!!
+拜讀了幾篇文章和影片後才發現，其實閉包無所不在，或許在不經意的情況下都寫過了勒!
+範例 const bankAccount = (function () { let balance: number = 0; function validateAmount(amount: number): boolean { return amount &gt; 0; } return { deposit: function (amount: number): string { if (!validateAmount(amount)) { return &#39;請輸入有效金額&#39;; } balance &#43;= amount; return `存款成功，當前餘額: ${balance}`; }, withdraw: function (amount: number): string { if (!validateAmount(amount)) { return &#39;請輸入有效金額&#39;; } if (amount &gt; balance) { return &#39;餘額不足&#39;; } balance -= amount; return `當前餘額: ${balance}`; }, getBalance: function (): string { return `當前餘額: ${balance}`; }, }; })(); console.log(bankAccount.getBalance()); // 當前餘額: 0 console.log(bankAccount.deposit(1000)); // 存款成功，當前餘額: 1000 console.log(bankAccount.withdraw(500)); // 提款成功，當前餘額: 500 console.log(bankAccount.withdraw(1000)); // 餘額不足 // 無法直接訪問私有變數和方法 console.log(bankAccount.balance); // undefined console.log(bankAccount.validateAmount); // undefined 這個例子展示了閉包的幾個重要特點： 閉包能夠「記住」外層函式的變數 在例子中，balance 是 bankAccount 的私有變數，但因為 deposit、withdraw、getBalance 在內部被 return，這些 function 形成閉包，可以持續訪問這些變數，即使外層函式已經執行完成。 let balance: number = 0; return { deposit: function (amount: number): string { if (!validateAmount(amount)) { return &#39;請輸入有效金額&#39;; } balance &#43;= amount; return `存款成功，當前餘額: ${balance}`; }, // 其他方法同理 }; 這段程式碼中，balance 是閉包捕獲的變數，這些變數的值會根據執行的操作（例如存款或提款）而變化，並且被所有內部函式共享。">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2025-01-09T15:35:23+08:00">
+    <meta property="article:modified_time" content="2025-01-09T15:35:23+08:00">
+ 
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="JavaScript 閉包(Closure)">
+  <meta name="twitter:description" content="什麼是閉包(Closure) 你知道什麼是 JS 的閉包(Closure)嗎？
+追蹤了不少國內外的工程師 Youtuber，某次在 YT 首頁看到 Closure 的影片縮圖大吃一驚
+一開始看到這個名詞時完全沒有頭緒，學過 var、let、const、作用域、this…等
+居然漏掉了什麼沒學到嗎!? 這怎麼可以!!
+拜讀了幾篇文章和影片後才發現，其實閉包無所不在，或許在不經意的情況下都寫過了勒!
+範例 const bankAccount = (function () { let balance: number = 0; function validateAmount(amount: number): boolean { return amount &gt; 0; } return { deposit: function (amount: number): string { if (!validateAmount(amount)) { return &#39;請輸入有效金額&#39;; } balance &#43;= amount; return `存款成功，當前餘額: ${balance}`; }, withdraw: function (amount: number): string { if (!validateAmount(amount)) { return &#39;請輸入有效金額&#39;; } if (amount &gt; balance) { return &#39;餘額不足&#39;; } balance -= amount; return `當前餘額: ${balance}`; }, getBalance: function (): string { return `當前餘額: ${balance}`; }, }; })(); console.log(bankAccount.getBalance()); // 當前餘額: 0 console.log(bankAccount.deposit(1000)); // 存款成功，當前餘額: 1000 console.log(bankAccount.withdraw(500)); // 提款成功，當前餘額: 500 console.log(bankAccount.withdraw(1000)); // 餘額不足 // 無法直接訪問私有變數和方法 console.log(bankAccount.balance); // undefined console.log(bankAccount.validateAmount); // undefined 這個例子展示了閉包的幾個重要特點： 閉包能夠「記住」外層函式的變數 在例子中，balance 是 bankAccount 的私有變數，但因為 deposit、withdraw、getBalance 在內部被 return，這些 function 形成閉包，可以持續訪問這些變數，即使外層函式已經執行完成。 let balance: number = 0; return { deposit: function (amount: number): string { if (!validateAmount(amount)) { return &#39;請輸入有效金額&#39;; } balance &#43;= amount; return `存款成功，當前餘額: ${balance}`; }, // 其他方法同理 }; 這段程式碼中，balance 是閉包捕獲的變數，這些變數的值會根據執行的操作（例如存款或提款）而變化，並且被所有內部函式共享。">
+ 
+</head>
+<body><nav class="navbar is-light" role="navigation">
+    <div class="container" style="justify-content: space-around;">
+        <div class="navbar-brand">
+            <a href="/" title="home" class="navbar-item">
+                <span class="logo">
+                    <h1>資深菜鳥 Nick</h1>
+                </span>
+            </a>
+
+            
+            <a id="theme-toggle" class="theme-toggle" href="#">
+                <img src="http://localhost:1313/svg/sun.svg" alt="sun icon" class="theme-icon" />
+            </a>
+
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+
+        <div class="navbar-menu">
+            <div class="navbar-start">
+                
+                <a href="/categories" class="navbar-item">文章分類</a>
+                
+                <a href="/about" class="navbar-item">關於菜鳥</a>
+                
+            </div>
+
+        </div>
+        <div class="search">
+            <div id="fastSearch">
+                <input id="searchInput" tabindex="0" placeholder="文章搜尋">
+                <ul id="searchResults">
+
+                </ul>
+            </div>
+            <a id="search-btn" style="display: inline-block;" href="# ">
+                <div class="icon-search"><svg class="search-svg" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div>
+            </a>
+        </div>
+
+        <script src="/js/fuse.min.js"></script> 
+        <script src="/js/fastsearch.js"></script>
+
+    </div>
+</nav>
+
+<script>
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        var burger = document.querySelector('.navbar-burger');
+        burger.addEventListener('click', function() {
+            burger.classList.toggle('is-active');
+            document.querySelector('.navbar-menu').classList.toggle('is-active');
+        });
+    });
+
+    
+    function setTheme(theme) {
+        let body = document.body;
+        let themeIcon = document.querySelector(".theme-icon");
+        if (theme === "dark") {
+            body.classList.add("dark-mode");
+            themeIcon.src = "http:\/\/localhost:1313\/svg/moon.svg";
+            themeIcon.alt = "moon icon";
+        } else {
+            body.classList.remove("dark-mode");
+            themeIcon.src = "http:\/\/localhost:1313\/svg/sun.svg";
+            themeIcon.alt = "sun icon";
+        }
+        
+        localStorage.setItem("theme", theme);
+    }
+
+    
+    let theme = localStorage.getItem("theme") || "light";
+    const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (isDarkMode) {
+        
+        setTheme('dark');
+
+    } else {
+        
+        setTheme('light');
+    }
+    setTheme(theme);
+
+    
+    document.getElementById("theme-toggle").addEventListener("click", function() {
+        if (theme === "light") {
+            theme = "dark";
+        } else {
+            theme = "light";
+        }
+        setTheme(theme);
+    });
+
+
+
+</script>
+
+</header><main>
+<div class="single-container">
+    <div class="archive">
+        <h1 class="title is-1">JavaScript 閉包(Closure)</h1>
+        <div class="title subtitle heading is-6">
+            <div class="author-info columns is-vcentered">
+                <div class="column">
+                    <div class="columns is-vcentered is-mobile">
+                        
+                        <div class="column is-narrow">
+                            <img src="/images/avatar.jpg" class="author-image">
+                        </div>
+                        
+                        <div class="column">
+                            <p>Nick</p>
+                            <p><time>January 9, 2025</time>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="small-categories-container">
+                    <a href="/categories/%E5%89%8D%E7%AB%AF">前端</a>, <a href="/categories/javascript">JavaScript</a>
+                </div>
+            </div>
+        </div>
+        <div class="content article-content">
+            <div class="toc-container">
+                
+    <div class="post-toc">
+        
+            <aside>
+                <button id="tocButton" ><h4 id="contents" style="margin-left: 1vw;color:rgb(96, 134, 180);margin-bottom: 0;">CONTENTS</h4></button>
+                <div id="hide"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+        <li><a href="#-結論">💡 結論</a></li>
+      </ul>
+    </li>
+    <li><a href="#參考資料"><strong>參考資料</strong></a></li>
+  </ul>
+</nav></div>
+            </aside>
+        
+    </div><script>
+    
+        let button = document.getElementById('tocButton');
+        let hide = document.getElementById("hide");
+        let contents=document.getElementById("contents");
+        button.addEventListener("click", function() {
+        if (hide.style.display!='block') {
+            hide.style.display='block'
+        } else {
+            hide.style.display='none'
+            contents.style.color='rgb(96, 134, 180)'
+        }
+        });
+    
+
+
+
+
+</script>
+            </div>
+            <h4 id="什麼是閉包closure">什麼是閉包(Closure)</h4>
+<p><em><code>你知道什麼是 JS 的閉包(Closure)嗎？</code></em></p>
+<p>追蹤了不少國內外的工程師 Youtuber，某次在 YT 首頁看到 Closure 的影片縮圖大吃一驚</p>
+<p>一開始看到這個名詞時完全沒有頭緒，學過 var、let、const、作用域、this&hellip;等</p>
+<p>居然漏掉了什麼沒學到嗎!? 這怎麼可以!!</p>
+<p>拜讀了幾篇文章和影片後才發現，其實閉包無所不在，或許在不經意的情況下都寫過了勒!</p>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<h4 id="範例">範例</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">bankAccount</span> <span style="color:#f92672">=</span> (<span style="color:#66d9ef">function</span> () {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">balance</span>: <span style="color:#66d9ef">number</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">validateAmount</span>(<span style="color:#a6e22e">amount</span>: <span style="color:#66d9ef">number</span>)<span style="color:#f92672">:</span> <span style="color:#66d9ef">boolean</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">amount</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">deposit</span>: <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">amount</span>: <span style="color:#66d9ef">number</span>)<span style="color:#f92672">:</span> <span style="color:#66d9ef">string</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">validateAmount</span>(<span style="color:#a6e22e">amount</span>)) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;請輸入有效金額&#39;</span>;
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">balance</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">amount</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#e6db74">`存款成功，當前餘額: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">balance</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>;
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">withdraw</span>: <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">amount</span>: <span style="color:#66d9ef">number</span>)<span style="color:#f92672">:</span> <span style="color:#66d9ef">string</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">validateAmount</span>(<span style="color:#a6e22e">amount</span>)) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;請輸入有效金額&#39;</span>;
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">amount</span> <span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">balance</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;餘額不足&#39;</span>;
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">balance</span> <span style="color:#f92672">-=</span> <span style="color:#a6e22e">amount</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#e6db74">`當前餘額: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">balance</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>;
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">getBalance</span>: <span style="color:#66d9ef">function</span> ()<span style="color:#f92672">:</span> <span style="color:#66d9ef">string</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#e6db74">`當前餘額: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">balance</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>;
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>})();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">bankAccount</span>.<span style="color:#a6e22e">getBalance</span>()); <span style="color:#75715e">// 當前餘額: 0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">bankAccount</span>.<span style="color:#a6e22e">deposit</span>(<span style="color:#ae81ff">1000</span>)); <span style="color:#75715e">// 存款成功，當前餘額: 1000
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">bankAccount</span>.<span style="color:#a6e22e">withdraw</span>(<span style="color:#ae81ff">500</span>)); <span style="color:#75715e">// 提款成功，當前餘額: 500
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">bankAccount</span>.<span style="color:#a6e22e">withdraw</span>(<span style="color:#ae81ff">1000</span>)); <span style="color:#75715e">// 餘額不足
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 無法直接訪問私有變數和方法
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">bankAccount</span>.<span style="color:#a6e22e">balance</span>); <span style="color:#75715e">// undefined
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">bankAccount</span>.<span style="color:#a6e22e">validateAmount</span>); <span style="color:#75715e">// undefined
+</span></span></span></code></pre></div><table>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<h4 id="這個例子展示了閉包的幾個重要特點">這個例子展示了閉包的幾個重要特點：</h4>
+<ol>
+<li>閉包能夠「記住」外層函式的變數
+在例子中，<code>balance</code> 是 <code>bankAccount</code> 的私有變數，但因為 <code>deposit</code>、<code>withdraw</code>、<code>getBalance</code> 在內部被 <strong>return</strong>，這些 <strong>function</strong> 形成閉包，可以持續訪問這些變數，即使外層函式已經執行完成。</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">balance</span>: <span style="color:#66d9ef">number</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">return</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">deposit</span>: <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">amount</span>: <span style="color:#66d9ef">number</span>)<span style="color:#f92672">:</span> <span style="color:#66d9ef">string</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">validateAmount</span>(<span style="color:#a6e22e">amount</span>)) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;請輸入有效金額&#39;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">balance</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">amount</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">`存款成功，當前餘額: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">balance</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>;
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// 其他方法同理
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>};
+</span></span></code></pre></div><p>這段程式碼中，<code>balance</code> 是閉包捕獲的變數，這些變數的值會根據執行的操作（例如存款或提款）而變化，並且被所有內部函式共享。</p>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<ol start="2">
+<li>資料封裝與隱藏
+閉包的另一個特點是能夠實現變數的封裝與隱藏，外部無法直接訪問閉包捕獲的變數，從而提高程式的安全性。</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">bankAccount</span>.<span style="color:#a6e22e">balance</span>); <span style="color:#75715e">// undefined
+</span></span></span></code></pre></div><p>外部無法直接訪問 <code>balance</code> ，因為這些變數只存在於閉包內部。</p>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<ol start="3">
+<li>閉包延長了變數的生命週期
+正常情況下函式執行完畢後，局部變數會被<code>垃圾回收機制(GC)</code>釋放。但閉包使得外層函式的變數在內層函式引用時不會被回收，從而延長了變數的生命週期。</li>
+</ol>
+<p>即使外層函式 <code>bankAccount</code> 已經執行結束，內部變數 <code>balance</code> 仍然存在，因為內部返回的函式對這些變數有引用。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">bankAccount</span>.<span style="color:#a6e22e">getBalance</span>()); <span style="color:#75715e">// 當前餘額: 0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">bankAccount</span>.<span style="color:#a6e22e">deposit</span>(<span style="color:#ae81ff">1000</span>)); <span style="color:#75715e">// 存款成功，當前餘額: 1000
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">bankAccount</span>.<span style="color:#a6e22e">getBalance</span>()); <span style="color:#75715e">// 當前餘額: 1000
+</span></span></span></code></pre></div><p><code>balance</code> 的值被持續保留和更新，說明閉包延長了它的生命週期。</p>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<ol start="4">
+<li>多個閉包共享同一個作用域
+在這個例子中，所有返回的函式（<code>deposit</code>、<code>withdraw</code>、<code>getBalance</code>）都共享同一個閉包作用域，因此它們能夠共同操作 <code>balance</code>。</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#a6e22e">bankAccount</span>.<span style="color:#a6e22e">deposit</span>(<span style="color:#ae81ff">1000</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">bankAccount</span>.<span style="color:#a6e22e">withdraw</span>(<span style="color:#ae81ff">500</span>)); <span style="color:#75715e">// 提款成功，當前餘額: 500
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">bankAccount</span>.<span style="color:#a6e22e">getBalance</span>()); <span style="color:#75715e">// 當前餘額: 500
+</span></span></span></code></pre></div><table>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<ol start="5">
+<li>函式式編程的靈活性
+閉包使得函式成為功能強大的抽象工具，可以輕鬆實現封裝邏輯並返回自定義功能。</li>
+</ol>
+<p>例如這裡的 <code>validateAmount</code> 函式就是一個內部私有的函式，它被多個方法共用，但外部無法訪問。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">validateAmount</span>(<span style="color:#a6e22e">amount</span>: <span style="color:#66d9ef">number</span>)<span style="color:#f92672">:</span> <span style="color:#66d9ef">boolean</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">amount</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><table>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="-結論">💡 結論</h3>
+<blockquote>
+<p><strong>捕獲外層作用域的變數</strong>：允許內層函式記住並操作外層函式的變數。</p>
+<p><strong>封裝性</strong>：防止外部直接訪問內部變數，提高安全性。</p>
+<p><strong>延長變數生命週期</strong>：內部函式引用的變數不會被垃圾回收機制釋放。</p>
+<p><strong>共享閉包作用域</strong>：多個閉包函式共享同一個封閉的作用域。</p>
+<p><strong>模組化與高可擴展性</strong>：閉包支持靈活的邏輯封裝和模組化設計。</p>
+<p>這種模式在實際開發中非常有用，特別是在需要封裝邏輯、保護資料時。例如在開發函式庫或插件時，經常會使用這種模式。</p>
+</blockquote>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="參考資料"><strong>參考資料</strong></h2>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=0rP4YzGdvEU">什麼是閉包(closure)？解說+範例【JavaScript 基礎】</a></li>
+</ul>
+
+        </div>
+    </div>
+    <a href="#" id="scrollToTopButton">
+        <svg t="1686753152588" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+            p-id="3988" width="48" height="48">
+            <path
+                d="M518.5 360.3c-3.2-4.4-9.7-4.4-12.9 0l-178 246c-3.8 5.3 0 12.7 6.5 12.7H381c10.2 0 19.9-4.9 25.9-13.2L512 460.4l105.2 145.4c6 8.3 15.6 13.2 25.9 13.2H690c6.5 0 10.3-7.4 6.5-12.7l-178-246z"
+                p-id="3989" fill="#363636"></path>
+            <path
+                d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64z m0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+                p-id="3990" fill="#363636"></path>
+        </svg>
+    </a>
+
+<div class="pp-container">
+        <section class="pre-and-post">
+            <div class="has-text-left">
+                
+                <p>Previous post</p>
+                <a href="http://localhost:1313/post/type%E5%92%8Cinterface%E8%A6%81%E7%94%A8%E5%93%AA%E4%B8%80%E5%80%8B/">Type 和 Interface 要用哪一個?</a>
+                
+            </div>
+            <div class="has-text-right">
+                
+            </div>
+        </section>
+    </div>
+
+</div>
+
+        </main><footer class="footer">
+    <div class="content has-text-centered">
+    <span>&copy; 2025 <a href="http://localhost:1313/">資深菜鳥 Nick</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" target="_blank">Hugo</a> &
+        <a href="https://github.com/hotjuicew/hugo-JuiceBar" target="_blank">JuiceBar</a>
+    </span>
+    </div>
+  </footer></body>
+</html>
+

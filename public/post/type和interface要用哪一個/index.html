@@ -74,7 +74,7 @@ interface StringArray extends Array&lt;string&gt; {
   1: string;
   length: 2;
 }
-結語
+💡 結論
 
 無論使用哪一種方式都好，主要是跟團隊建立好專案的 Coding Guideline，良好的溝通和團隊合作才是上策。"
   />
@@ -92,7 +92,7 @@ interface StringArray extends Array&lt;string&gt; {
   <meta property="og:site_name" content="資深菜鳥 Nick">
   <meta property="og:title" content="Type 和 Interface 要用哪一個?">
   <meta property="og:description" content="前言 TypeScript 中，Type 與 Interface 都是用來定義型別的關鍵字，但兩者之間存在著些許的差異。以下將深入探討 Type 與 Interface 的特性，並建議在不同的情境下如何選擇適合的型別定義方式，以提升 TypeScript 程式碼的可讀性與維護性。
-1. 擴展(Extends)的語法差異: // Interface 使用 extends interface Animal { name: string; } interface Dog extends Animal { bark(): void; } // Type 使用 &amp; type Animal = { name: string; }; type Dog = Animal &amp; { bark(): void; }; 2. 合併聲明(Declaration Merging): // Interface 可以重複宣告,會自動合併 interface User { name: string; } interface User { age: number; } /* 最終 User 將包含 name 和 age */ // Type 不能重複宣告 type User = { name: string; }; // 錯誤:不能重複宣告 type User type User = { age: number; }; 3.映射類型 (Mapped Types) // Type 可以使用更複雜的類型運算 type Keys = &#39;firstname&#39; | &#39;lastname&#39;; type DuplicateString = { [key in Keys]: string; }; // Interface 不支援映射類型，不能這樣寫 interface DuplicateString { [key in Keys]: string; // 錯誤 } 4.Tuple 和 Union 的定義: // Type 可以直接定義 type StringOrNumber = string | number; type StringArray = [string, string]; // Interface 需要間接定義 interface StringArray extends Array&lt;string&gt; { 0: string; 1: string; length: 2; } 結語 無論使用哪一種方式都好，主要是跟團隊建立好專案的 Coding Guideline，良好的溝通和團隊合作才是上策。">
+1. 擴展(Extends)的語法差異: // Interface 使用 extends interface Animal { name: string; } interface Dog extends Animal { bark(): void; } // Type 使用 &amp; type Animal = { name: string; }; type Dog = Animal &amp; { bark(): void; }; 2. 合併聲明(Declaration Merging): // Interface 可以重複宣告,會自動合併 interface User { name: string; } interface User { age: number; } /* 最終 User 將包含 name 和 age */ // Type 不能重複宣告 type User = { name: string; }; // 錯誤:不能重複宣告 type User type User = { age: number; }; 3.映射類型 (Mapped Types) // Type 可以使用更複雜的類型運算 type Keys = &#39;firstname&#39; | &#39;lastname&#39;; type DuplicateString = { [key in Keys]: string; }; // Interface 不支援映射類型，不能這樣寫 interface DuplicateString { [key in Keys]: string; // 錯誤 } 4.Tuple 和 Union 的定義: // Type 可以直接定義 type StringOrNumber = string | number; type StringArray = [string, string]; // Interface 需要間接定義 interface StringArray extends Array&lt;string&gt; { 0: string; 1: string; length: 2; } 💡 結論 無論使用哪一種方式都好，主要是跟團隊建立好專案的 Coding Guideline，良好的溝通和團隊合作才是上策。">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="post">
@@ -102,7 +102,7 @@ interface StringArray extends Array&lt;string&gt; {
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Type 和 Interface 要用哪一個?">
   <meta name="twitter:description" content="前言 TypeScript 中，Type 與 Interface 都是用來定義型別的關鍵字，但兩者之間存在著些許的差異。以下將深入探討 Type 與 Interface 的特性，並建議在不同的情境下如何選擇適合的型別定義方式，以提升 TypeScript 程式碼的可讀性與維護性。
-1. 擴展(Extends)的語法差異: // Interface 使用 extends interface Animal { name: string; } interface Dog extends Animal { bark(): void; } // Type 使用 &amp; type Animal = { name: string; }; type Dog = Animal &amp; { bark(): void; }; 2. 合併聲明(Declaration Merging): // Interface 可以重複宣告,會自動合併 interface User { name: string; } interface User { age: number; } /* 最終 User 將包含 name 和 age */ // Type 不能重複宣告 type User = { name: string; }; // 錯誤:不能重複宣告 type User type User = { age: number; }; 3.映射類型 (Mapped Types) // Type 可以使用更複雜的類型運算 type Keys = &#39;firstname&#39; | &#39;lastname&#39;; type DuplicateString = { [key in Keys]: string; }; // Interface 不支援映射類型，不能這樣寫 interface DuplicateString { [key in Keys]: string; // 錯誤 } 4.Tuple 和 Union 的定義: // Type 可以直接定義 type StringOrNumber = string | number; type StringArray = [string, string]; // Interface 需要間接定義 interface StringArray extends Array&lt;string&gt; { 0: string; 1: string; length: 2; } 結語 無論使用哪一種方式都好，主要是跟團隊建立好專案的 Coding Guideline，良好的溝通和團隊合作才是上策。">
+1. 擴展(Extends)的語法差異: // Interface 使用 extends interface Animal { name: string; } interface Dog extends Animal { bark(): void; } // Type 使用 &amp; type Animal = { name: string; }; type Dog = Animal &amp; { bark(): void; }; 2. 合併聲明(Declaration Merging): // Interface 可以重複宣告,會自動合併 interface User { name: string; } interface User { age: number; } /* 最終 User 將包含 name 和 age */ // Type 不能重複宣告 type User = { name: string; }; // 錯誤:不能重複宣告 type User type User = { age: number; }; 3.映射類型 (Mapped Types) // Type 可以使用更複雜的類型運算 type Keys = &#39;firstname&#39; | &#39;lastname&#39;; type DuplicateString = { [key in Keys]: string; }; // Interface 不支援映射類型，不能這樣寫 interface DuplicateString { [key in Keys]: string; // 錯誤 } 4.Tuple 和 Union 的定義: // Type 可以直接定義 type StringOrNumber = string | number; type StringArray = [string, string]; // Interface 需要間接定義 interface StringArray extends Array&lt;string&gt; { 0: string; 1: string; length: 2; } 💡 結論 無論使用哪一種方式都好，主要是跟團隊建立好專案的 Coding Guideline，良好的溝通和團隊合作才是上策。">
  
 </head>
 <body><nav class="navbar is-light" role="navigation">
@@ -245,9 +245,9 @@ interface StringArray extends Array&lt;string&gt; {
     <li><a href="#前言">前言</a>
       <ul>
         <li></li>
+        <li><a href="#-結論">💡 結論</a></li>
       </ul>
     </li>
-    <li><a href="#結語">結語</a></li>
     <li><a href="#參考資料"><strong>參考資料</strong></a></li>
   </ul>
 </nav></div>
@@ -335,7 +335,7 @@ interface StringArray extends Array&lt;string&gt; {
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">1</span>: <span style="color:#66d9ef">string</span>;
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">length</span>: <span style="color:#66d9ef">2</span>;
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h2 id="結語">結語</h2>
+</span></span></code></pre></div><h3 id="-結論">💡 結論</h3>
 <blockquote>
 <p>無論使用哪一種方式都好，主要是跟團隊建立好專案的 <code>Coding Guideline</code>，良好的溝通和團隊合作才是上策。</p>
 <p>但若以獨立開發來說，根據過往經驗，從一開始做 Java 開發，到後來接觸前端也是習慣用 Interface 來做，畢竟這也比較接近 OOP 的概念，深入研究前端技術後也開始慢慢的轉為使用 Type</p>
@@ -384,6 +384,9 @@ interface StringArray extends Array&lt;string&gt; {
                 
             </div>
             <div class="has-text-right">
+                
+                <p>Next post</p>
+                <a href="http://localhost:1313/post/javascript-%E9%96%89%E5%8C%85closure/">JavaScript 閉包(Closure)</a>
                 
             </div>
         </section>
