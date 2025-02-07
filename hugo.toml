@@ -5,7 +5,7 @@ theme = 'JuiceBar'
 
 [params]
 author = "Nick"
-description = "My site description"
+description = "A software engineer's technical blog, covering spring boot, es6, typescript, angular, react, vue, javascript, frontend, and backend.ソフトウェアエンジニアの技術ブログ。spring boot、es6、typescript、angular、react、vue、javascript、frontend、backendを含みます。"
 authorImage = "/images/avatar.jpg"
 paginate = 5
 
