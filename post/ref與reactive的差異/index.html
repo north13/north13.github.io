@@ -1,0 +1,118 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Ref 與 Reactive | 資深菜鳥 Nick
+</title><meta name=description content="這篇主要記錄關於 Vue 的 ref 和 reactive詳細內容和範例，之前寫過一篇 Angular 和 Vue 中使用響應式狀態的介紹，可參考 Angular 和 Vue 的響應式狀態管理
+Ref 範例
+// 基本類型使用 ref
+const count = ref(0);
+
+// 需要使用 .value 來修改值
+function increment() {
+  count.value++;
+}
+
+// ref 也可以包裝物件
+const user = ref({
+  name: 'John',
+  age: 25,
+});
+
+// 物件屬性修改也需要 .value
+function updateUser() {
+  user.value.age++;
+}
+
+  
+      
+          
+          
+      
+  
+  
+      
+          
+          
+      
+  
+
+Reactive 範例
+// 物件、陣列使用 reactive
+let user = reactive({
+  name: 'Mary',
+  age: 30,
+});
+
+let arr = reactive(['Vue', 'Angular', 'React']);
+
+// 直接修改屬性，不需要 .value
+function updateSettings() {
+  user.age += 1;
+}
+
+// reactive 不能用於基本類型
+const count = reactive(33); // error
+
+  
+      
+          
+          
+      
+  
+  
+      
+          
+          
+      
+  
+
+❌ 解構 Reactive
+let { name, age } = user;
+user.name = 'John';
+console.log(name); // 'Mary'
+解構會從響應式對象中取值，並將其存入新的變數中，這些變數（name 和 age）僅僅是值，不再是響應式的。它們不會隨著 user.name 或 user.age 的變化而變化。"><link rel=canonical href=https://north13.github.io/post/ref%E8%88%87reactive%E7%9A%84%E5%B7%AE%E7%95%B0/><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css><link rel=stylesheet href=https://north13.github.io/scss/style.min.aa7209164f013c6883aa54384ea45a46e582eacf9a17e9565badebd557dd1059.css><link rel=icon href=/images/favicon.png><meta property="og:url" content="https://north13.github.io/post/ref%E8%88%87reactive%E7%9A%84%E5%B7%AE%E7%95%B0/"><meta property="og:site_name" content="資深菜鳥 Nick"><meta property="og:title" content="Ref 與 Reactive"><meta property="og:description" content="這篇主要記錄關於 Vue 的 ref 和 reactive詳細內容和範例，之前寫過一篇 Angular 和 Vue 中使用響應式狀態的介紹，可參考 Angular 和 Vue 的響應式狀態管理
+Ref 範例 // 基本類型使用 ref const count = ref(0); // 需要使用 .value 來修改值 function increment() { count.value++; } // ref 也可以包裝物件 const user = ref({ name: 'John', age: 25, }); // 物件屬性修改也需要 .value function updateUser() { user.value.age++; } Reactive 範例 // 物件、陣列使用 reactive let user = reactive({ name: 'Mary', age: 30, }); let arr = reactive(['Vue', 'Angular', 'React']); // 直接修改屬性，不需要 .value function updateSettings() { user.age += 1; } // reactive 不能用於基本類型 const count = reactive(33); // error ❌ 解構 Reactive let { name, age } = user; user.name = 'John'; console.log(name); // 'Mary' 解構會從響應式對象中取值，並將其存入新的變數中，這些變數（name 和 age）僅僅是值，不再是響應式的。它們不會隨著 user.name 或 user.age 的變化而變化。"><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="post"><meta property="article:published_time" content="2025-01-13T14:37:42+08:00"><meta property="article:modified_time" content="2025-01-13T14:37:42+08:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="Ref 與 Reactive"><meta name=twitter:description content="這篇主要記錄關於 Vue 的 ref 和 reactive詳細內容和範例，之前寫過一篇 Angular 和 Vue 中使用響應式狀態的介紹，可參考 Angular 和 Vue 的響應式狀態管理
+Ref 範例 // 基本類型使用 ref const count = ref(0); // 需要使用 .value 來修改值 function increment() { count.value++; } // ref 也可以包裝物件 const user = ref({ name: 'John', age: 25, }); // 物件屬性修改也需要 .value function updateUser() { user.value.age++; } Reactive 範例 // 物件、陣列使用 reactive let user = reactive({ name: 'Mary', age: 30, }); let arr = reactive(['Vue', 'Angular', 'React']); // 直接修改屬性，不需要 .value function updateSettings() { user.age += 1; } // reactive 不能用於基本類型 const count = reactive(33); // error ❌ 解構 Reactive let { name, age } = user; user.name = 'John'; console.log(name); // 'Mary' 解構會從響應式對象中取值，並將其存入新的變數中，這些變數（name 和 age）僅僅是值，不再是響應式的。它們不會隨著 user.name 或 user.age 的變化而變化。"></head><body><nav class="navbar is-light" role=navigation><div class=container style=justify-content:space-around><div class=navbar-brand><a href=/ title=home class=navbar-item><span class=logo><h1>資深菜鳥 Nick</h1></span></a><a id=theme-toggle class=theme-toggle href=#><img src=https://north13.github.io/svg/sun.svg alt="sun icon" class=theme-icon>
+</a><a role=button class=navbar-burger aria-label=menu aria-expanded=false><span aria-hidden=true></span>
+<span aria-hidden=true></span>
+<span aria-hidden=true></span></a></div><div class=navbar-menu><div class=navbar-start><a href=/categories class=navbar-item>文章分類</a>
+<a href=/about class=navbar-item>關於菜鳥</a></div></div><div class=search><div id=fastSearch><input id=searchInput tabindex=0 placeholder=文章搜尋><ul id=searchResults></ul></div><a id=search-btn style=display:inline-block href=#><div class=icon-search><svg class="search-svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div></a></div><script src=/js/fuse.min.js></script><script src=/js/fastsearch.js></script></div></nav><script>document.addEventListener("DOMContentLoaded",function(){var e=document.querySelector(".navbar-burger");e.addEventListener("click",function(){e.classList.toggle("is-active"),document.querySelector(".navbar-menu").classList.toggle("is-active")})});function setTheme(e){let n=document.body,t=document.querySelector(".theme-icon");e==="dark"?(n.classList.add("dark-mode"),t.src="https://north13.github.io/svg/moon.svg",t.alt="moon icon"):(n.classList.remove("dark-mode"),t.src="https://north13.github.io/svg/sun.svg",t.alt="sun icon"),localStorage.setItem("theme",e)}let theme=localStorage.getItem("theme")||"light";const isDarkMode=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;setTheme(isDarkMode?"dark":"light"),setTheme(theme),document.getElementById("theme-toggle").addEventListener("click",function(){theme==="light"?theme="dark":theme="light",setTheme(theme)})</script></header><main><div class=single-container><div class=archive><h1 class="title is-1">Ref 與 Reactive</h1><div class="title subtitle heading is-6"><div class="author-info columns is-vcentered"><div class=column><div class="columns is-vcentered is-mobile"><div class="column is-narrow"><img src=/images/avatar.jpg class=author-image></div><div class=column><p>Nick</p><p><time>January 13, 2025</time></p></div></div></div><div class=small-categories-container><a href=/categories/%E5%89%8D%E7%AB%AF>前端</a>, <a href=/categories/vue>Vue</a></div></div></div><div class="content article-content"><div class=toc-container><div class=post-toc><aside><button id=tocButton><h4 id=contents style=margin-left:1vw;color:#6086b4;margin-bottom:0>CONTENTS</h4></button><div id=hide><nav id=TableOfContents><ul><li><ul><li><a href=#ref-範例><code>Ref</code> 範例</a></li><li><a href=#reactive-範例><code>Reactive</code> 範例</a></li><li><a href=#-解構-reactive>❌ 解構 Reactive</a></li><li><a href=#-若希望將-reactive-的內容解構出來且是響應式的值該怎麼做>💭 若希望將 reactive 的內容解構出來且是響應式的值該怎麼做？</a></li><li><a href=#-結論>💡 結論</a></li></ul></li></ul></nav></div></aside></div><script>let button=document.getElementById("tocButton"),hide=document.getElementById("hide"),contents=document.getElementById("contents");button.addEventListener("click",function(){hide.style.display!="block"?hide.style.display="block":(hide.style.display="none",contents.style.color="rgb(96, 134, 180)")})</script></div><p>這篇主要記錄關於 <code>Vue</code> 的 <code>ref</code> 和 <code>reactive</code>詳細內容和範例，之前寫過一篇 <strong>Angular</strong> 和 <strong>Vue</strong> 中使用響應式狀態的介紹，可參考 <strong><a href=http://localhost:1313/post/angular%E5%92%8Cvue%E7%9A%84%E9%9F%BF%E6%87%89%E5%BC%8F%E7%8B%80%E6%85%8B%E7%AE%A1%E7%90%86/>Angular 和 Vue 的響應式狀態管理</a></strong></p><h3 id=ref-範例><code>Ref</code> 範例</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=display:flex><span><span style=color:#75715e>// 基本類型使用 ref
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>count</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>ref</span>(<span style=color:#ae81ff>0</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// 需要使用 .value 來修改值
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>increment() {</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>count</span>.<span style=color:#a6e22e>value</span><span style=color:#f92672>++</span>;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// ref 也可以包裝物件
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>user</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>ref</span>({
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;John&#39;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>age</span>: <span style=color:#66d9ef>25</span>,
+</span></span><span style=display:flex><span>});
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// 物件屬性修改也需要 .value
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>updateUser() {</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>user</span>.<span style=color:#a6e22e>value</span>.<span style=color:#a6e22e>age</span><span style=color:#f92672>++</span>;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><table><thead><tr><th></th><th></th></tr></thead><tbody><tr><td></td><td></td></tr></tbody></table><h3 id=reactive-範例><code>Reactive</code> 範例</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=display:flex><span><span style=color:#75715e>// 物件、陣列使用 reactive
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>user</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>reactive</span>({
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;Mary&#39;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>age</span>: <span style=color:#66d9ef>30</span>,
+</span></span><span style=display:flex><span>});
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>arr</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>reactive</span>([<span style=color:#e6db74>&#39;Vue&#39;</span>, <span style=color:#e6db74>&#39;Angular&#39;</span>, <span style=color:#e6db74>&#39;React&#39;</span>]);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// 直接修改屬性，不需要 .value
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>updateSettings() {</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>user</span>.<span style=color:#a6e22e>age</span> <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// reactive 不能用於基本類型
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>count</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>reactive</span>(<span style=color:#ae81ff>33</span>); <span style=color:#75715e>// error
+</span></span></span></code></pre></div><table><thead><tr><th></th><th></th></tr></thead><tbody><tr><td></td><td></td></tr></tbody></table><h3 id=-解構-reactive>❌ 解構 Reactive</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=display:flex><span><span style=color:#66d9ef>let</span> { <span style=color:#a6e22e>name</span>, <span style=color:#a6e22e>age</span> } <span style=color:#f92672>=</span> <span style=color:#a6e22e>user</span>;
+</span></span><span style=display:flex><span><span style=color:#a6e22e>user</span>.<span style=color:#a6e22e>name</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;John&#39;</span>;
+</span></span><span style=display:flex><span><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>name</span>); <span style=color:#75715e>// &#39;Mary&#39;
+</span></span></span></code></pre></div><p>解構會從響應式對象中取值，並將其存入新的變數中，這些變數（<code>name</code> 和 <code>age</code>）僅僅是值，不再是響應式的。它們不會隨著 <code>user.name</code> 或 <code>user.age</code> 的變化而變化。</p><table><thead><tr><th></th><th></th></tr></thead><tbody><tr><td></td><td></td></tr></tbody></table><h3 id=-若希望將-reactive-的內容解構出來且是響應式的值該怎麼做>💭 若希望將 reactive 的內容解構出來且是響應式的值該怎麼做？</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=display:flex><span><span style=color:#66d9ef>let</span> { <span style=color:#a6e22e>name</span>, <span style=color:#a6e22e>age</span> } <span style=color:#f92672>=</span> <span style=color:#a6e22e>toRefs</span>(<span style=color:#a6e22e>user</span>);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>user</span>.<span style=color:#a6e22e>name</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;John&#39;</span>;
+</span></span><span style=display:flex><span><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>name</span>.<span style=color:#a6e22e>value</span>); <span style=color:#75715e>// &#39;John&#39;
+</span></span></span></code></pre></div><p><code>name</code> 和 <code>age</code> 變成了響應式引用<code>(ref)</code>，它們會與 <code>user</code> 保持同步，且必須使用 <code>.value</code> 才能訪問它們的值。</p><table><thead><tr><th></th><th></th></tr></thead><tbody><tr><td></td><td></td></tr></tbody></table><h3 id=-結論>💡 結論</h3><blockquote><ul><li>直接解構 <code>reactive</code> 對象的屬性會丟失響應性。</li><li>使用 <code>toRefs</code> 進行解構可以保留響應性，但解構後的變數是 <code>ref</code>，需要通過 <code>.value</code> 訪問值。</li></ul></blockquote></div></div><a href=# id=scrollToTopButton><svg t="1686753152588" class="icon" viewBox="0 0 1024 1024" p-id="3988" width="48" height="48"><path d="M518.5 360.3c-3.2-4.4-9.7-4.4-12.9.0l-178 246c-3.8 5.3.0 12.7 6.5 12.7H381c10.2.0 19.9-4.9 25.9-13.2L512 460.4l105.2 145.4c6 8.3 15.6 13.2 25.9 13.2H690c6.5.0 10.3-7.4 6.5-12.7l-178-246z" p-id="3989" fill="#363636"/><path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4.0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z" p-id="3990" fill="#363636"/></svg></a><div class=pp-container><section class=pre-and-post><div class=has-text-left><p>Previous post</p><a href=https://north13.github.io/post/javascript-%E9%96%89%E5%8C%85closure/>JavaScript 閉包(Closure)</a></div><div class=has-text-right><p>Next post</p><a href=https://north13.github.io/post/record%E6%98%AF%E4%BB%80%E9%BA%BC/>Record 是什麼？</a></div></section></div></div></main><footer class=footer><div class="content has-text-centered"><span>&copy; 2025 <a href=https://north13.github.io/>資深菜鳥 Nick</a></span>
+<span>Powered by
+<a href=https://gohugo.io/ target=_blank>Hugo</a> &
+        <a href=https://github.com/hotjuicew/hugo-JuiceBar target=_blank>JuiceBar</a></span></div></footer></body></html>

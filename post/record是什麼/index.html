@@ -1,0 +1,131 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Record 是什麼？ | 資深菜鳥 Nick
+</title><meta name=description content="什麼是 Record？
+Record 是一種新的資料類型，用來表示一組有序的值集合，包含具名或未具名欄位。可以想像成是不需要先定義一個 class 的 「輕量級的物件」 。
+不具名 Record
+var record = ('Nick', 35);
+print(record.$1); // Nick
+print(record.$2); // 35
+具名 Record
+var record = (name: 'Nick', age: 35);
+print(record.name); // Nick
+print(record.age);  // 35
+混合型 Record
+var record = ('Nick', age: 35);
+print(record.$1);   // Nick
+print(record.age);  // 35
+
+  
+      
+          
+          
+      
+  
+  
+      
+          
+          
+      
+  
+
+為什麼有 Record？
+如果 Dart 函數要回傳多個值，通常要用 class 或 Map，但這樣太冗長或效能不佳。而 Record 的應用有
+
+更簡潔的語法
+更好的編譯期型別檢查
+更快的效能（比 Map 好）
+
+❌ 使用 Map (不建議)
+Map<String, dynamic> getUser() => {
+  'name': 'Nick',
+  'age': 35,
+  'isMember': true
+};
+
+var user = getUser();
+print(user['nameee']); // ❌ 錯字或 key 不存在不會報錯
+❌ 使用 Class (不建議)
+class User {
+  final String name;
+  final int age;
+  final bool isMember;
+  User(this.name, this.age, this.isMember);
+}
+⭕️ 使用 Record (建議)
+({String name, int age, bool isMember}) user = (name: 'Nick', age: 35, isMember: true);
+
+  
+      
+          
+          
+      
+  
+  
+      
+          
+          
+      
+  
+
+模式匹配（pattern matching）
+它讓你像在 「解構資料」 一樣地做條件判斷或資料抽取。類似你在 JavaScript 用 const { name } = user"><link rel=canonical href=https://north13.github.io/post/record%E6%98%AF%E4%BB%80%E9%BA%BC/><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css><link rel=stylesheet href=https://north13.github.io/scss/style.min.aa7209164f013c6883aa54384ea45a46e582eacf9a17e9565badebd557dd1059.css><link rel=icon href=/images/favicon.png><meta property="og:url" content="https://north13.github.io/post/record%E6%98%AF%E4%BB%80%E9%BA%BC/"><meta property="og:site_name" content="資深菜鳥 Nick"><meta property="og:title" content="Record 是什麼？"><meta property="og:description" content="什麼是 Record？ Record 是一種新的資料類型，用來表示一組有序的值集合，包含具名或未具名欄位。可以想像成是不需要先定義一個 class 的 「輕量級的物件」 。
+不具名 Record var record = ('Nick', 35); print(record.$1); // Nick print(record.$2); // 35 具名 Record var record = (name: 'Nick', age: 35); print(record.name); // Nick print(record.age); // 35 混合型 Record var record = ('Nick', age: 35); print(record.$1); // Nick print(record.age); // 35 為什麼有 Record？ 如果 Dart 函數要回傳多個值，通常要用 class 或 Map，但這樣太冗長或效能不佳。而 Record 的應用有
+更簡潔的語法 更好的編譯期型別檢查 更快的效能（比 Map 好） ❌ 使用 Map (不建議) Map<String, dynamic> getUser() => { 'name': 'Nick', 'age': 35, 'isMember': true }; var user = getUser(); print(user['nameee']); // ❌ 錯字或 key 不存在不會報錯 ❌ 使用 Class (不建議) class User { final String name; final int age; final bool isMember; User(this.name, this.age, this.isMember); } ⭕️ 使用 Record (建議) ({String name, int age, bool isMember}) user = (name: 'Nick', age: 35, isMember: true); 模式匹配（pattern matching） 它讓你像在 「解構資料」 一樣地做條件判斷或資料抽取。類似你在 JavaScript 用 const { name } = user"><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="post"><meta property="article:published_time" content="2025-05-12T10:39:45+08:00"><meta property="article:modified_time" content="2025-05-12T10:39:45+08:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="Record 是什麼？"><meta name=twitter:description content="什麼是 Record？ Record 是一種新的資料類型，用來表示一組有序的值集合，包含具名或未具名欄位。可以想像成是不需要先定義一個 class 的 「輕量級的物件」 。
+不具名 Record var record = ('Nick', 35); print(record.$1); // Nick print(record.$2); // 35 具名 Record var record = (name: 'Nick', age: 35); print(record.name); // Nick print(record.age); // 35 混合型 Record var record = ('Nick', age: 35); print(record.$1); // Nick print(record.age); // 35 為什麼有 Record？ 如果 Dart 函數要回傳多個值，通常要用 class 或 Map，但這樣太冗長或效能不佳。而 Record 的應用有
+更簡潔的語法 更好的編譯期型別檢查 更快的效能（比 Map 好） ❌ 使用 Map (不建議) Map<String, dynamic> getUser() => { 'name': 'Nick', 'age': 35, 'isMember': true }; var user = getUser(); print(user['nameee']); // ❌ 錯字或 key 不存在不會報錯 ❌ 使用 Class (不建議) class User { final String name; final int age; final bool isMember; User(this.name, this.age, this.isMember); } ⭕️ 使用 Record (建議) ({String name, int age, bool isMember}) user = (name: 'Nick', age: 35, isMember: true); 模式匹配（pattern matching） 它讓你像在 「解構資料」 一樣地做條件判斷或資料抽取。類似你在 JavaScript 用 const { name } = user"></head><body><nav class="navbar is-light" role=navigation><div class=container style=justify-content:space-around><div class=navbar-brand><a href=/ title=home class=navbar-item><span class=logo><h1>資深菜鳥 Nick</h1></span></a><a id=theme-toggle class=theme-toggle href=#><img src=https://north13.github.io/svg/sun.svg alt="sun icon" class=theme-icon>
+</a><a role=button class=navbar-burger aria-label=menu aria-expanded=false><span aria-hidden=true></span>
+<span aria-hidden=true></span>
+<span aria-hidden=true></span></a></div><div class=navbar-menu><div class=navbar-start><a href=/categories class=navbar-item>文章分類</a>
+<a href=/about class=navbar-item>關於菜鳥</a></div></div><div class=search><div id=fastSearch><input id=searchInput tabindex=0 placeholder=文章搜尋><ul id=searchResults></ul></div><a id=search-btn style=display:inline-block href=#><div class=icon-search><svg class="search-svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div></a></div><script src=/js/fuse.min.js></script><script src=/js/fastsearch.js></script></div></nav><script>document.addEventListener("DOMContentLoaded",function(){var e=document.querySelector(".navbar-burger");e.addEventListener("click",function(){e.classList.toggle("is-active"),document.querySelector(".navbar-menu").classList.toggle("is-active")})});function setTheme(e){let n=document.body,t=document.querySelector(".theme-icon");e==="dark"?(n.classList.add("dark-mode"),t.src="https://north13.github.io/svg/moon.svg",t.alt="moon icon"):(n.classList.remove("dark-mode"),t.src="https://north13.github.io/svg/sun.svg",t.alt="sun icon"),localStorage.setItem("theme",e)}let theme=localStorage.getItem("theme")||"light";const isDarkMode=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;setTheme(isDarkMode?"dark":"light"),setTheme(theme),document.getElementById("theme-toggle").addEventListener("click",function(){theme==="light"?theme="dark":theme="light",setTheme(theme)})</script></header><main><div class=single-container><div class=archive><h1 class="title is-1">Record 是什麼？</h1><div class="title subtitle heading is-6"><div class="author-info columns is-vcentered"><div class=column><div class="columns is-vcentered is-mobile"><div class="column is-narrow"><img src=/images/avatar.jpg class=author-image></div><div class=column><p>Nick</p><p><time>May 12, 2025</time></p></div></div></div><div class=small-categories-container><a href=/categories/dart3>Dart3</a></div></div></div><div class="content article-content"><div class=toc-container><div class=post-toc><aside><button id=tocButton><h4 id=contents style=margin-left:1vw;color:#6086b4;margin-bottom:0>CONTENTS</h4></button><div id=hide><nav id=TableOfContents><ul><li><ul><li><a href=#什麼是-record>什麼是 Record？</a></li><li><a href=#為什麼有-record>為什麼有 Record？</a></li><li><a href=#模式匹配pattern-matching>模式匹配（pattern matching）</a></li><li><a href=#-結論>💡 結論</a></li></ul></li></ul></nav></div></aside></div><script>let button=document.getElementById("tocButton"),hide=document.getElementById("hide"),contents=document.getElementById("contents");button.addEventListener("click",function(){hide.style.display!="block"?hide.style.display="block":(hide.style.display="none",contents.style.color="rgb(96, 134, 180)")})</script></div><h3 id=什麼是-record>什麼是 Record？</h3><p><strong>Record</strong> 是一種新的資料類型，用來表示一組有序的值集合，包含具名或未具名欄位。可以想像成是不需要先定義一個 <strong>class</strong> 的 <strong>「輕量級的物件」</strong> 。</p><h5 id=不具名-record><code>不具名</code> Record</h5><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-dart data-lang=dart><span style=display:flex><span><span style=color:#66d9ef>var</span> record <span style=color:#f92672>=</span> (<span style=color:#e6db74>&#39;Nick&#39;</span>, <span style=color:#ae81ff>35</span>);
+</span></span><span style=display:flex><span>print(record.$1); <span style=color:#75715e>// Nick
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>print(record.$2); <span style=color:#75715e>// 35
+</span></span></span></code></pre></div><h5 id=具名-record><code>具名</code> Record</h5><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-dart data-lang=dart><span style=display:flex><span><span style=color:#66d9ef>var</span> record <span style=color:#f92672>=</span> (name: <span style=color:#e6db74>&#39;Nick&#39;</span>, age: <span style=color:#ae81ff>35</span>);
+</span></span><span style=display:flex><span>print(record.name); <span style=color:#75715e>// Nick
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>print(record.age);  <span style=color:#75715e>// 35
+</span></span></span></code></pre></div><h5 id=混合型-record><code>混合型</code> Record</h5><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-dart data-lang=dart><span style=display:flex><span><span style=color:#66d9ef>var</span> record <span style=color:#f92672>=</span> (<span style=color:#e6db74>&#39;Nick&#39;</span>, age: <span style=color:#ae81ff>35</span>);
+</span></span><span style=display:flex><span>print(record.$1);   <span style=color:#75715e>// Nick
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>print(record.age);  <span style=color:#75715e>// 35
+</span></span></span></code></pre></div><table><thead><tr><th></th><th></th></tr></thead><tbody><tr><td></td><td></td></tr></tbody></table><h3 id=為什麼有-record>為什麼有 Record？</h3><p>如果 <strong>Dart</strong> 函數要回傳多個值，通常要用 <strong>class</strong> 或 <strong>Map</strong>，但這樣太冗長或效能不佳。而 <strong>Record</strong> 的應用有</p><ul><li>更簡潔的語法</li><li>更好的編譯期型別檢查</li><li>更快的效能（比 Map 好）</li></ul><h4 id=-使用-map-不建議>❌ 使用 Map (不建議)</h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-dart data-lang=dart><span style=display:flex><span>Map<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>String</span>, <span style=color:#66d9ef>dynamic</span><span style=color:#f92672>&gt;</span> getUser() <span style=color:#f92672>=&gt;</span> {
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#39;name&#39;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;Nick&#39;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#39;age&#39;</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>35</span>,
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#39;isMember&#39;</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>};
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>var</span> user <span style=color:#f92672>=</span> getUser();
+</span></span><span style=display:flex><span>print(user[<span style=color:#e6db74>&#39;nameee&#39;</span>]); <span style=color:#75715e>// ❌ 錯字或 key 不存在不會報錯
+</span></span></span></code></pre></div><h4 id=-使用-class-不建議>❌ 使用 Class (不建議)</h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-dart data-lang=dart><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>User</span> {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>final</span> <span style=color:#66d9ef>String</span> name;
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>final</span> <span style=color:#66d9ef>int</span> age;
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>final</span> <span style=color:#66d9ef>bool</span> isMember;
+</span></span><span style=display:flex><span>  User(<span style=color:#66d9ef>this</span>.name, <span style=color:#66d9ef>this</span>.age, <span style=color:#66d9ef>this</span>.isMember);
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h4 id=-使用-record-建議>⭕️ 使用 Record (建議)</h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-dart data-lang=dart><span style=display:flex><span>({<span style=color:#66d9ef>String</span> name, <span style=color:#66d9ef>int</span> age, <span style=color:#66d9ef>bool</span> isMember}) user <span style=color:#f92672>=</span> (name: <span style=color:#e6db74>&#39;Nick&#39;</span>, age: <span style=color:#ae81ff>35</span>, isMember: <span style=color:#66d9ef>true</span>);
+</span></span></code></pre></div><table><thead><tr><th></th><th></th></tr></thead><tbody><tr><td></td><td></td></tr></tbody></table><h3 id=模式匹配pattern-matching>模式匹配（pattern matching）</h3><p>它讓你像在 <strong>「解構資料」</strong> 一樣地做條件判斷或資料抽取。類似你在 <strong>JavaScript</strong> 用 <code>const { name } = user</code></p><p>或<code>const [a, b] = tuple</code> 的感覺，但 <strong>Dart</strong> 的 <strong>pattern matching</strong></p><p>更進一步整合到 <code>if</code>、<code>switch</code>、<code>case</code>、<code>解構賦值</code>等語法中。</p><h4 id=if-模式匹配><code>If</code> 模式匹配</h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-dart data-lang=dart><span style=display:flex><span><span style=color:#66d9ef>var</span> user <span style=color:#f92672>=</span> (<span style=color:#e6db74>&#39;Nick&#39;</span>, <span style=color:#ae81ff>35</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>if</span> (user <span style=color:#66d9ef>case</span> (<span style=color:#e6db74>&#39;Nick&#39;</span>, <span style=color:#66d9ef>int</span> age)) {
+</span></span><span style=display:flex><span>  print(<span style=color:#e6db74>&#39;Nick is </span><span style=color:#e6db74>$</span>age<span style=color:#e6db74> years old&#39;</span>); <span style=color:#75715e>// Nick is 35 years old
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>}
+</span></span></code></pre></div><h4 id=switch-模式匹配><code>Switch</code> 模式匹配</h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-dart data-lang=dart><span style=display:flex><span>(<span style=color:#66d9ef>Object</span> result) {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>switch</span> (result) {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>case</span> (<span style=color:#e6db74>&#39;Nick&#39;</span>, <span style=color:#66d9ef>int</span> age)<span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>      print(<span style=color:#e6db74>&#39;Nick is </span><span style=color:#e6db74>$</span>age<span style=color:#e6db74>&#39;</span>);
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>break</span>;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>case</span> (<span style=color:#66d9ef>String</span> name, <span style=color:#66d9ef>int</span> age)<span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>      print(<span style=color:#e6db74>&#39;</span><span style=color:#e6db74>$</span>name<span style=color:#e6db74> is </span><span style=color:#e6db74>$</span>age<span style=color:#e6db74>&#39;</span>);
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>break</span>;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>default</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>      print(<span style=color:#e6db74>&#39;Unknown&#39;</span>);
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}((<span style=color:#e6db74>&#39;Nick&#39;</span>, <span style=color:#ae81ff>35</span>));
+</span></span></code></pre></div><h4 id=具名-record-也能-match>具名 Record 也能 match</h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-dart data-lang=dart><span style=display:flex><span><span style=color:#66d9ef>var</span> user <span style=color:#f92672>=</span> (name: <span style=color:#e6db74>&#39;Nick&#39;</span>, age: <span style=color:#ae81ff>35</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>switch</span> (user) {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>case</span> (name: <span style=color:#e6db74>&#39;Nick&#39;</span>, age: <span style=color:#66d9ef>var</span> a)<span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>    print(<span style=color:#e6db74>&#39;Nick is </span><span style=color:#e6db74>$</span>a<span style=color:#e6db74> years old&#39;</span>); <span style=color:#75715e>// Nick is 35 years old
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#66d9ef>break</span>;
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>default</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>    print(<span style=color:#e6db74>&#39;Not Nick&#39;</span>);
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><table><thead><tr><th></th><th></th></tr></thead><tbody><tr><td></td><td></td></tr></tbody></table><h3 id=-結論>💡 結論</h3><blockquote><ul><li><strong>Record</strong> 提供一種 <strong>「結構化資料容器」</strong>。</li><li><strong>Pattern Matching</strong> 提供 <strong>「拆解與判斷」</strong> 的簡潔語法。</li><li>搭配起來可以取代冗長的 if 判斷和物件解析，提高可讀性和安全性（型別明確）。</li></ul></blockquote></div></div><a href=# id=scrollToTopButton><svg t="1686753152588" class="icon" viewBox="0 0 1024 1024" p-id="3988" width="48" height="48"><path d="M518.5 360.3c-3.2-4.4-9.7-4.4-12.9.0l-178 246c-3.8 5.3.0 12.7 6.5 12.7H381c10.2.0 19.9-4.9 25.9-13.2L512 460.4l105.2 145.4c6 8.3 15.6 13.2 25.9 13.2H690c6.5.0 10.3-7.4 6.5-12.7l-178-246z" p-id="3989" fill="#363636"/><path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4.0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z" p-id="3990" fill="#363636"/></svg></a><div class=pp-container><section class=pre-and-post><div class=has-text-left><p>Previous post</p><a href=https://north13.github.io/post/ref%E8%88%87reactive%E7%9A%84%E5%B7%AE%E7%95%B0/>Ref 與 Reactive</a></div><div class=has-text-right></div></section></div></div></main><footer class=footer><div class="content has-text-centered"><span>&copy; 2025 <a href=https://north13.github.io/>資深菜鳥 Nick</a></span>
+<span>Powered by
+<a href=https://gohugo.io/ target=_blank>Hugo</a> &
+        <a href=https://github.com/hotjuicew/hugo-JuiceBar target=_blank>JuiceBar</a></span></div></footer></body></html>

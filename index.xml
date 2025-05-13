@@ -1,0 +1,607 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>資深菜鳥 Nick</title><link>https://north13.github.io/</link><description>Recent content on 資深菜鳥 Nick</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Mon, 12 May 2025 10:39:45 +0800</lastBuildDate><atom:link href="https://north13.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>Record 是什麼？</title><link>https://north13.github.io/post/record%E6%98%AF%E4%BB%80%E9%BA%BC/</link><pubDate>Mon, 12 May 2025 10:39:45 +0800</pubDate><guid>https://north13.github.io/post/record%E6%98%AF%E4%BB%80%E9%BA%BC/</guid><description>&lt;h3 id="什麼是-record">什麼是 Record？&lt;/h3>
+&lt;p>&lt;strong>Record&lt;/strong> 是一種新的資料類型，用來表示一組有序的值集合，包含具名或未具名欄位。可以想像成是不需要先定義一個 &lt;strong>class&lt;/strong> 的 &lt;strong>「輕量級的物件」&lt;/strong> 。&lt;/p>
+&lt;h5 id="不具名-record">&lt;code>不具名&lt;/code> Record&lt;/h5>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-dart" data-lang="dart">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">var&lt;/span> record &lt;span style="color:#f92672">=&lt;/span> (&lt;span style="color:#e6db74">&amp;#39;Nick&amp;#39;&lt;/span>, &lt;span style="color:#ae81ff">35&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>print(record.$1); &lt;span style="color:#75715e">// Nick
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>print(record.$2); &lt;span style="color:#75715e">// 35
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="具名-record">&lt;code>具名&lt;/code> Record&lt;/h5>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-dart" data-lang="dart">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">var&lt;/span> record &lt;span style="color:#f92672">=&lt;/span> (name: &lt;span style="color:#e6db74">&amp;#39;Nick&amp;#39;&lt;/span>, age: &lt;span style="color:#ae81ff">35&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>print(record.name); &lt;span style="color:#75715e">// Nick
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>print(record.age); &lt;span style="color:#75715e">// 35
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="混合型-record">&lt;code>混合型&lt;/code> Record&lt;/h5>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-dart" data-lang="dart">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">var&lt;/span> record &lt;span style="color:#f92672">=&lt;/span> (&lt;span style="color:#e6db74">&amp;#39;Nick&amp;#39;&lt;/span>, age: &lt;span style="color:#ae81ff">35&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>print(record.$1); &lt;span style="color:#75715e">// Nick
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>print(record.age); &lt;span style="color:#75715e">// 35
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>&lt;/th>
+ &lt;th>&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>&lt;/td>
+ &lt;td>&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="為什麼有-record">為什麼有 Record？&lt;/h3>
+&lt;p>如果 &lt;strong>Dart&lt;/strong> 函數要回傳多個值，通常要用 &lt;strong>class&lt;/strong> 或 &lt;strong>Map&lt;/strong>，但這樣太冗長或效能不佳。而 &lt;strong>Record&lt;/strong> 的應用有&lt;/p>
+&lt;ul>
+&lt;li>更簡潔的語法&lt;/li>
+&lt;li>更好的編譯期型別檢查&lt;/li>
+&lt;li>更快的效能（比 Map 好）&lt;/li>
+&lt;/ul>
+&lt;h4 id="-使用-map-不建議">❌ 使用 Map (不建議)&lt;/h4>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-dart" data-lang="dart">&lt;span style="display:flex;">&lt;span>Map&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">String&lt;/span>, &lt;span style="color:#66d9ef">dynamic&lt;/span>&lt;span style="color:#f92672">&amp;gt;&lt;/span> getUser() &lt;span style="color:#f92672">=&amp;gt;&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#39;name&amp;#39;&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#39;Nick&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#39;age&amp;#39;&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">35&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#39;isMember&amp;#39;&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#66d9ef">true&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>};
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">var&lt;/span> user &lt;span style="color:#f92672">=&lt;/span> getUser();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>print(user[&lt;span style="color:#e6db74">&amp;#39;nameee&amp;#39;&lt;/span>]); &lt;span style="color:#75715e">// ❌ 錯字或 key 不存在不會報錯
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="-使用-class-不建議">❌ 使用 Class (不建議)&lt;/h4>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-dart" data-lang="dart">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">User&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">final&lt;/span> &lt;span style="color:#66d9ef">String&lt;/span> name;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">final&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span> age;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">final&lt;/span> &lt;span style="color:#66d9ef">bool&lt;/span> isMember;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> User(&lt;span style="color:#66d9ef">this&lt;/span>.name, &lt;span style="color:#66d9ef">this&lt;/span>.age, &lt;span style="color:#66d9ef">this&lt;/span>.isMember);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="-使用-record-建議">⭕️ 使用 Record (建議)&lt;/h4>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-dart" data-lang="dart">&lt;span style="display:flex;">&lt;span>({&lt;span style="color:#66d9ef">String&lt;/span> name, &lt;span style="color:#66d9ef">int&lt;/span> age, &lt;span style="color:#66d9ef">bool&lt;/span> isMember}) user &lt;span style="color:#f92672">=&lt;/span> (name: &lt;span style="color:#e6db74">&amp;#39;Nick&amp;#39;&lt;/span>, age: &lt;span style="color:#ae81ff">35&lt;/span>, isMember: &lt;span style="color:#66d9ef">true&lt;/span>);
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>&lt;/th>
+ &lt;th>&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>&lt;/td>
+ &lt;td>&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="模式匹配pattern-matching">模式匹配（pattern matching）&lt;/h3>
+&lt;p>它讓你像在 &lt;strong>「解構資料」&lt;/strong> 一樣地做條件判斷或資料抽取。類似你在 &lt;strong>JavaScript&lt;/strong> 用 &lt;code>const { name } = user&lt;/code>&lt;/p></description></item><item><title>Ref 與 Reactive</title><link>https://north13.github.io/post/ref%E8%88%87reactive%E7%9A%84%E5%B7%AE%E7%95%B0/</link><pubDate>Mon, 13 Jan 2025 14:37:42 +0800</pubDate><guid>https://north13.github.io/post/ref%E8%88%87reactive%E7%9A%84%E5%B7%AE%E7%95%B0/</guid><description>&lt;p>這篇主要記錄關於 &lt;code>Vue&lt;/code> 的 &lt;code>ref&lt;/code> 和 &lt;code>reactive&lt;/code>詳細內容和範例，之前寫過一篇 &lt;strong>Angular&lt;/strong> 和 &lt;strong>Vue&lt;/strong> 中使用響應式狀態的介紹，可參考 &lt;strong>&lt;a href="http://localhost:1313/post/angular%E5%92%8Cvue%E7%9A%84%E9%9F%BF%E6%87%89%E5%BC%8F%E7%8B%80%E6%85%8B%E7%AE%A1%E7%90%86/">Angular 和 Vue 的響應式狀態管理&lt;/a>&lt;/strong>&lt;/p>
+&lt;h3 id="ref-範例">&lt;code>Ref&lt;/code> 範例&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ts" data-lang="ts">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// 基本類型使用 ref
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">count&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">ref&lt;/span>(&lt;span style="color:#ae81ff">0&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// 需要使用 .value 來修改值
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">increment() {&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">count&lt;/span>.&lt;span style="color:#a6e22e">value&lt;/span>&lt;span style="color:#f92672">++&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// ref 也可以包裝物件
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">user&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">ref&lt;/span>({
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">name&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#39;John&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">age&lt;/span>: &lt;span style="color:#66d9ef">25&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>});
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// 物件屬性修改也需要 .value
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">updateUser() {&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">user&lt;/span>.&lt;span style="color:#a6e22e">value&lt;/span>.&lt;span style="color:#a6e22e">age&lt;/span>&lt;span style="color:#f92672">++&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>&lt;/th>
+ &lt;th>&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>&lt;/td>
+ &lt;td>&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="reactive-範例">&lt;code>Reactive&lt;/code> 範例&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ts" data-lang="ts">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// 物件、陣列使用 reactive
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">let&lt;/span> &lt;span style="color:#a6e22e">user&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">reactive&lt;/span>({
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">name&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#e6db74">&amp;#39;Mary&amp;#39;&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">age&lt;/span>: &lt;span style="color:#66d9ef">30&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>});
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">let&lt;/span> &lt;span style="color:#a6e22e">arr&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">reactive&lt;/span>([&lt;span style="color:#e6db74">&amp;#39;Vue&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;Angular&amp;#39;&lt;/span>, &lt;span style="color:#e6db74">&amp;#39;React&amp;#39;&lt;/span>]);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// 直接修改屬性，不需要 .value
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">updateSettings() {&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">user&lt;/span>.&lt;span style="color:#a6e22e">age&lt;/span> &lt;span style="color:#f92672">+=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// reactive 不能用於基本類型
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">count&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">reactive&lt;/span>(&lt;span style="color:#ae81ff">33&lt;/span>); &lt;span style="color:#75715e">// error
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>&lt;/th>
+ &lt;th>&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>&lt;/td>
+ &lt;td>&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="-解構-reactive">❌ 解構 Reactive&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ts" data-lang="ts">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">let&lt;/span> { &lt;span style="color:#a6e22e">name&lt;/span>, &lt;span style="color:#a6e22e">age&lt;/span> } &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">user&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">user&lt;/span>.&lt;span style="color:#a6e22e">name&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#39;John&amp;#39;&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">name&lt;/span>); &lt;span style="color:#75715e">// &amp;#39;Mary&amp;#39;
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>解構會從響應式對象中取值，並將其存入新的變數中，這些變數（&lt;code>name&lt;/code> 和 &lt;code>age&lt;/code>）僅僅是值，不再是響應式的。它們不會隨著 &lt;code>user.name&lt;/code> 或 &lt;code>user.age&lt;/code> 的變化而變化。&lt;/p></description></item><item><title>JavaScript 閉包(Closure)</title><link>https://north13.github.io/post/javascript-%E9%96%89%E5%8C%85closure/</link><pubDate>Thu, 09 Jan 2025 15:35:23 +0800</pubDate><guid>https://north13.github.io/post/javascript-%E9%96%89%E5%8C%85closure/</guid><description>&lt;h4 id="什麼是閉包closure">什麼是閉包(Closure)&lt;/h4>
+&lt;p>&lt;em>&lt;code>你知道什麼是 JS 的閉包(Closure)嗎？&lt;/code>&lt;/em>&lt;/p>
+&lt;p>追蹤了不少國內外的工程師 Youtuber，某次在 YT 首頁看到 Closure 的影片縮圖大吃一驚&lt;/p>
+&lt;p>一開始看到這個名詞時完全沒有頭緒，學過 var、let、const、作用域、this&amp;hellip;等&lt;/p>
+&lt;p>居然漏掉了什麼沒學到嗎!? 這怎麼可以!!&lt;/p>
+&lt;p>拜讀了幾篇文章和影片後才發現，其實閉包無所不在，或許在不經意的情況下都寫過了勒!&lt;/p>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>&lt;/th>
+ &lt;th>&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>&lt;/td>
+ &lt;td>&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h4 id="範例">範例&lt;/h4>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-typescript" data-lang="typescript">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">bankAccount&lt;/span> &lt;span style="color:#f92672">=&lt;/span> (&lt;span style="color:#66d9ef">function&lt;/span> () {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">let&lt;/span> &lt;span style="color:#a6e22e">balance&lt;/span>: &lt;span style="color:#66d9ef">number&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">validateAmount&lt;/span>(&lt;span style="color:#a6e22e">amount&lt;/span>: &lt;span style="color:#66d9ef">number&lt;/span>)&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#66d9ef">boolean&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#a6e22e">amount&lt;/span> &lt;span style="color:#f92672">&amp;gt;&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">deposit&lt;/span>: &lt;span style="color:#66d9ef">function&lt;/span> (&lt;span style="color:#a6e22e">amount&lt;/span>: &lt;span style="color:#66d9ef">number&lt;/span>)&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#66d9ef">string&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (&lt;span style="color:#f92672">!&lt;/span>&lt;span style="color:#a6e22e">validateAmount&lt;/span>(&lt;span style="color:#a6e22e">amount&lt;/span>)) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#e6db74">&amp;#39;請輸入有效金額&amp;#39;&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">balance&lt;/span> &lt;span style="color:#f92672">+=&lt;/span> &lt;span style="color:#a6e22e">amount&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#e6db74">`存款成功，當前餘額: &lt;/span>&lt;span style="color:#e6db74">${&lt;/span>&lt;span style="color:#a6e22e">balance&lt;/span>&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74">`&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">withdraw&lt;/span>: &lt;span style="color:#66d9ef">function&lt;/span> (&lt;span style="color:#a6e22e">amount&lt;/span>: &lt;span style="color:#66d9ef">number&lt;/span>)&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#66d9ef">string&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (&lt;span style="color:#f92672">!&lt;/span>&lt;span style="color:#a6e22e">validateAmount&lt;/span>(&lt;span style="color:#a6e22e">amount&lt;/span>)) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#e6db74">&amp;#39;請輸入有效金額&amp;#39;&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (&lt;span style="color:#a6e22e">amount&lt;/span> &lt;span style="color:#f92672">&amp;gt;&lt;/span> &lt;span style="color:#a6e22e">balance&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#e6db74">&amp;#39;餘額不足&amp;#39;&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">balance&lt;/span> &lt;span style="color:#f92672">-=&lt;/span> &lt;span style="color:#a6e22e">amount&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#e6db74">`當前餘額: &lt;/span>&lt;span style="color:#e6db74">${&lt;/span>&lt;span style="color:#a6e22e">balance&lt;/span>&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74">`&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">getBalance&lt;/span>: &lt;span style="color:#66d9ef">function&lt;/span> ()&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#66d9ef">string&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#e6db74">`當前餘額: &lt;/span>&lt;span style="color:#e6db74">${&lt;/span>&lt;span style="color:#a6e22e">balance&lt;/span>&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74">`&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> };
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>})();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">bankAccount&lt;/span>.&lt;span style="color:#a6e22e">getBalance&lt;/span>()); &lt;span style="color:#75715e">// 當前餘額: 0
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">bankAccount&lt;/span>.&lt;span style="color:#a6e22e">deposit&lt;/span>(&lt;span style="color:#ae81ff">1000&lt;/span>)); &lt;span style="color:#75715e">// 存款成功，當前餘額: 1000
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">bankAccount&lt;/span>.&lt;span style="color:#a6e22e">withdraw&lt;/span>(&lt;span style="color:#ae81ff">500&lt;/span>)); &lt;span style="color:#75715e">// 提款成功，當前餘額: 500
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">bankAccount&lt;/span>.&lt;span style="color:#a6e22e">withdraw&lt;/span>(&lt;span style="color:#ae81ff">1000&lt;/span>)); &lt;span style="color:#75715e">// 餘額不足
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// 無法直接訪問私有變數和方法
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">bankAccount&lt;/span>.&lt;span style="color:#a6e22e">balance&lt;/span>); &lt;span style="color:#75715e">// undefined
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">bankAccount&lt;/span>.&lt;span style="color:#a6e22e">validateAmount&lt;/span>); &lt;span style="color:#75715e">// undefined
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>&lt;/th>
+ &lt;th>&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>&lt;/td>
+ &lt;td>&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h4 id="這個例子展示了閉包的幾個重要特點">這個例子展示了閉包的幾個重要特點：&lt;/h4>
+&lt;ol>
+&lt;li>閉包能夠「記住」外層函式的變數
+在例子中，&lt;code>balance&lt;/code> 是 &lt;code>bankAccount&lt;/code> 的私有變數，但因為 &lt;code>deposit&lt;/code>、&lt;code>withdraw&lt;/code>、&lt;code>getBalance&lt;/code> 在內部被 &lt;strong>return&lt;/strong>，這些 &lt;strong>function&lt;/strong> 形成閉包，可以持續訪問這些變數，即使外層函式已經執行完成。&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-typescript" data-lang="typescript">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">let&lt;/span> &lt;span style="color:#a6e22e">balance&lt;/span>: &lt;span style="color:#66d9ef">number&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">return&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">deposit&lt;/span>: &lt;span style="color:#66d9ef">function&lt;/span> (&lt;span style="color:#a6e22e">amount&lt;/span>: &lt;span style="color:#66d9ef">number&lt;/span>)&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#66d9ef">string&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (&lt;span style="color:#f92672">!&lt;/span>&lt;span style="color:#a6e22e">validateAmount&lt;/span>(&lt;span style="color:#a6e22e">amount&lt;/span>)) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#e6db74">&amp;#39;請輸入有效金額&amp;#39;&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">balance&lt;/span> &lt;span style="color:#f92672">+=&lt;/span> &lt;span style="color:#a6e22e">amount&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#e6db74">`存款成功，當前餘額: &lt;/span>&lt;span style="color:#e6db74">${&lt;/span>&lt;span style="color:#a6e22e">balance&lt;/span>&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74">`&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 其他方法同理
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>};
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>這段程式碼中，&lt;code>balance&lt;/code> 是閉包捕獲的變數，這些變數的值會根據執行的操作（例如存款或提款）而變化，並且被所有內部函式共享。&lt;/p></description></item><item><title>Type 和 Interface 要用哪一個?</title><link>https://north13.github.io/post/type%E5%92%8Cinterface%E8%A6%81%E7%94%A8%E5%93%AA%E4%B8%80%E5%80%8B/</link><pubDate>Thu, 02 Jan 2025 10:59:25 +0800</pubDate><guid>https://north13.github.io/post/type%E5%92%8Cinterface%E8%A6%81%E7%94%A8%E5%93%AA%E4%B8%80%E5%80%8B/</guid><description>&lt;h2 id="前言">前言&lt;/h2>
+&lt;p>TypeScript 中，Type 與 Interface 都是用來定義型別的關鍵字，但兩者之間存在著些許的差異。以下將深入探討 Type 與 Interface 的特性，並建議在不同的情境下如何選擇適合的型別定義方式，以提升 TypeScript 程式碼的可讀性與維護性。&lt;/p>
+&lt;h5 id="1-擴展extends的語法差異">1. 擴展(Extends)的語法差異:&lt;/h5>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-typescript" data-lang="typescript">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// Interface 使用 extends
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">interface&lt;/span> &lt;span style="color:#a6e22e">Animal&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">name&lt;/span>: &lt;span style="color:#66d9ef">string&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">interface&lt;/span> &lt;span style="color:#a6e22e">Dog&lt;/span> &lt;span style="color:#66d9ef">extends&lt;/span> &lt;span style="color:#a6e22e">Animal&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">bark&lt;/span>()&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// Type 使用 &amp;amp;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">type&lt;/span> &lt;span style="color:#a6e22e">Animal&lt;/span> &lt;span style="color:#f92672">=&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">name&lt;/span>: &lt;span style="color:#66d9ef">string&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>};
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">type&lt;/span> &lt;span style="color:#a6e22e">Dog&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">Animal&lt;/span> &lt;span style="color:#f92672">&amp;amp;&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">bark&lt;/span>()&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>};
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="2-合併聲明declaration-merging">2. 合併聲明(Declaration Merging):&lt;/h5>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ts" data-lang="ts">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// Interface 可以重複宣告,會自動合併
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">interface&lt;/span> &lt;span style="color:#a6e22e">User&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">name&lt;/span>: &lt;span style="color:#66d9ef">string&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">interface&lt;/span> &lt;span style="color:#a6e22e">User&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">age&lt;/span>: &lt;span style="color:#66d9ef">number&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">/* 最終 User 將包含 name 和 age */&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// Type 不能重複宣告
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">type&lt;/span> &lt;span style="color:#a6e22e">User&lt;/span> &lt;span style="color:#f92672">=&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">name&lt;/span>: &lt;span style="color:#66d9ef">string&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>};
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// 錯誤:不能重複宣告 type User
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">type&lt;/span> &lt;span style="color:#a6e22e">User&lt;/span> &lt;span style="color:#f92672">=&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">age&lt;/span>: &lt;span style="color:#66d9ef">number&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>};
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="3映射類型-mapped-types">3.映射類型 (Mapped Types)&lt;/h5>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ts" data-lang="ts">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// Type 可以使用更複雜的類型運算
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">type&lt;/span> &lt;span style="color:#a6e22e">Keys&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#39;firstname&amp;#39;&lt;/span> &lt;span style="color:#f92672">|&lt;/span> &lt;span style="color:#e6db74">&amp;#39;lastname&amp;#39;&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">type&lt;/span> &lt;span style="color:#a6e22e">DuplicateString&lt;/span> &lt;span style="color:#f92672">=&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> [&lt;span style="color:#a6e22e">key&lt;/span> &lt;span style="color:#66d9ef">in&lt;/span> &lt;span style="color:#a6e22e">Keys&lt;/span>]&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#66d9ef">string&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>};
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// Interface 不支援映射類型，不能這樣寫
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">interface&lt;/span> &lt;span style="color:#a6e22e">DuplicateString&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> [&lt;span style="color:#a6e22e">key&lt;/span> &lt;span style="color:#66d9ef">in&lt;/span> &lt;span style="color:#a6e22e">Keys&lt;/span>]&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#66d9ef">string&lt;/span>; &lt;span style="color:#75715e">// 錯誤
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="4tuple-和-union-的定義">4.Tuple 和 Union 的定義:&lt;/h5>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-ts" data-lang="ts">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// Type 可以直接定義
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">type&lt;/span> &lt;span style="color:#a6e22e">StringOrNumber&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">string&lt;/span> &lt;span style="color:#f92672">|&lt;/span> &lt;span style="color:#66d9ef">number&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">type&lt;/span> &lt;span style="color:#a6e22e">StringArray&lt;/span> &lt;span style="color:#f92672">=&lt;/span> [&lt;span style="color:#66d9ef">string&lt;/span>, &lt;span style="color:#66d9ef">string&lt;/span>];
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// Interface 需要間接定義
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">interface&lt;/span> &lt;span style="color:#a6e22e">StringArray&lt;/span> &lt;span style="color:#66d9ef">extends&lt;/span> Array&amp;lt;&lt;span style="color:#f92672">string&lt;/span>&amp;gt; {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">0&lt;/span>: &lt;span style="color:#66d9ef">string&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">1&lt;/span>: &lt;span style="color:#66d9ef">string&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">length&lt;/span>: &lt;span style="color:#66d9ef">2&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="-結論">💡 結論&lt;/h3>
+&lt;blockquote>
+&lt;p>無論使用哪一種方式都好，主要是跟團隊建立好專案的 &lt;code>Coding Guideline&lt;/code>，良好的溝通和團隊合作才是上策。&lt;/p></description></item><item><title>邏輯運算子 - 短路</title><link>https://north13.github.io/post/%E9%82%8F%E8%BC%AF%E9%81%8B%E7%AE%97%E5%AD%90-%E7%9F%AD%E8%B7%AF/</link><pubDate>Mon, 30 Dec 2024 14:41:54 +0800</pubDate><guid>https://north13.github.io/post/%E9%82%8F%E8%BC%AF%E9%81%8B%E7%AE%97%E5%AD%90-%E7%9F%AD%E8%B7%AF/</guid><description>&lt;h2 id="短路邏輯-short-circuit-evaluation">短路邏輯 （Short-Circuit Evaluation）&lt;/h2>
+&lt;p>短路邏輯是一種邏輯運算的優化技巧，用於進行邏輯判斷時，當確定結果時立即停止後續的運算，也因為在某些情況並不需要計算所有的運算元就能確定結果，所以稱為「短路」。&lt;/p>
+&lt;h3 id="優點">優點&lt;/h3>
+&lt;ol>
+&lt;li>&lt;strong>避免不必要的計算:&lt;/strong> 當邏輯運算的結果可以由前面的運算元確定時，後面的運算元就不會被計算，這可以節省計算資源，提高程式執行效率。&lt;/li>
+&lt;li>&lt;strong>提早結束迴圈:&lt;/strong> 在迴圈中使用短路邏輯可以提早結束迴圈。&lt;/li>
+&lt;li>&lt;strong>避免錯誤:&lt;/strong>
+在檢查物件是否為 null 的時候，使用短路邏輯可以避免在 null 物件上呼叫方法而引發 NullPointerException。&lt;/li>
+&lt;li>&lt;strong>簡化程式碼:&lt;/strong>
+&lt;ul>
+&lt;li>條件判斷： 短路邏輯可以簡化條件判斷，讓程式碼更簡潔。&lt;/li>
+&lt;li>設定預設值： 可以用來設定變數的預設值。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ol>
+&lt;h3 id="缺點">缺點&lt;/h3>
+&lt;ol>
+&lt;li>&lt;strong>可讀性降低:&lt;/strong> 判斷過於複雜時反而使可讀性降低。&lt;/li>
+&lt;li>&lt;strong>不易維護:&lt;/strong> 過度使用短路邏輯可能會讓程式碼難以理解，降低可維護性。&lt;/li>
+&lt;/ol>
+&lt;h3 id="使用情境">使用情境&lt;/h3>
+&lt;p>當條件簡單或主要為賦值判斷時，短路邏輯是非常好的方式；但如果判斷過於複雜，建議使用 &lt;code>if...else&lt;/code> 以提升可讀性。&lt;/p>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>&lt;/th>
+ &lt;th>&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>&lt;/td>
+ &lt;td>&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="邏輯-and-">邏輯 AND (&amp;amp;&amp;amp;)&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-js" data-lang="js">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">let&lt;/span> &lt;span style="color:#a6e22e">result&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">condition&lt;/span> &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> &lt;span style="color:#e6db74">&amp;#34;Yes&amp;#34;&lt;/span>;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>說明：
+當 condition 為 &lt;code>true&lt;/code> 時，result 將會是 &amp;ldquo;Yes&amp;rdquo;；如果 condition 為 &lt;code>false&lt;/code>，則 result 的值會是 condition 自己 &lt;strong>（通常為 false 或 undefined 等）&lt;/strong>。&lt;/p>
+&lt;blockquote>
+&lt;p>💡 典型用途：用於在條件為 true 時執行某些操作，否則忽略。&lt;/p>
+&lt;p>例如檢查某物件是否存在，再執行方法：isAdmin &amp;amp;&amp;amp; performAdminAction()。&lt;/p>&lt;/blockquote>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>&lt;/th>
+ &lt;th>&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>&lt;/td>
+ &lt;td>&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="邏輯-or-">邏輯 OR (||)&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-js" data-lang="js">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">let&lt;/span> &lt;span style="color:#a6e22e">result&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">condition&lt;/span> &lt;span style="color:#f92672">||&lt;/span> &lt;span style="color:#e6db74">&amp;#34;Default&amp;#34;&lt;/span>;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>說明：
+當 condition 為 false &lt;strong>（如 null、undefined、0、&amp;quot;&amp;quot; 等）&lt;/strong> 時，返回 &amp;ldquo;Default&amp;rdquo;；如果 condition 為 true，則返回 condition 的值。&lt;/p></description></item><item><title>Angular 和 Vue 的響應式狀態管理</title><link>https://north13.github.io/post/angular%E5%92%8Cvue%E7%9A%84%E9%9F%BF%E6%87%89%E5%BC%8F%E7%8B%80%E6%85%8B%E7%AE%A1%E7%90%86/</link><pubDate>Fri, 27 Dec 2024 10:06:49 +0800</pubDate><guid>https://north13.github.io/post/angular%E5%92%8Cvue%E7%9A%84%E9%9F%BF%E6%87%89%E5%BC%8F%E7%8B%80%E6%85%8B%E7%AE%A1%E7%90%86/</guid><description>&lt;p>之前趁著 &lt;code>Udemy&lt;/code> 黑五活動買了些有興趣的課程來進修，加上 &lt;code>YT&lt;/code> 上免費的課程，聽聽不同的講師會有不同的收穫，就像是看醫生不要只看一間，不同的醫生看或許會有不同的見解。&lt;/p>
+&lt;p>在自學時光是 &lt;code>Vue&lt;/code> 就看了三個不同的教學影片，對於 &lt;code>ref&lt;/code>、&lt;code>reactive&lt;/code> 雖無實務經驗，但有一定程度的瞭解。之前工作上使用的框架是 &lt;code>Angular&lt;/code> 且版本 &lt;strong>&amp;lt; 16&lt;/strong> , 對於 &lt;code>Signals&lt;/code> 的應用很模糊，嘗試用 &lt;code>Vue&lt;/code> 的 &lt;code>ref&lt;/code> 去解釋 &lt;code>Angular&lt;/code> 的 &lt;code>Signals&lt;/code> 好像一切都說得過去了！&lt;/p>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>&lt;/th>
+ &lt;th>&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>&lt;/td>
+ &lt;td>&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="angular-signals-的用途">&lt;strong>Angular Signals 的用途&lt;/strong>&lt;/h3>
+&lt;p>&lt;code>Angular&lt;/code> 引入 &lt;strong>Signals&lt;/strong> 是為了解決 &lt;strong>響應式狀態管理&lt;/strong> 的問題。傳統上 &lt;code>Angular&lt;/code> 主要使用 &lt;code>RxJS&lt;/code> 的 &lt;code>Observables&lt;/code> 或 &lt;code>Component State&lt;/code> 來管理狀態，但這種方式可能導致程式碼複雜性增加、追蹤數據變化困難。&lt;/p>
+&lt;p>&lt;strong>Signals 主要用途：&lt;/strong>&lt;/p>
+&lt;ol>
+&lt;li>&lt;strong>響應式狀態管理：&lt;/strong> &lt;code>Signals&lt;/code> 允許你輕鬆追蹤和響應狀態變化，無需手動訂閱或處理變更檢測。&lt;/li>
+&lt;li>&lt;strong>效能提升：&lt;/strong> &lt;code>Signals&lt;/code> 會在狀態變化時自動觸發 UI 更新，並只更新受影響的部分，而非整體重新渲染，這比傳統變更檢測更高效。&lt;/li>
+&lt;li>&lt;strong>同步數據流：&lt;/strong> 和 &lt;code>RxJS&lt;/code> 的異步操作不同，&lt;code>Signals&lt;/code> 提供 &lt;strong>同步&lt;/strong> 的數據流，使用起來更加直觀。&lt;/li>
+&lt;li>&lt;strong>預測性：&lt;/strong> &lt;code>Angular Signals&lt;/code> 透過明確的讀寫 &lt;code>API&lt;/code>，讓數據變更更易於預測和調試。&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-jsx" data-lang="jsx">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">import&lt;/span> { &lt;span style="color:#a6e22e">signal&lt;/span> } &lt;span style="color:#a6e22e">from&lt;/span> &lt;span style="color:#e6db74">&amp;#34;@angular/core&amp;#34;&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">export&lt;/span> &lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">MyComponent&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">count&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">signal&lt;/span>(&lt;span style="color:#ae81ff">0&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">increment&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">count&lt;/span>.&lt;span style="color:#a6e22e">set&lt;/span>(&lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">count&lt;/span>() &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>&lt;code>signal()&lt;/code> 用於建立可追蹤的響應式狀態。&lt;/li>
+&lt;li>使用 &lt;code>.set()&lt;/code>、&lt;code>.update()&lt;/code> 來修改值，使用 &lt;code>signal()&lt;/code> 本身讀取當前值。&lt;/li>
+&lt;/ul>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>&lt;/th>
+ &lt;th>&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>&lt;/td>
+ &lt;td>&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="vue-3-ref-的用途">&lt;strong>Vue 3 ref 的用途&lt;/strong>&lt;/h3>
+&lt;p>&lt;code>Vue 3&lt;/code> 的 &lt;code>ref&lt;/code> 也用於 響應式數據 管理。&lt;code>ref&lt;/code> 會將一個變數包裹成 響應式對象，當數據變化時，&lt;code>Vue&lt;/code> 會自動追蹤變更並更新 UI。&lt;/p></description></item><item><title>ES6 作用域的比較</title><link>https://north13.github.io/post/es6-%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%9A%84%E6%AF%94%E8%BC%83/</link><pubDate>Thu, 26 Dec 2024 15:37:37 +0800</pubDate><guid>https://north13.github.io/post/es6-%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%9A%84%E6%AF%94%E8%BC%83/</guid><description>&lt;h2 id="constlet-與-var">const、let 與 var&lt;/h2>
+&lt;p>&lt;code>var&lt;/code>&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>作用域：&lt;/strong>
+&lt;code>var&lt;/code>是函式作用域（Function Scope）。在函式內宣告的變數僅在該函式內可用，若在函式外使用，則為全域作用域（Global Scope）。&lt;/li>
+&lt;li>&lt;strong>Hoisting（提升）：&lt;/strong>
+&lt;code>var&lt;/code> 宣告的變數會被提升到作用域的頂部（包括全域和函式內部），但初始化的值不會提升。&lt;/li>
+&lt;li>&lt;strong>屬性綁定：&lt;/strong>
+在全域範疇中，使用 &lt;code>var&lt;/code> 宣告的變數會成為全域物件（window 或 globalThis）的屬性。&lt;/li>
+&lt;/ul>
+&lt;h3 id="var-範例函式作用域">var 範例（函式作用域）&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-js" data-lang="js">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">var&lt;/span> &lt;span style="color:#a6e22e">x&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">10&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(window.&lt;span style="color:#a6e22e">x&lt;/span>); &lt;span style="color:#75715e">// 10
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>&lt;/th>
+ &lt;th>&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>&lt;/td>
+ &lt;td>&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;p>&lt;code>let&lt;/code>&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>作用域：&lt;/strong>
+&lt;code>let&lt;/code> 是區塊作用域（Block Scope），也就是變數僅在其所宣告的區塊 {} 內有效。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Hoisting（提升）：&lt;/strong>
+與 &lt;code>var&lt;/code> 不同，&lt;code>let&lt;/code> 變數在宣告之前不可訪問，會觸發「暫時性死區」（Temporal Dead Zone, TDZ）。
+(&lt;del>&lt;em>關於 TDZ，我們以後會專門做一期影片跟大家講解&lt;/em>&lt;/del>)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>屬性綁定：&lt;/strong>
+在全域範疇中，使用 &lt;code>let&lt;/code> 宣告的變數不會成為全域物件的屬性。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="let-範例區塊作用域">let 範例（區塊作用域）&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-js" data-lang="js">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">let&lt;/span> &lt;span style="color:#a6e22e">y&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">20&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(window.&lt;span style="color:#a6e22e">y&lt;/span>); &lt;span style="color:#75715e">// undefined
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>&lt;/th>
+ &lt;th>&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>&lt;/td>
+ &lt;td>&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;p>&lt;code>const&lt;/code>&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>作用域：&lt;/strong>
+與 &lt;code>let&lt;/code> 一樣，&lt;code>const&lt;/code> 是區塊作用域（Block Scope）。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>不可重新賦值：&lt;/strong>
+&lt;code>const&lt;/code> 宣告的變數必須在宣告時初始化，且不能重新賦值。但如果該變數儲存的是物件，其屬性可以被修改。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Hoisting（提升）：&lt;/strong>
+同樣存在暫時性死區（TDZ），在宣告之前不可訪問。&lt;/p></description></item><item><title>閱讀筆記 - The Clean Coder 無暇程式碼番外篇 - 專業程式設計師的生存之道</title><link>https://north13.github.io/post/%E9%96%B1%E8%AE%80%E7%AD%86%E8%A8%98---%E7%84%A1%E6%9A%87%E7%A8%8B%E5%BC%8F%E7%A2%BC%E7%95%AA%E5%A4%96%E7%AF%87/</link><pubDate>Wed, 25 Dec 2024 14:47:55 +0800</pubDate><guid>https://north13.github.io/post/%E9%96%B1%E8%AE%80%E7%AD%86%E8%A8%98---%E7%84%A1%E6%9A%87%E7%A8%8B%E5%BC%8F%E7%A2%BC%E7%95%AA%E5%A4%96%E7%AF%87/</guid><description>&lt;h2 id="以下是我根據這本書中節錄的重點整理">以下是我根據這本書中節錄的重點整理&lt;/h2>
+&lt;h3 id="ch1-專業主義">CH1 專業主義&lt;/h3>
+&lt;ol>
+&lt;li>不破壞軟體功能&lt;/li>
+&lt;li>不破壞結構(軟體要易於修改)&lt;/li>
+&lt;/ol>
+&lt;blockquote>
+&lt;p>💡 &lt;strong>不能銘記過去的人，註定重蹈先人的覆轍&lt;/strong>&lt;/p>&lt;/blockquote>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>&lt;/th>
+ &lt;th>&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>&lt;/td>
+ &lt;td>&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="ch2-說不">CH2 說「不」&lt;/h3>
+&lt;p>專業人士敢於說明真相而不屈從於權勢。有勇氣說「不」。&lt;/p>
+&lt;blockquote>
+&lt;p>💡 &lt;strong>說「不」，才能真正做成一些事情。&lt;/strong>&lt;/p>&lt;/blockquote>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>&lt;/th>
+ &lt;th>&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>&lt;/td>
+ &lt;td>&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="ch3-說是">CH3 說「是」&lt;/h3>
+&lt;ol>
+&lt;li>避免「缺乏承諾」，若是無法達成應盡早向承諾的對象發出預警，越早、越快越好。&lt;/li>
+&lt;li>專業人士對自己的能力極限瞭若指掌。&lt;/li>
+&lt;li>回歸測試 ( Regression Testing ) 是當程式進行修改後，檢查修改前能正常執行的功能是否仍能無誤的執行。&lt;/li>
+&lt;/ol>
+&lt;blockquote>
+&lt;p>💡 &lt;strong>專業人士不需要對所有的請求都回答「是」。不過，他們應該努力尋找創新的方法，盡可能做到有求必應。當專業人士給出肯定回答時，會使用「承諾用語」，以確保各方能無誤的明白及理解承諾的內容。&lt;/strong>&lt;/p>&lt;/blockquote>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>&lt;/th>
+ &lt;th>&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>&lt;/td>
+ &lt;td>&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="ch4-寫程式">CH4 寫程式&lt;/h3>
+&lt;p>&lt;strong>敲錯鍵盤時我自己能感覺到。&lt;/strong>&lt;/p>
+&lt;p>精熟掌握每項技藝，關鍵都是要具備「信心」和「出錯感知」。&lt;/p>
+&lt;p>樂觀預估、常規預估、悲觀預估&lt;/p>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>&lt;/th>
+ &lt;th>&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>&lt;/td>
+ &lt;td>&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="ch5-測試驅動開發-tdd">CH5 測試驅動開發 TDD&lt;/h3>
+&lt;blockquote>
+&lt;p>💡 &lt;strong>事後寫的測試只是一種防守，先行編寫的測試則是進攻&lt;/strong>&lt;/p>&lt;/blockquote>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>&lt;/th>
+ &lt;th>&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>&lt;/td>
+ &lt;td>&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="ch7-驗收測試">CH7 驗收測試&lt;/h3>
+&lt;p>驗收測試和單元測試的對象通常是相同的，但絕對和「重複」沾不上邊。&lt;/p>
+&lt;p>單元測試是深入系統內部進行，呼叫特定類別的方法；驗收測試則是在系統外部，通常是在 API 或 UI 層級進行。所以兩者的執行路徑截然不同。&lt;/p>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>&lt;/th>
+ &lt;th>&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>&lt;/td>
+ &lt;td>&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="ch9-時間管理">CH9 時間管理&lt;/h3>
+&lt;ul>
+&lt;li>會議是必須的，但會議會浪費大量時間，沒有必要的會議應禮貌拒絕。&lt;/li>
+&lt;li>Stand Up Meeting :
+&lt;ol>
+&lt;li>我昨天做了什麼?&lt;/li>
+&lt;li>我今天預計做什麼?&lt;/li>
+&lt;li>我遇到了什麼問題，需不需要協助?&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ul></description></item><item><title>資深菜鳥</title><link>https://north13.github.io/about/</link><pubDate>Tue, 24 Dec 2024 17:22:18 +0800</pubDate><guid>https://north13.github.io/about/</guid><description>&lt;p>「資深菜鳥」，這個暱稱聽起來有點矛盾，但它正是我對自己工作態度的最佳寫照。雖然在軟體開發領域已經有多年的經驗，但我始終抱持著一顆新鮮人般的學習心態。對我來說，軟體工程是一場永無止境的探索，每一次的挑戰都像是初次接觸這個世界般令人興奮。&lt;/p>
+&lt;p>記得剛入行時，遇到問題總是戰戰兢兢的請教前輩，生怕自己問的問題太基礎。但漸漸發現，真正的高手從不會因為別人提問而不耐煩，反而會很願意分享經驗。這讓我明白到，「不恥下問」才是成長的不二法門。&lt;/p>
+&lt;p>後來與團隊中的新人交流時，我也會鼓勵他們大膽發問。畢竟大家都是從新手開始的，與其自己摸索，不如勇於開口請教。在這個領域沒有「蠢問題」，真正重要的是保持學習的熱忱與動力。&lt;/p>
+&lt;p>現在雖然累積了不少經驗，但每當遇到不熟悉的技術或棘手的問題時，仍然會第一時間搜尋相關資訊、找同事討論，與其將自己視為資深，不如把自己當作團隊中的一名好學者，隨時準備向同事請教、交換想法，甚至是向學習他們的技能。&lt;/p>
+&lt;p>「菜鳥」這個詞對我來說並非貶義，而是提醒我永遠保持謙卑、開放的心態，在這個行業裡，真正可怕的不是不會，而是不願學習，時時刻刻充實自己，才能在這個充滿挑戰的產業中站穩腳步。所以即便現在已是「資深」工程師，我仍想要當個積極進取且熱情的「菜鳥」，用永不滿足的求知慾持續在軟體開發的道路上前進。&lt;/p></description></item></channel></rss>
