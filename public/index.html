@@ -213,6 +213,97 @@
   <div class="single-container column is-centered">
     <div class="archive" id="post-container">
       <header class="post-header">
+        <h1 class="post-title hover-underline-animation"><a class="post-link" href="/post/record%E6%98%AF%E4%BB%80%E9%BA%BC/">Record 是什麼？</a></h1>
+       
+       
+      </header>
+      <div class="post-content">
+        <div class="excerpt post-summary">
+          <h3 id="什麼是-record">什麼是 Record？</h3>
+<p><strong>Record</strong> 是一種新的資料類型，用來表示一組有序的值集合，包含具名或未具名欄位。可以想像成是不需要先定義一個 <strong>class</strong> 的 <strong>「輕量級的物件」</strong> 。</p>
+<h5 id="不具名-record"><code>不具名</code> Record</h5>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dart" data-lang="dart"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> record <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;Nick&#39;</span>, <span style="color:#ae81ff">35</span>);
+</span></span><span style="display:flex;"><span>print(record.$1); <span style="color:#75715e">// Nick
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>print(record.$2); <span style="color:#75715e">// 35
+</span></span></span></code></pre></div><h5 id="具名-record"><code>具名</code> Record</h5>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dart" data-lang="dart"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> record <span style="color:#f92672">=</span> (name: <span style="color:#e6db74">&#39;Nick&#39;</span>, age: <span style="color:#ae81ff">35</span>);
+</span></span><span style="display:flex;"><span>print(record.name); <span style="color:#75715e">// Nick
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>print(record.age);  <span style="color:#75715e">// 35
+</span></span></span></code></pre></div><h5 id="混合型-record"><code>混合型</code> Record</h5>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dart" data-lang="dart"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> record <span style="color:#f92672">=</span> (<span style="color:#e6db74">&#39;Nick&#39;</span>, age: <span style="color:#ae81ff">35</span>);
+</span></span><span style="display:flex;"><span>print(record.$1);   <span style="color:#75715e">// Nick
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>print(record.age);  <span style="color:#75715e">// 35
+</span></span></span></code></pre></div><table>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="為什麼有-record">為什麼有 Record？</h3>
+<p>如果 <strong>Dart</strong> 函數要回傳多個值，通常要用 <strong>class</strong> 或 <strong>Map</strong>，但這樣太冗長或效能不佳。而 <strong>Record</strong> 的應用有</p>
+<ul>
+<li>更簡潔的語法</li>
+<li>更好的編譯期型別檢查</li>
+<li>更快的效能（比 Map 好）</li>
+</ul>
+<h4 id="-使用-map-不建議">❌ 使用 Map (不建議)</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dart" data-lang="dart"><span style="display:flex;"><span>Map<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">String</span>, <span style="color:#66d9ef">dynamic</span><span style="color:#f92672">&gt;</span> getUser() <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#39;name&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Nick&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#39;age&#39;</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">35</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#39;isMember&#39;</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> user <span style="color:#f92672">=</span> getUser();
+</span></span><span style="display:flex;"><span>print(user[<span style="color:#e6db74">&#39;nameee&#39;</span>]); <span style="color:#75715e">// ❌ 錯字或 key 不存在不會報錯
+</span></span></span></code></pre></div><h4 id="-使用-class-不建議">❌ 使用 Class (不建議)</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dart" data-lang="dart"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">User</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">String</span> name;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span> age;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">bool</span> isMember;
+</span></span><span style="display:flex;"><span>  User(<span style="color:#66d9ef">this</span>.name, <span style="color:#66d9ef">this</span>.age, <span style="color:#66d9ef">this</span>.isMember);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="-使用-record-建議">⭕️ 使用 Record (建議)</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dart" data-lang="dart"><span style="display:flex;"><span>({<span style="color:#66d9ef">String</span> name, <span style="color:#66d9ef">int</span> age, <span style="color:#66d9ef">bool</span> isMember}) user <span style="color:#f92672">=</span> (name: <span style="color:#e6db74">&#39;Nick&#39;</span>, age: <span style="color:#ae81ff">35</span>, isMember: <span style="color:#66d9ef">true</span>);
+</span></span></code></pre></div><table>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="模式匹配pattern-matching">模式匹配（pattern matching）</h3>
+<p>它讓你像在 <strong>「解構資料」</strong> 一樣地做條件判斷或資料抽取。類似你在 <strong>JavaScript</strong> 用 <code>const { name } = user</code></p>
+        </div>
+        
+        <div class="post-time-container">
+          <span class="post-time"> 2025-05-12 </span>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</article>
+
+    
+        <article class="post">
+  <div class="single-container column is-centered">
+    <div class="archive" id="post-container">
+      <header class="post-header">
         <h1 class="post-title hover-underline-animation"><a class="post-link" href="/post/ref%E8%88%87reactive%E7%9A%84%E5%B7%AE%E7%95%B0/">Ref 與 Reactive</a></h1>
        
        
