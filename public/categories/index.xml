@@ -6,8 +6,15 @@
     <description>Recent content in Categories on 資深菜鳥 Nick</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 12 May 2025 10:39:45 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 04 Jul 2025 13:55:20 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>TypeScript</title>
+      <link>http://localhost:1313/categories/typescript/</link>
+      <pubDate>Fri, 04 Jul 2025 13:55:20 +0800</pubDate>
+      <guid>http://localhost:1313/categories/typescript/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Dart3</title>
       <link>http://localhost:1313/categories/dart3/</link>
@@ -34,13 +41,6 @@
       <link>http://localhost:1313/categories/javascript/</link>
       <pubDate>Thu, 09 Jan 2025 15:35:23 +0800</pubDate>
       <guid>http://localhost:1313/categories/javascript/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>TypeScript</title>
-      <link>http://localhost:1313/categories/typescript/</link>
-      <pubDate>Thu, 02 Jan 2025 10:59:25 +0800</pubDate>
-      <guid>http://localhost:1313/categories/typescript/</guid>
       <description></description>
     </item>
     <item>

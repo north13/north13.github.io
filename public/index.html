@@ -213,6 +213,71 @@
   <div class="single-container column is-centered">
     <div class="archive" id="post-container">
       <header class="post-header">
+        <h1 class="post-title hover-underline-animation"><a class="post-link" href="/post/typescript%E6%87%89%E9%81%BF%E5%85%8D%E4%BD%BF%E7%94%A8any/">TypeScript 應避免使用 any</a></h1>
+       
+       
+      </header>
+      <div class="post-content">
+        <div class="excerpt post-summary">
+          <h3 id="為什麼不要在-typescript-中使用-any">為什麼不要在 TypeScript 中使用 <code>any</code></h3>
+<p>TypeScript 最大的優勢之一就是提供靜態型別檢查與 IDE 的自動補全功能，這能有效防止許多潛在錯誤。但若隨意使用 <code>any</code>，會直接放棄這些優勢，等同於告訴 TypeScript：&ldquo;別幫我檢查型別了，我自己來。&rdquo;</p>
+<p>以下幾個實際案例來說明為什麼不要使用 <code>any</code>，以及如何改寫為更安全的寫法。</p>
+<hr>
+<h5 id="-範例一api-回傳資料使用-any">❌ 範例一：API 回傳資料使用 <code>any</code></h5>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">response</span>: <span style="color:#66d9ef">any</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">fetch</span>(<span style="color:#e6db74">&#34;/api/user&#34;</span>).<span style="color:#a6e22e">then</span>(<span style="color:#a6e22e">res</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">json</span>());
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">age</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">10</span>); <span style="color:#75715e">// ❌ 如果 age 是字串會出錯
+</span></span></span></code></pre></div><h5 id="-正確作法使用型別別名">✅ 正確作法：使用型別別名</h5>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">User</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">number</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">age</span>: <span style="color:#66d9ef">number</span>;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">response</span>: <span style="color:#66d9ef">User</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">fetch</span>(<span style="color:#e6db74">&#34;/api/user&#34;</span>).<span style="color:#a6e22e">then</span>(<span style="color:#a6e22e">res</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">json</span>());
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">age</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">10</span>);
+</span></span></code></pre></div><hr>
+<h5 id="-範例二事件處理器使用-any">❌ 範例二：事件處理器使用 <code>any</code></h5>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span>document.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#34;click&#34;</span>, (<span style="color:#a6e22e">e</span>: <span style="color:#66d9ef">any</span>) <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">target</span>.<span style="color:#a6e22e">value</span>); <span style="color:#75715e">// ❌ 可能不存在 value 屬性
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>});
+</span></span></code></pre></div><h5 id="-正確作法明確指定事件型別">✅ 正確作法：明確指定事件型別</h5>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span>document.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#34;click&#34;</span>, (<span style="color:#a6e22e">e</span>: <span style="color:#66d9ef">MouseEvent</span>) <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">target</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">target</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">HTMLInputElement</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">target</span>.<span style="color:#a6e22e">value</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><hr>
+<h5 id="-範例三陣列操作使用-any">❌ 範例三：陣列操作使用 <code>any[]</code></h5>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">list</span>: <span style="color:#66d9ef">any</span>[] <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#34;two&#34;</span>, <span style="color:#66d9ef">true</span>];
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">list</span>.<span style="color:#a6e22e">forEach</span>(<span style="color:#a6e22e">item</span> <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">toFixed</span>(<span style="color:#ae81ff">2</span>)); <span style="color:#75715e">// ❌ 非 number 型別會出錯
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>});
+</span></span></code></pre></div><h5 id="-正確作法限定陣列型別">✅ 正確作法：限定陣列型別</h5>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">list</span>: <span style="color:#66d9ef">number</span>[] <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>];
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">list</span>.<span style="color:#a6e22e">forEach</span>(<span style="color:#a6e22e">item</span> <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">toFixed</span>(<span style="color:#ae81ff">2</span>));
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><hr>
+<h5 id="-範例四物件-key-value-存取使用-any">❌ 範例四：物件 key-value 存取使用 any</h5>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getValue</span>(<span style="color:#a6e22e">obj</span>: <span style="color:#66d9ef">any</span>, <span style="color:#a6e22e">key</span>: <span style="color:#66d9ef">string</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">obj</span>[<span style="color:#a6e22e">key</span>];
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>這樣寫會有以下幾個問題：</p>
+        </div>
+        
+        <div class="post-time-container">
+          <span class="post-time"> 2025-07-04 </span>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</article>
+
+    
+        <article class="post">
+  <div class="single-container column is-centered">
+    <div class="archive" id="post-container">
+      <header class="post-header">
         <h1 class="post-title hover-underline-animation"><a class="post-link" href="/post/record%E6%98%AF%E4%BB%80%E9%BA%BC/">Record 是什麼？</a></h1>
        
        
