@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Record 是什麼？ - 資深菜鳥 Nick</title><meta name="Description" content="Hugo theme - LoveIt"><meta property="og:url" content="http://localhost:1313/record%E6%98%AF%E4%BB%80%E9%BA%BC/">
+  <meta property="og:site_name" content="資深菜鳥 Nick">
+  <meta property="og:title" content="Record 是什麼？">
+  <meta property="og:description" content="什麼是 Record？ Record 是一種新的資料類型，用來表示一組有序的值集合，包含具名或未具名欄位。可以想像成是不需要先定義一個 class 的 「輕量級的物件」 。
+不具名 Record var record = (&#39;Nick&#39;, 35); print(record.$1); // Nick print(record.$2); // 35 具名 Record var record = (name: &#39;Nick&#39;, age: 35); print(record.name); // Nick print(record.age); // 35 混合型 Record var record = (&#39;Nick&#39;, age: 35); print(record.$1); // Nick print(record.age); // 35 為什麼有 Record？ 如果 Dart 函數要回傳多個值，通常要用 class 或 Map，但這樣太冗長或效能不佳。而 Record 的應用有">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-05-12T10:39:45+08:00">
+    <meta property="article:modified_time" content="2025-05-12T10:39:45+08:00">
+    <meta property="og:image" content="http://localhost:1313/">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:1313/">
+  <meta name="twitter:title" content="Record 是什麼？">
+  <meta name="twitter:description" content="什麼是 Record？ Record 是一種新的資料類型，用來表示一組有序的值集合，包含具名或未具名欄位。可以想像成是不需要先定義一個 class 的 「輕量級的物件」 。
+不具名 Record var record = (&#39;Nick&#39;, 35); print(record.$1); // Nick print(record.$2); // 35 具名 Record var record = (name: &#39;Nick&#39;, age: 35); print(record.name); // Nick print(record.age); // 35 混合型 Record var record = (&#39;Nick&#39;, age: 35); print(record.$1); // Nick print(record.age); // 35 為什麼有 Record？ 如果 Dart 函數要回傳多個值，通常要用 class 或 Map，但這樣太冗長或效能不佳。而 Record 的應用有">
+<meta name="application-name" content="Nick">
+<meta name="apple-mobile-web-app-title" content="Nick">
+<meta name="referrer" content="no-referrer" /><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/images/favicon.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:1313/record%E6%98%AF%E4%BB%80%E9%BA%BC/" /><link rel="prev" href="http://localhost:1313/ref%E8%88%87reactive%E7%9A%84%E5%B7%AE%E7%95%B0/" /><link rel="next" href="http://localhost:1313/typescript%E6%87%89%E9%81%BF%E5%85%8D%E4%BD%BF%E7%94%A8any/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/css/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Record 是什麼？",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/localhost:1313\/record%E6%98%AF%E4%BB%80%E9%BA%BC\/"
+        },"image": ["http:\/\/localhost:1313\/images\/Apple-Devices-Preview.png"],"genre": "posts","wordcount":  259 ,
+        "url": "http:\/\/localhost:1313\/record%E6%98%AF%E4%BB%80%E9%BA%BC\/","datePublished": "2025-05-12T10:39:45+08:00","dateModified": "2025-05-12T10:39:45+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Nick","logo": "http:\/\/localhost:1313\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Nick"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>
+          const query = window.matchMedia('(prefers-color-scheme: dark)');
+          function applyTheme() {
+            let theme = window.localStorage?.getItem('theme') || 'auto';
+            let isDark = theme === 'dark' || (theme === 'auto' && query.matches);
+            document.body.setAttribute('theme', isDark? 'dark' : 'light');
+            document.body.setAttribute('cfg-theme', theme);
+          }
+
+          applyTheme();
+          query.addEventListener('change', applyTheme);
+        </script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="資深菜鳥 Nick"><span class="header-title-pre"><i class='fa-solid fa-play'></i>&ensp;RUN</span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/categories/"> 文章分類 </a><a class="menu-item" href="/about/"> 關於菜鳥 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="資深菜鳥 Nick"><span class="header-title-pre"><i class='fa-solid fa-play'></i>&ensp;RUN</span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/categories/" title="">文章分類</a><a class="menu-item" href="/about/" title="">關於菜鳥</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Record 是什麼？</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Nick</a></span>&nbsp;<span class="post-category">included in <a href="/categories/dart3/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Dart3</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-05-12">2025-05-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;259 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#什麼是-record">什麼是 Record？</a>
+          <ul>
+            <li>
+              <ul>
+                <li><a href="#不具名-record"><code>不具名</code> Record</a></li>
+                <li><a href="#具名-record"><code>具名</code> Record</a></li>
+                <li><a href="#混合型-record"><code>混合型</code> Record</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#為什麼有-record">為什麼有 Record？</a>
+          <ul>
+            <li><a href="#-使用-map-不建議">❌ 使用 Map (不建議)</a></li>
+            <li><a href="#-使用-class-不建議">❌ 使用 Class (不建議)</a></li>
+            <li><a href="#-使用-record-建議">⭕️ 使用 Record (建議)</a></li>
+          </ul>
+        </li>
+        <li><a href="#模式匹配pattern-matching">模式匹配（pattern matching）</a>
+          <ul>
+            <li><a href="#if-模式匹配"><code>If</code> 模式匹配</a></li>
+            <li><a href="#switch-模式匹配"><code>Switch</code> 模式匹配</a></li>
+            <li><a href="#具名-record-也能-match">具名 Record 也能 match</a></li>
+          </ul>
+        </li>
+        <li><a href="#-結論">💡 結論</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h3 id="什麼是-record">什麼是 Record？</h3>
+<p><strong>Record</strong> 是一種新的資料類型，用來表示一組有序的值集合，包含具名或未具名欄位。可以想像成是不需要先定義一個 <strong>class</strong> 的 <strong>「輕量級的物件」</strong> 。</p>
+<h5 id="不具名-record"><code>不具名</code> Record</h5>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-dart">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-dart" data-lang="dart"><span class="line"><span class="cl"><span class="kd">var</span> <span class="n">record</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Nick&#39;</span><span class="p">,</span> <span class="m">35</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">print</span><span class="p">(</span><span class="n">record</span><span class="p">.</span><span class="n">$1</span><span class="p">);</span> <span class="c1">// Nick
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">print</span><span class="p">(</span><span class="n">record</span><span class="p">.</span><span class="n">$2</span><span class="p">);</span> <span class="o">//</span> <span class="m">35</span></span></span></code></pre></div></div>
+<h5 id="具名-record"><code>具名</code> Record</h5>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-dart">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-dart" data-lang="dart"><span class="line"><span class="cl"><span class="kd">var</span> <span class="n">record</span> <span class="o">=</span> <span class="p">(</span><span class="nl">name:</span> <span class="s1">&#39;Nick&#39;</span><span class="p">,</span> <span class="nl">age:</span> <span class="m">35</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">print</span><span class="p">(</span><span class="n">record</span><span class="p">.</span><span class="n">name</span><span class="p">);</span> <span class="c1">// Nick
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">print</span><span class="p">(</span><span class="n">record</span><span class="p">.</span><span class="n">age</span><span class="p">);</span>  <span class="o">//</span> <span class="m">35</span></span></span></code></pre></div></div>
+<h5 id="混合型-record"><code>混合型</code> Record</h5>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-dart">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-dart" data-lang="dart"><span class="line"><span class="cl"><span class="kd">var</span> <span class="n">record</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Nick&#39;</span><span class="p">,</span> <span class="nl">age:</span> <span class="m">35</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">print</span><span class="p">(</span><span class="n">record</span><span class="p">.</span><span class="n">$1</span><span class="p">);</span>   <span class="c1">// Nick
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">print</span><span class="p">(</span><span class="n">record</span><span class="p">.</span><span class="n">age</span><span class="p">);</span>  <span class="o">//</span> <span class="m">35</span></span></span></code></pre></div></div>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="為什麼有-record">為什麼有 Record？</h3>
+<p>如果 <strong>Dart</strong> 函數要回傳多個值，通常要用 <strong>class</strong> 或 <strong>Map</strong>，但這樣太冗長或效能不佳。而 <strong>Record</strong> 的應用有</p>
+<ul>
+<li>更簡潔的語法</li>
+<li>更好的編譯期型別檢查</li>
+<li>更快的效能（比 Map 好）</li>
+</ul>
+<h4 id="-使用-map-不建議">❌ 使用 Map (不建議)</h4>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-dart">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-dart" data-lang="dart"><span class="line"><span class="cl"><span class="n">Map</span><span class="o">&lt;</span><span class="kt">String</span><span class="p">,</span> <span class="kt">dynamic</span><span class="o">&gt;</span> <span class="n">getUser</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="s1">&#39;name&#39;</span><span class="o">:</span> <span class="s1">&#39;Nick&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="s1">&#39;age&#39;</span><span class="o">:</span> <span class="m">35</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="s1">&#39;isMember&#39;</span><span class="o">:</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="n">user</span> <span class="o">=</span> <span class="n">getUser</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">print</span><span class="p">(</span><span class="n">user</span><span class="p">[</span><span class="s1">&#39;nameee&#39;</span><span class="p">]);</span> <span class="o">//</span> <span class="err">❌</span> <span class="err">錯字或</span> <span class="n">key</span> <span class="err">不存在不會報錯</span></span></span></code></pre></div></div>
+<h4 id="-使用-class-不建議">❌ 使用 Class (不建議)</h4>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-dart">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-dart" data-lang="dart"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">User</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">final</span> <span class="kt">String</span> <span class="n">name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">final</span> <span class="kt">int</span> <span class="n">age</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">final</span> <span class="kt">bool</span> <span class="n">isMember</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">User</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="n">age</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="n">isMember</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
+<h4 id="-使用-record-建議">⭕️ 使用 Record (建議)</h4>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-dart">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-dart" data-lang="dart"><span class="line"><span class="cl"><span class="p">({</span><span class="kt">String</span> <span class="n">name</span><span class="p">,</span> <span class="kt">int</span> <span class="n">age</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">isMember</span><span class="p">})</span> <span class="n">user</span> <span class="o">=</span> <span class="p">(</span><span class="nl">name:</span> <span class="s1">&#39;Nick&#39;</span><span class="p">,</span> <span class="nl">age:</span> <span class="m">35</span><span class="p">,</span> <span class="nl">isMember:</span> <span class="kc">true</span><span class="p">);</span></span></span></code></pre></div></div>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="模式匹配pattern-matching">模式匹配（pattern matching）</h3>
+<p>它讓你像在 <strong>「解構資料」</strong> 一樣地做條件判斷或資料抽取。類似你在 <strong>JavaScript</strong> 用 <code>const { name } = user</code></p>
+<p>或<code>const [a, b] = tuple</code> 的感覺，但 <strong>Dart</strong> 的 <strong>pattern matching</strong></p>
+<p>更進一步整合到 <code>if</code>、<code>switch</code>、<code>case</code>、<code>解構賦值</code>等語法中。</p>
+<h4 id="if-模式匹配"><code>If</code> 模式匹配</h4>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-dart">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-dart" data-lang="dart"><span class="line"><span class="cl"><span class="kd">var</span> <span class="n">user</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Nick&#39;</span><span class="p">,</span> <span class="m">35</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">user</span> <span class="k">case</span> <span class="p">(</span><span class="s1">&#39;Nick&#39;</span><span class="p">,</span> <span class="kt">int</span> <span class="n">age</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">print</span><span class="p">(</span><span class="s1">&#39;Nick is </span><span class="si">$</span><span class="n">age</span><span class="s1"> years old&#39;</span><span class="p">);</span> <span class="c1">// Nick is 35 years old
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span></span></span></code></pre></div></div>
+<h4 id="switch-模式匹配"><code>Switch</code> 模式匹配</h4>
+<div class="code-block code-line-numbers" style="counter-reset: code-block 0">
+    <div class="code-header language-dart">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-dart" data-lang="dart"><span class="line"><span class="cl"><span class="p">(</span><span class="kt">Object</span> <span class="n">result</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">switch</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="p">(</span><span class="s1">&#39;Nick&#39;</span><span class="p">,</span> <span class="kt">int</span> <span class="n">age</span><span class="p">)</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">      <span class="n">print</span><span class="p">(</span><span class="s1">&#39;Nick is </span><span class="si">$</span><span class="n">age</span><span class="s1">&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="p">(</span><span class="kt">String</span> <span class="n">name</span><span class="p">,</span> <span class="kt">int</span> <span class="n">age</span><span class="p">)</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">      <span class="n">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">$</span><span class="n">name</span><span class="s1"> is </span><span class="si">$</span><span class="n">age</span><span class="s1">&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">default</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">      <span class="n">print</span><span class="p">(</span><span class="s1">&#39;Unknown&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}((</span><span class="s1">&#39;Nick&#39;</span><span class="p">,</span> <span class="m">35</span><span class="p">));</span></span></span></code></pre></div></div>
+<h4 id="具名-record-也能-match">具名 Record 也能 match</h4>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-dart">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-dart" data-lang="dart"><span class="line"><span class="cl"><span class="kd">var</span> <span class="n">user</span> <span class="o">=</span> <span class="p">(</span><span class="nl">name:</span> <span class="s1">&#39;Nick&#39;</span><span class="p">,</span> <span class="nl">age:</span> <span class="m">35</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">switch</span> <span class="p">(</span><span class="n">user</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">case</span> <span class="p">(</span><span class="nl">name:</span> <span class="s1">&#39;Nick&#39;</span><span class="p">,</span> <span class="nl">age:</span> <span class="kd">var</span> <span class="n">a</span><span class="p">)</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">print</span><span class="p">(</span><span class="s1">&#39;Nick is </span><span class="si">$</span><span class="n">a</span><span class="s1"> years old&#39;</span><span class="p">);</span> <span class="c1">// Nick is 35 years old
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">default</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">print</span><span class="p">(</span><span class="s1">&#39;Not Nick&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="-結論">💡 結論</h3>
+<blockquote>
+<ul>
+<li><strong>Record</strong> 提供一種 <strong>「結構化資料容器」</strong>。</li>
+<li><strong>Pattern Matching</strong> 提供 <strong>「拆解與判斷」</strong> 的簡潔語法。</li>
+<li>搭配起來可以取代冗長的 if 判斷和物件解析，提高可讀性和安全性（型別明確）。</li>
+</ul>
+</blockquote>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2025-05-12</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/record%E6%98%AF%E4%BB%80%E9%BA%BC/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on X" data-sharer="x" data-url="http://localhost:1313/record%E6%98%AF%E4%BB%80%E9%BA%BC/" data-title="Record 是什麼？"><i class="fab fa-x-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Threads" data-sharer="threads" data-url="http://localhost:1313/record%E6%98%AF%E4%BB%80%E9%BA%BC/" data-title="Record 是什麼？"><i class="fab fa-threads fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://localhost:1313/record%E6%98%AF%E4%BB%80%E9%BA%BC/"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/ref%E8%88%87reactive%E7%9A%84%E5%B7%AE%E7%95%B0/" class="prev" rel="prev" title="Ref 與 Reactive"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Ref 與 Reactive</a>
+            <a href="/typescript%E6%87%89%E9%81%BF%E5%85%8D%E4%BD%BF%E7%94%A8any/" class="next" rel="next" title="TypeScript 應避免使用 any">TypeScript 應避免使用 any<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.140.1">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.3.1-DEV"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2024 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Nick</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/algoliasearch/lite/browser.umd.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script src="/lib/sharer/sharer.min.js"></script><script>window.config={"comment":{},"search":{"algoliaAppID":"4D1IDY8JU6","algoliaIndex":"index","algoliaSearchKey":"05332ac5ed76655a511f0da583a9afac","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script src="/js/theme.min.js"></script></body>
+</html>
