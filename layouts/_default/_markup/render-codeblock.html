@@ -1,1 +1,4 @@
-{{- dict "Content" .Inner "Lang" .Type "Options" .Options "Page" .Page | partial "plugin/code-block.html" -}}
+{{- $type := .Type -}}
+<pre><code{{ with $type }} class="language-{{ . }}"{{ end }}>
+{{- .Inner | safeHTML -}}
+</code></pre>
