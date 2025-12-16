@@ -1,4 +1,16 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>TypeScript - Category - 資深菜鳥 Nick</title><link>https://north13.github.io/categories/typescript/</link><description>TypeScript - Category - 資深菜鳥 Nick</description><generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>northn13@gmail.com (Nick)</managingEditor><webMaster>northn13@gmail.com (Nick)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 04 Jul 2025 13:55:20 +0800</lastBuildDate><atom:link href="https://north13.github.io/categories/typescript/" rel="self" type="application/rss+xml"/><item><title>TypeScript 應避免使用 any</title><link>https://north13.github.io/typescript%E6%87%89%E9%81%BF%E5%85%8D%E4%BD%BF%E7%94%A8any/</link><pubDate>Fri, 04 Jul 2025 13:55:20 +0800</pubDate><author>northn13@gmail.com (Nick)</author><guid>https://north13.github.io/typescript%E6%87%89%E9%81%BF%E5%85%8D%E4%BD%BF%E7%94%A8any/</guid><description><![CDATA[<p>TypeScript 的核心價值在於提供<strong>靜態類型檢查</strong>，這能夠在<strong>編譯階段</strong>就幫助我們捕獲許多潛在的錯誤，顯著提升程式碼的可靠性和可維護性。</p>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>TypeScript - Category - 資深菜鳥 Nick</title>
+        <link>http://localhost:1313/categories/typescript/</link>
+        <description>TypeScript - Category - 資深菜鳥 Nick</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>northn13@gmail.com (Nick)</managingEditor>
+            <webMaster>northn13@gmail.com (Nick)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 04 Jul 2025 13:55:20 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/categories/typescript/" rel="self" type="application/rss+xml" /><item>
+    <title>TypeScript 應避免使用 any</title>
+    <link>http://localhost:1313/typescript%E6%87%89%E9%81%BF%E5%85%8D%E4%BD%BF%E7%94%A8any/</link>
+    <pubDate>Fri, 04 Jul 2025 13:55:20 &#43;0800</pubDate>
+    <author>northn13@gmail.com (Nick)</author>
+    <guid>http://localhost:1313/typescript%E6%87%89%E9%81%BF%E5%85%8D%E4%BD%BF%E7%94%A8any/</guid>
+    <description><![CDATA[<p>TypeScript 的核心價值在於提供<strong>靜態類型檢查</strong>，這能夠在<strong>編譯階段</strong>就幫助我們捕獲許多潛在的錯誤，顯著提升程式碼的可靠性和可維護性。</p>
 <p>然而，<code>any</code> 類型就像是 TypeScript 世界中的一個「作弊碼」或「逃生艙口」。雖然它允許你繞過所有類型檢查，但這卻抹殺了使用 TypeScript 的主要優勢。</p>
 <p><strong>我們的準則：盡一切可能避免使用 <code>any</code>。</strong></p>
 <hr>
@@ -59,7 +71,15 @@ function processUserDataSafe(user: UserProfile) {
 // processUserDataSafe({ name: 'Nick', age: 36 }); // TS 報錯：缺少屬性 'id' 和 'email'
 processUserDataSafe({ id: 101, name: 'Nick', email: 'nick@example.com' }); // 正常運行</code></pre>
 <h3 id="2函式輸入參數與回傳值難以重構和追蹤">2.函式輸入參數與回傳值（難以重構和追蹤）</h3>
-<p>在函式參數和回傳值上使用 <code>any</code> 會使得函式的行為變得模糊，難以理解它的預期輸入和輸出。</p>]]></description></item><item><title>Type 和 Interface 要用哪一個?</title><link>https://north13.github.io/type%E5%92%8Cinterface%E8%A6%81%E7%94%A8%E5%93%AA%E4%B8%80%E5%80%8B/</link><pubDate>Thu, 02 Jan 2025 10:59:25 +0800</pubDate><author>northn13@gmail.com (Nick)</author><guid>https://north13.github.io/type%E5%92%8Cinterface%E8%A6%81%E7%94%A8%E5%93%AA%E4%B8%80%E5%80%8B/</guid><description><![CDATA[<h2 id="前言">前言</h2>
+<p>在函式參數和回傳值上使用 <code>any</code> 會使得函式的行為變得模糊，難以理解它的預期輸入和輸出。</p>]]></description>
+</item>
+<item>
+    <title>Type 和 Interface 要用哪一個?</title>
+    <link>http://localhost:1313/type%E5%92%8Cinterface%E8%A6%81%E7%94%A8%E5%93%AA%E4%B8%80%E5%80%8B/</link>
+    <pubDate>Thu, 02 Jan 2025 10:59:25 &#43;0800</pubDate>
+    <author>northn13@gmail.com (Nick)</author>
+    <guid>http://localhost:1313/type%E5%92%8Cinterface%E8%A6%81%E7%94%A8%E5%93%AA%E4%B8%80%E5%80%8B/</guid>
+    <description><![CDATA[<h2 id="前言">前言</h2>
 <p>TypeScript 中，Type 與 Interface 都是用來定義型別的關鍵字，但兩者之間存在著些許的差異。以下將深入探討 Type 與 Interface 的特性，並建議在不同的情境下如何選擇適合的型別定義方式，以提升 TypeScript 程式碼的可讀性與維護性。</p>
 <h5 id="1-擴展extends的語法差異">1. 擴展(Extends)的語法差異:</h5>
 <pre><code class="language-typescript">// Interface 使用 extends
@@ -123,4 +143,7 @@ interface StringArray extends Array<string> {
 }</code></pre>
 <h3 id="-結論">💡 結論</h3>
 <blockquote>
-<p>無論使用哪一種方式都好，主要是跟團隊建立好專案的 <code>Coding Guideline</code>，良好的溝通和團隊合作才是上策。</p>]]></description></item></channel></rss>
+<p>無論使用哪一種方式都好，主要是跟團隊建立好專案的 <code>Coding Guideline</code>，良好的溝通和團隊合作才是上策。</p>]]></description>
+</item>
+</channel>
+</rss>

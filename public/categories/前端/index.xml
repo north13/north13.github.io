@@ -1,4 +1,16 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>前端 - Category - 資深菜鳥 Nick</title><link>https://north13.github.io/categories/%E5%89%8D%E7%AB%AF/</link><description>前端 - Category - 資深菜鳥 Nick</description><generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>northn13@gmail.com (Nick)</managingEditor><webMaster>northn13@gmail.com (Nick)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 13 Jan 2025 14:37:42 +0800</lastBuildDate><atom:link href="https://north13.github.io/categories/%E5%89%8D%E7%AB%AF/" rel="self" type="application/rss+xml"/><item><title>Ref 與 Reactive</title><link>https://north13.github.io/ref%E8%88%87reactive%E7%9A%84%E5%B7%AE%E7%95%B0/</link><pubDate>Mon, 13 Jan 2025 14:37:42 +0800</pubDate><author>northn13@gmail.com (Nick)</author><guid>https://north13.github.io/ref%E8%88%87reactive%E7%9A%84%E5%B7%AE%E7%95%B0/</guid><description><![CDATA[<p>這篇主要記錄關於 <code>Vue</code> 的 <code>ref</code> 和 <code>reactive</code>詳細內容和範例，之前寫過一篇 <strong>Angular</strong> 和 <strong>Vue</strong> 中使用響應式狀態的介紹，可參考 <strong><a href="http://localhost:1313/post/angular%E5%92%8Cvue%E7%9A%84%E9%9F%BF%E6%87%89%E5%BC%8F%E7%8B%80%E6%85%8B%E7%AE%A1%E7%90%86/" target="_blank" rel="noopener noreffer ">Angular 和 Vue 的響應式狀態管理</a></strong></p>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>前端 - Category - 資深菜鳥 Nick</title>
+        <link>http://localhost:1313/categories/%E5%89%8D%E7%AB%AF/</link>
+        <description>前端 - Category - 資深菜鳥 Nick</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>northn13@gmail.com (Nick)</managingEditor>
+            <webMaster>northn13@gmail.com (Nick)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 13 Jan 2025 14:37:42 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/categories/%E5%89%8D%E7%AB%AF/" rel="self" type="application/rss+xml" /><item>
+    <title>Ref 與 Reactive</title>
+    <link>http://localhost:1313/ref%E8%88%87reactive%E7%9A%84%E5%B7%AE%E7%95%B0/</link>
+    <pubDate>Mon, 13 Jan 2025 14:37:42 &#43;0800</pubDate>
+    <author>northn13@gmail.com (Nick)</author>
+    <guid>http://localhost:1313/ref%E8%88%87reactive%E7%9A%84%E5%B7%AE%E7%95%B0/</guid>
+    <description><![CDATA[<p>這篇主要記錄關於 <code>Vue</code> 的 <code>ref</code> 和 <code>reactive</code>詳細內容和範例，之前寫過一篇 <strong>Angular</strong> 和 <strong>Vue</strong> 中使用響應式狀態的介紹，可參考 <strong><a href="http://localhost:1313/post/angular%E5%92%8Cvue%E7%9A%84%E9%9F%BF%E6%87%89%E5%BC%8F%E7%8B%80%E6%85%8B%E7%AE%A1%E7%90%86/" target="_blank" rel="noopener noreffer ">Angular 和 Vue 的響應式狀態管理</a></strong></p>
 <h3 id="ref-範例"><code>Ref</code> 範例</h3>
 <pre><code class="language-ts">// 基本類型使用 ref
 const count = ref(0);
@@ -66,7 +78,15 @@ const count = reactive(33); // error</code></pre>
 <pre><code class="language-ts">let { name, age } = user;
 user.name = 'John';
 console.log(name); // 'Mary'</code></pre>
-<p>解構會從響應式對象中取值，並將其存入新的變數中，這些變數（<code>name</code> 和 <code>age</code>）僅僅是值，不再是響應式的。它們不會隨著 <code>user.name</code> 或 <code>user.age</code> 的變化而變化。</p>]]></description></item><item><title>JavaScript 閉包(Closure)</title><link>https://north13.github.io/javascript-%E9%96%89%E5%8C%85closure/</link><pubDate>Thu, 09 Jan 2025 15:35:23 +0800</pubDate><author>northn13@gmail.com (Nick)</author><guid>https://north13.github.io/javascript-%E9%96%89%E5%8C%85closure/</guid><description><![CDATA[<h4 id="什麼是閉包closure">什麼是閉包(Closure)</h4>
+<p>解構會從響應式對象中取值，並將其存入新的變數中，這些變數（<code>name</code> 和 <code>age</code>）僅僅是值，不再是響應式的。它們不會隨著 <code>user.name</code> 或 <code>user.age</code> 的變化而變化。</p>]]></description>
+</item>
+<item>
+    <title>JavaScript 閉包(Closure)</title>
+    <link>http://localhost:1313/javascript-%E9%96%89%E5%8C%85closure/</link>
+    <pubDate>Thu, 09 Jan 2025 15:35:23 &#43;0800</pubDate>
+    <author>northn13@gmail.com (Nick)</author>
+    <guid>http://localhost:1313/javascript-%E9%96%89%E5%8C%85closure/</guid>
+    <description><![CDATA[<h4 id="什麼是閉包closure">什麼是閉包(Closure)</h4>
 <p><em><code>你知道什麼是 JS 的閉包(Closure)嗎？</code></em></p>
 <p>追蹤了不少國內外的工程師 Youtuber，某次在 YT 首頁看到 Closure 的影片縮圖大吃一驚</p>
 <p>一開始看到這個名詞時完全沒有頭緒，學過 var、let、const、作用域、this&hellip;等</p>
@@ -159,7 +179,15 @@ return {
   },
   // 其他方法同理
 };</code></pre>
-<p>這段程式碼中，<code>balance</code> 是閉包捕獲的變數，這些變數的值會根據執行的操作（例如存款或提款）而變化，並且被所有內部函式共享。</p>]]></description></item><item><title>Type 和 Interface 要用哪一個?</title><link>https://north13.github.io/type%E5%92%8Cinterface%E8%A6%81%E7%94%A8%E5%93%AA%E4%B8%80%E5%80%8B/</link><pubDate>Thu, 02 Jan 2025 10:59:25 +0800</pubDate><author>northn13@gmail.com (Nick)</author><guid>https://north13.github.io/type%E5%92%8Cinterface%E8%A6%81%E7%94%A8%E5%93%AA%E4%B8%80%E5%80%8B/</guid><description><![CDATA[<h2 id="前言">前言</h2>
+<p>這段程式碼中，<code>balance</code> 是閉包捕獲的變數，這些變數的值會根據執行的操作（例如存款或提款）而變化，並且被所有內部函式共享。</p>]]></description>
+</item>
+<item>
+    <title>Type 和 Interface 要用哪一個?</title>
+    <link>http://localhost:1313/type%E5%92%8Cinterface%E8%A6%81%E7%94%A8%E5%93%AA%E4%B8%80%E5%80%8B/</link>
+    <pubDate>Thu, 02 Jan 2025 10:59:25 &#43;0800</pubDate>
+    <author>northn13@gmail.com (Nick)</author>
+    <guid>http://localhost:1313/type%E5%92%8Cinterface%E8%A6%81%E7%94%A8%E5%93%AA%E4%B8%80%E5%80%8B/</guid>
+    <description><![CDATA[<h2 id="前言">前言</h2>
 <p>TypeScript 中，Type 與 Interface 都是用來定義型別的關鍵字，但兩者之間存在著些許的差異。以下將深入探討 Type 與 Interface 的特性，並建議在不同的情境下如何選擇適合的型別定義方式，以提升 TypeScript 程式碼的可讀性與維護性。</p>
 <h5 id="1-擴展extends的語法差異">1. 擴展(Extends)的語法差異:</h5>
 <pre><code class="language-typescript">// Interface 使用 extends
@@ -223,7 +251,15 @@ interface StringArray extends Array<string> {
 }</code></pre>
 <h3 id="-結論">💡 結論</h3>
 <blockquote>
-<p>無論使用哪一種方式都好，主要是跟團隊建立好專案的 <code>Coding Guideline</code>，良好的溝通和團隊合作才是上策。</p>]]></description></item><item><title>邏輯運算子 - 短路</title><link>https://north13.github.io/%E9%82%8F%E8%BC%AF%E9%81%8B%E7%AE%97%E5%AD%90-%E7%9F%AD%E8%B7%AF/</link><pubDate>Mon, 30 Dec 2024 14:41:54 +0800</pubDate><author>northn13@gmail.com (Nick)</author><guid>https://north13.github.io/%E9%82%8F%E8%BC%AF%E9%81%8B%E7%AE%97%E5%AD%90-%E7%9F%AD%E8%B7%AF/</guid><description><![CDATA[<h2 id="短路邏輯-short-circuit-evaluation">短路邏輯 （Short-Circuit Evaluation）</h2>
+<p>無論使用哪一種方式都好，主要是跟團隊建立好專案的 <code>Coding Guideline</code>，良好的溝通和團隊合作才是上策。</p>]]></description>
+</item>
+<item>
+    <title>邏輯運算子 - 短路</title>
+    <link>http://localhost:1313/%E9%82%8F%E8%BC%AF%E9%81%8B%E7%AE%97%E5%AD%90-%E7%9F%AD%E8%B7%AF/</link>
+    <pubDate>Mon, 30 Dec 2024 14:41:54 &#43;0800</pubDate>
+    <author>northn13@gmail.com (Nick)</author>
+    <guid>http://localhost:1313/%E9%82%8F%E8%BC%AF%E9%81%8B%E7%AE%97%E5%AD%90-%E7%9F%AD%E8%B7%AF/</guid>
+    <description><![CDATA[<h2 id="短路邏輯-short-circuit-evaluation">短路邏輯 （Short-Circuit Evaluation）</h2>
 <p>短路邏輯是一種邏輯運算的優化技巧，用於進行邏輯判斷時，當確定結果時立即停止後續的運算，也因為在某些情況並不需要計算所有的運算元就能確定結果，所以稱為「短路」。</p>
 <h3 id="優點">優點</h3>
 <ol>
@@ -265,7 +301,15 @@ interface StringArray extends Array<string> {
 當 condition 為 <code>true</code> 時，result 將會是 &ldquo;Yes&rdquo;；如果 condition 為 <code>false</code>，則 result 的值會是 condition 自己 <strong>（通常為 false 或 undefined 等）</strong>。</p>
 <blockquote>
 <p>💡 典型用途：用於在條件為 true 時執行某些操作，否則忽略。</p>
-<p>例如檢查某物件是否存在，再執行方法：isAdmin &amp;&amp; performAdminAction()。</p>]]></description></item><item><title>ES6 作用域的比較</title><link>https://north13.github.io/es6-%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%9A%84%E6%AF%94%E8%BC%83/</link><pubDate>Thu, 26 Dec 2024 15:37:37 +0800</pubDate><author>northn13@gmail.com (Nick)</author><guid>https://north13.github.io/es6-%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%9A%84%E6%AF%94%E8%BC%83/</guid><description><![CDATA[<h2 id="constlet-與-var">const、let 與 var</h2>
+<p>例如檢查某物件是否存在，再執行方法：isAdmin &amp;&amp; performAdminAction()。</p>]]></description>
+</item>
+<item>
+    <title>ES6 作用域的比較</title>
+    <link>http://localhost:1313/es6-%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%9A%84%E6%AF%94%E8%BC%83/</link>
+    <pubDate>Thu, 26 Dec 2024 15:37:37 &#43;0800</pubDate>
+    <author>northn13@gmail.com (Nick)</author>
+    <guid>http://localhost:1313/es6-%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%9A%84%E6%AF%94%E8%BC%83/</guid>
+    <description><![CDATA[<h2 id="constlet-與-var">const、let 與 var</h2>
 <p><code>var</code></p>
 <ul>
 <li><strong>作用域：</strong>
@@ -329,4 +373,7 @@ console.log(window.y); // undefined</code></pre>
 <ul>
 <li>
 <p><strong>作用域：</strong>
-與 <code>let</code> 一樣，<code>const</code> 是區塊作用域（Block Scope）。</p>]]></description></item></channel></rss>
+與 <code>let</code> 一樣，<code>const</code> 是區塊作用域（Block Scope）。</p>]]></description>
+</item>
+</channel>
+</rss>

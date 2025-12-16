@@ -1,4 +1,16 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Vue - Category - 資深菜鳥 Nick</title><link>https://north13.github.io/categories/vue/</link><description>Vue - Category - 資深菜鳥 Nick</description><generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>northn13@gmail.com (Nick)</managingEditor><webMaster>northn13@gmail.com (Nick)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 13 Jan 2025 14:37:42 +0800</lastBuildDate><atom:link href="https://north13.github.io/categories/vue/" rel="self" type="application/rss+xml"/><item><title>Ref 與 Reactive</title><link>https://north13.github.io/ref%E8%88%87reactive%E7%9A%84%E5%B7%AE%E7%95%B0/</link><pubDate>Mon, 13 Jan 2025 14:37:42 +0800</pubDate><author>northn13@gmail.com (Nick)</author><guid>https://north13.github.io/ref%E8%88%87reactive%E7%9A%84%E5%B7%AE%E7%95%B0/</guid><description><![CDATA[<p>這篇主要記錄關於 <code>Vue</code> 的 <code>ref</code> 和 <code>reactive</code>詳細內容和範例，之前寫過一篇 <strong>Angular</strong> 和 <strong>Vue</strong> 中使用響應式狀態的介紹，可參考 <strong><a href="http://localhost:1313/post/angular%E5%92%8Cvue%E7%9A%84%E9%9F%BF%E6%87%89%E5%BC%8F%E7%8B%80%E6%85%8B%E7%AE%A1%E7%90%86/" target="_blank" rel="noopener noreffer ">Angular 和 Vue 的響應式狀態管理</a></strong></p>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Vue - Category - 資深菜鳥 Nick</title>
+        <link>http://localhost:1313/categories/vue/</link>
+        <description>Vue - Category - 資深菜鳥 Nick</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>northn13@gmail.com (Nick)</managingEditor>
+            <webMaster>northn13@gmail.com (Nick)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 13 Jan 2025 14:37:42 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/categories/vue/" rel="self" type="application/rss+xml" /><item>
+    <title>Ref 與 Reactive</title>
+    <link>http://localhost:1313/ref%E8%88%87reactive%E7%9A%84%E5%B7%AE%E7%95%B0/</link>
+    <pubDate>Mon, 13 Jan 2025 14:37:42 &#43;0800</pubDate>
+    <author>northn13@gmail.com (Nick)</author>
+    <guid>http://localhost:1313/ref%E8%88%87reactive%E7%9A%84%E5%B7%AE%E7%95%B0/</guid>
+    <description><![CDATA[<p>這篇主要記錄關於 <code>Vue</code> 的 <code>ref</code> 和 <code>reactive</code>詳細內容和範例，之前寫過一篇 <strong>Angular</strong> 和 <strong>Vue</strong> 中使用響應式狀態的介紹，可參考 <strong><a href="http://localhost:1313/post/angular%E5%92%8Cvue%E7%9A%84%E9%9F%BF%E6%87%89%E5%BC%8F%E7%8B%80%E6%85%8B%E7%AE%A1%E7%90%86/" target="_blank" rel="noopener noreffer ">Angular 和 Vue 的響應式狀態管理</a></strong></p>
 <h3 id="ref-範例"><code>Ref</code> 範例</h3>
 <pre><code class="language-ts">// 基本類型使用 ref
 const count = ref(0);
@@ -66,7 +78,15 @@ const count = reactive(33); // error</code></pre>
 <pre><code class="language-ts">let { name, age } = user;
 user.name = 'John';
 console.log(name); // 'Mary'</code></pre>
-<p>解構會從響應式對象中取值，並將其存入新的變數中，這些變數（<code>name</code> 和 <code>age</code>）僅僅是值，不再是響應式的。它們不會隨著 <code>user.name</code> 或 <code>user.age</code> 的變化而變化。</p>]]></description></item><item><title>Angular 和 Vue 的響應式狀態管理</title><link>https://north13.github.io/angular%E5%92%8Cvue%E7%9A%84%E9%9F%BF%E6%87%89%E5%BC%8F%E7%8B%80%E6%85%8B%E7%AE%A1%E7%90%86/</link><pubDate>Fri, 27 Dec 2024 10:06:49 +0800</pubDate><author>northn13@gmail.com (Nick)</author><guid>https://north13.github.io/angular%E5%92%8Cvue%E7%9A%84%E9%9F%BF%E6%87%89%E5%BC%8F%E7%8B%80%E6%85%8B%E7%AE%A1%E7%90%86/</guid><description><![CDATA[<p>之前趁著 <code>Udemy</code> 黑五活動買了些有興趣的課程來進修，加上 <code>YT</code> 上免費的課程，聽聽不同的講師會有不同的收穫，就像是看醫生不要只看一間，不同的醫生看或許會有不同的見解。</p>
+<p>解構會從響應式對象中取值，並將其存入新的變數中，這些變數（<code>name</code> 和 <code>age</code>）僅僅是值，不再是響應式的。它們不會隨著 <code>user.name</code> 或 <code>user.age</code> 的變化而變化。</p>]]></description>
+</item>
+<item>
+    <title>Angular 和 Vue 的響應式狀態管理</title>
+    <link>http://localhost:1313/angular%E5%92%8Cvue%E7%9A%84%E9%9F%BF%E6%87%89%E5%BC%8F%E7%8B%80%E6%85%8B%E7%AE%A1%E7%90%86/</link>
+    <pubDate>Fri, 27 Dec 2024 10:06:49 &#43;0800</pubDate>
+    <author>northn13@gmail.com (Nick)</author>
+    <guid>http://localhost:1313/angular%E5%92%8Cvue%E7%9A%84%E9%9F%BF%E6%87%89%E5%BC%8F%E7%8B%80%E6%85%8B%E7%AE%A1%E7%90%86/</guid>
+    <description><![CDATA[<p>之前趁著 <code>Udemy</code> 黑五活動買了些有興趣的課程來進修，加上 <code>YT</code> 上免費的課程，聽聽不同的講師會有不同的收穫，就像是看醫生不要只看一間，不同的醫生看或許會有不同的見解。</p>
 <p>在自學時光是 <code>Vue</code> 就看了三個不同的教學影片，對於 <code>ref</code>、<code>reactive</code> 雖無實務經驗，但有一定程度的瞭解。之前工作上使用的框架是 <code>Angular</code> 且版本 <strong>&lt; 16</strong> , 對於 <code>Signals</code> 的應用很模糊，嘗試用 <code>Vue</code> 的 <code>ref</code> 去解釋 <code>Angular</code> 的 <code>Signals</code> 好像一切都說得過去了！</p>
 <table>
   <thead>
@@ -119,4 +139,7 @@ export class MyComponent {
   </tbody>
 </table>
 <h3 id="vue-3-ref-的用途"><strong>Vue 3 ref 的用途</strong></h3>
-<p><code>Vue 3</code> 的 <code>ref</code> 也用於 響應式數據 管理。<code>ref</code> 會將一個變數包裹成 響應式對象，當數據變化時，<code>Vue</code> 會自動追蹤變更並更新 UI。</p>]]></description></item></channel></rss>
+<p><code>Vue 3</code> 的 <code>ref</code> 也用於 響應式數據 管理。<code>ref</code> 會將一個變數包裹成 響應式對象，當數據變化時，<code>Vue</code> 會自動追蹤變更並更新 UI。</p>]]></description>
+</item>
+</channel>
+</rss>

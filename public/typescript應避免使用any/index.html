@@ -1,25 +1,207 @@
-<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><title>TypeScript 應避免使用 any - 資深菜鳥 Nick</title><meta name=Description content="TypeScript、any"><meta property="og:url" content="https://north13.github.io/typescript%E6%87%89%E9%81%BF%E5%85%8D%E4%BD%BF%E7%94%A8any/">
-<meta property="og:site_name" content="資深菜鳥 Nick"><meta property="og:title" content="TypeScript 應避免使用 any"><meta property="og:description" content="TypeScript、any"><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2025-07-04T13:55:20+08:00"><meta property="article:modified_time" content="2025-07-04T13:55:20+08:00"><meta property="og:image" content="https://north13.github.io/"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://north13.github.io/"><meta name=twitter:title content="TypeScript 應避免使用 any"><meta name=twitter:description content="TypeScript、any"><meta name=application-name content="Nick"><meta name=apple-mobile-web-app-title content="Nick"><meta name=referrer content="no-referrer"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel=icon href=/images/favicon.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://north13.github.io/typescript%E6%87%89%E9%81%BF%E5%85%8D%E4%BD%BF%E7%94%A8any/><link rel=prev href=https://north13.github.io/record%E6%98%AF%E4%BB%80%E9%BA%BC/><link rel=stylesheet href=/css/style.min.css><link rel=preload href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css as=style onload='this.onload=null,this.rel="stylesheet"'><noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css></noscript><link rel=preload href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css as=style onload='this.onload=null,this.rel="stylesheet"'><noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"TypeScript 應避免使用 any","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/north13.github.io\/typescript%E6%87%89%E9%81%BF%E5%85%8D%E4%BD%BF%E7%94%A8any\/"},"image":["https:\/\/north13.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","wordcount":557,"url":"https:\/\/north13.github.io\/typescript%E6%87%89%E9%81%BF%E5%85%8D%E4%BD%BF%E7%94%A8any\/","datePublished":"2025-07-04T13:55:20+08:00","dateModified":"2025-07-04T13:55:20+08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"Nick","logo":"https:\/\/north13.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"Nick"},"description":"TypeScript、any"}</script></head><body data-header-desktop=fixed data-header-mobile=auto><script>const query=window.matchMedia("(prefers-color-scheme: dark)");function applyTheme(){let e=window.localStorage?.getItem("theme")||"auto",t=e==="dark"||e==="auto"&&query.matches;document.body.setAttribute("theme",t?"dark":"light"),document.body.setAttribute("cfg-theme",e)}applyTheme(),query.addEventListener("change",applyTheme)</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="資深菜鳥 Nick"><span class=header-title-pre><i class='fa-solid fa-play'></i>&ensp;RUN</span></a></div><div class=menu><div class=menu-inner><a class=menu-item href=/posts/>所有文章 </a><a class=menu-item href=/categories/>文章分類 </a><a class=menu-item href=/about/>關於菜鳥 </a><span class="menu-item delimiter"></span><span class="menu-item search" id=search-desktop>
-<input type=text placeholder="Search titles or contents..." id=search-input-desktop>
-<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=Search><i class="fas fa-search fa-fw" aria-hidden=true></i>
-</a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=Clear><i class="fas fa-times-circle fa-fw" aria-hidden=true></i>
-</a><span class="search-button search-loading" id=search-loading-desktop><i class="fas fa-spinner fa-fw fa-spin" aria-hidden=true></i>
-</span></span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme"><i class="fas fa-adjust fa-fw" aria-hidden=true></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="資深菜鳥 Nick"><span class=header-title-pre><i class='fa-solid fa-play'></i>&ensp;RUN</span></a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><div class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder="Search titles or contents..." id=search-input-mobile>
-<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=Search><i class="fas fa-search fa-fw" aria-hidden=true></i>
-</a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=Clear><i class="fas fa-times-circle fa-fw" aria-hidden=true></i>
-</a><span class="search-button search-loading" id=search-loading-mobile><i class="fas fa-spinner fa-fw fa-spin" aria-hidden=true></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>Cancel</a></div><a class=menu-item href=/posts/ title>所有文章</a><a class=menu-item href=/categories/ title>文章分類</a><a class=menu-item href=/about/ title>關於菜鳥</a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
-<i class="fas fa-adjust fa-fw" aria-hidden=true></i></a></div></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>Contents</h2><div class=toc-content id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">TypeScript 應避免使用 any</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw" aria-hidden=true></i>Nick</a></span>&nbsp;<span class=post-category>included in <a href=/categories/typescript/><i class="far fa-folder fa-fw" aria-hidden=true></i>TypeScript</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw" aria-hidden=true></i>&nbsp;<time datetime=2025-07-04>2025-07-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden=true></i>&nbsp;557 words&nbsp;
-<i class="far fa-clock fa-fw" aria-hidden=true></i>&nbsp;3 minutes&nbsp;<span id=/typescript%E6%87%89%E9%81%BF%E5%85%8D%E4%BD%BF%E7%94%A8any/ class=leancloud_visitors data-flag-title="TypeScript 應避免使用 any">
-<i class="far fa-eye fa-fw" aria-hidden=true></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
-</span>&nbsp;</div></div><div class="details toc" id=toc-static data-kept><div class="details-summary toc-title"><span>Contents</span>
-<span><i class="details-icon fas fa-angle-right" aria-hidden=true></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#-any-的危害使用-typescript-卻得不到的好處>🚫 <code>any</code> 的危害（使用 TypeScript 卻得不到的好處）</a><ul><li><a href=#1物件屬性訪問錯誤失去類型安全>1.物件屬性訪問錯誤（失去類型安全）</a><ul><li><a href=#-使用-any>❌ 使用 <code>any</code></a></li><li><a href=#-定義一個精確的-type>⭕️ 定義一個精確的 type</a></li></ul></li><li><a href=#2函式輸入參數與回傳值難以重構和追蹤>2.函式輸入參數與回傳值（難以重構和追蹤）</a><ul><li><a href=#-使用-any-1>❌ 使用 <code>any</code></a></li><li><a href=#-使用泛型generics或精確-type>⭕️ 使用泛型（Generics）或精確 type</a></li></ul></li><li><a href=#3處理外部或未確定結構的資料資料轉換>3.處理外部或未確定結構的資料（資料轉換）</a><ul><li><a href=#-使用-any-2>❌ 使用 <code>any</code></a></li><li><a href=#-使用-unknown-與類型縮小type-narrowing>⭕️ 使用 unknown 與類型縮小（Type Narrowing）</a></li></ul></li><li><a href=#4事件處理器event-handlers>4.事件處理器（Event Handlers）</a><ul><li><a href=#-使用-any-3>❌ 使用 <code>any</code></a></li><li><a href=#-使用內建的-dom-類型>⭕️ 使用內建的 DOM 類型</a></li></ul></li><li><a href=#-結論>💡 結論</a></li></ul></li></ul></nav></div></div><div class=content id=content><p>TypeScript 的核心價值在於提供<strong>靜態類型檢查</strong>，這能夠在<strong>編譯階段</strong>就幫助我們捕獲許多潛在的錯誤，顯著提升程式碼的可靠性和可維護性。</p><p>然而，<code>any</code> 類型就像是 TypeScript 世界中的一個「作弊碼」或「逃生艙口」。雖然它允許你繞過所有類型檢查，但這卻抹殺了使用 TypeScript 的主要優勢。</p><p><strong>我們的準則：盡一切可能避免使用 <code>any</code>。</strong></p><hr><h2 id=-any-的危害使用-typescript-卻得不到的好處>🚫 <code>any</code> 的危害（使用 TypeScript 卻得不到的好處）</h2><table><thead><tr><th style=text-align:left>危害</th><th style=text-align:left>說明</th></tr></thead><tbody><tr><td style=text-align:left><strong>失去類型安全</strong></td><td style=text-align:left>允許你對變數進行任何操作，即使該操作在執行時會導致錯誤。</td></tr><tr><td style=text-align:left><strong>失去自動補全</strong></td><td style=text-align:left>編輯器（如 VS Code）無法推斷類型結構，導致開發效率降低。</td></tr><tr><td style=text-align:left><strong>難以重構</strong></td><td style=text-align:left>當底層資料結構改變時，依賴 <code>any</code> 的程式碼不會報錯，錯誤將在運行時爆發。</td></tr><tr><td style=text-align:left><strong>掩蓋真實錯誤</strong></td><td style=text-align:left>讓人習慣於忽略潛在的類型問題。</td></tr></tbody></table><hr><h3 id=1物件屬性訪問錯誤失去類型安全>1.物件屬性訪問錯誤（失去類型安全）</h3><p>當我們使用 <code>any</code> 時，編譯器不會檢查我們是否正在訪問一個不存在的屬性。</p><h4 id=-使用-any>❌ 使用 <code>any</code></h4><pre><code class=language-typescript>// 使用了 any，編譯器不會報錯
+<!DOCTYPE html>
+<html lang="en">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>TypeScript 應避免使用 any - 資深菜鳥 Nick</title><meta name="Description" content="TypeScript、any"><meta property="og:url" content="http://localhost:1313/typescript%E6%87%89%E9%81%BF%E5%85%8D%E4%BD%BF%E7%94%A8any/">
+  <meta property="og:site_name" content="資深菜鳥 Nick">
+  <meta property="og:title" content="TypeScript 應避免使用 any">
+  <meta property="og:description" content="TypeScript、any">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-07-04T13:55:20+08:00">
+    <meta property="article:modified_time" content="2025-07-04T13:55:20+08:00">
+    <meta property="og:image" content="http://localhost:1313/">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:1313/">
+  <meta name="twitter:title" content="TypeScript 應避免使用 any">
+  <meta name="twitter:description" content="TypeScript、any">
+<meta name="application-name" content="Nick">
+<meta name="apple-mobile-web-app-title" content="Nick">
+<meta name="referrer" content="no-referrer" /><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/images/favicon.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:1313/typescript%E6%87%89%E9%81%BF%E5%85%8D%E4%BD%BF%E7%94%A8any/" /><link rel="prev" href="http://localhost:1313/record%E6%98%AF%E4%BB%80%E9%BA%BC/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/css/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "TypeScript 應避免使用 any",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/localhost:1313\/typescript%E6%87%89%E9%81%BF%E5%85%8D%E4%BD%BF%E7%94%A8any\/"
+        },"image": ["http:\/\/localhost:1313\/images\/Apple-Devices-Preview.png"],"genre": "posts","wordcount":  557 ,
+        "url": "http:\/\/localhost:1313\/typescript%E6%87%89%E9%81%BF%E5%85%8D%E4%BD%BF%E7%94%A8any\/","datePublished": "2025-07-04T13:55:20+08:00","dateModified": "2025-07-04T13:55:20+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Nick","logo": "http:\/\/localhost:1313\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Nick"
+            },"description": "TypeScript、any"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>
+          const query = window.matchMedia('(prefers-color-scheme: dark)');
+          function applyTheme() {
+            let theme = window.localStorage?.getItem('theme') || 'auto';
+            let isDark = theme === 'dark' || (theme === 'auto' && query.matches);
+            document.body.setAttribute('theme', isDark? 'dark' : 'light');
+            document.body.setAttribute('cfg-theme', theme);
+          }
+
+          applyTheme();
+          query.addEventListener('change', applyTheme);
+        </script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="資深菜鳥 Nick"><span class="header-title-pre"><i class='fa-solid fa-play'></i>&ensp;RUN</span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/categories/"> 文章分類 </a><a class="menu-item" href="/about/"> 關於菜鳥 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="資深菜鳥 Nick"><span class="header-title-pre"><i class='fa-solid fa-play'></i>&ensp;RUN</span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/categories/" title="">文章分類</a><a class="menu-item" href="/about/" title="">關於菜鳥</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">TypeScript 應避免使用 any</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Nick</a></span>&nbsp;<span class="post-category">included in <a href="/categories/typescript/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>TypeScript</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-07-04">2025-07-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;557 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#-any-的危害使用-typescript-卻得不到的好處">🚫 <code>any</code> 的危害（使用 TypeScript 卻得不到的好處）</a>
+      <ul>
+        <li><a href="#1物件屬性訪問錯誤失去類型安全">1.物件屬性訪問錯誤（失去類型安全）</a>
+          <ul>
+            <li><a href="#-使用-any">❌ 使用 <code>any</code></a></li>
+            <li><a href="#-定義一個精確的-type">⭕️ 定義一個精確的 type</a></li>
+          </ul>
+        </li>
+        <li><a href="#2函式輸入參數與回傳值難以重構和追蹤">2.函式輸入參數與回傳值（難以重構和追蹤）</a>
+          <ul>
+            <li><a href="#-使用-any-1">❌ 使用 <code>any</code></a></li>
+            <li><a href="#-使用泛型generics或精確-type">⭕️ 使用泛型（Generics）或精確 type</a></li>
+          </ul>
+        </li>
+        <li><a href="#3處理外部或未確定結構的資料資料轉換">3.處理外部或未確定結構的資料（資料轉換）</a>
+          <ul>
+            <li><a href="#-使用-any-2">❌ 使用 <code>any</code></a></li>
+            <li><a href="#-使用-unknown-與類型縮小type-narrowing">⭕️ 使用 unknown 與類型縮小（Type Narrowing）</a></li>
+          </ul>
+        </li>
+        <li><a href="#4事件處理器event-handlers">4.事件處理器（Event Handlers）</a>
+          <ul>
+            <li><a href="#-使用-any-3">❌ 使用 <code>any</code></a></li>
+            <li><a href="#-使用內建的-dom-類型">⭕️ 使用內建的 DOM 類型</a></li>
+          </ul>
+        </li>
+        <li><a href="#-結論">💡 結論</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>TypeScript 的核心價值在於提供<strong>靜態類型檢查</strong>，這能夠在<strong>編譯階段</strong>就幫助我們捕獲許多潛在的錯誤，顯著提升程式碼的可靠性和可維護性。</p>
+<p>然而，<code>any</code> 類型就像是 TypeScript 世界中的一個「作弊碼」或「逃生艙口」。雖然它允許你繞過所有類型檢查，但這卻抹殺了使用 TypeScript 的主要優勢。</p>
+<p><strong>我們的準則：盡一切可能避免使用 <code>any</code>。</strong></p>
+<hr>
+<h2 id="-any-的危害使用-typescript-卻得不到的好處">🚫 <code>any</code> 的危害（使用 TypeScript 卻得不到的好處）</h2>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">危害</th>
+          <th style="text-align: left">說明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong>失去類型安全</strong></td>
+          <td style="text-align: left">允許你對變數進行任何操作，即使該操作在執行時會導致錯誤。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>失去自動補全</strong></td>
+          <td style="text-align: left">編輯器（如 VS Code）無法推斷類型結構，導致開發效率降低。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>難以重構</strong></td>
+          <td style="text-align: left">當底層資料結構改變時，依賴 <code>any</code> 的程式碼不會報錯，錯誤將在運行時爆發。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>掩蓋真實錯誤</strong></td>
+          <td style="text-align: left">讓人習慣於忽略潛在的類型問題。</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h3 id="1物件屬性訪問錯誤失去類型安全">1.物件屬性訪問錯誤（失去類型安全）</h3>
+<p>當我們使用 <code>any</code> 時，編譯器不會檢查我們是否正在訪問一個不存在的屬性。</p>
+<h4 id="-使用-any">❌ 使用 <code>any</code></h4>
+<pre><code class="language-typescript">// 使用了 any，編譯器不會報錯
 function processUserData(user: any) {
   // 這裡假設我們想要訪問 'email'，但卻錯誤地寫成了 'mail'
   console.log(user.mail); // 執行時是 undefined
   return user.id.toString(); // 如果 user 沒有 id，運行時會拋出錯誤！
 }
 
-processUserData({ name: 'Nick', age: 36 }); // TS 不報錯，但運行時會出問題</code></pre><h4 id=-定義一個精確的-type>⭕️ 定義一個精確的 type</h4><pre><code class=language-typescript>// 使用 type 定義 User 結構
+processUserData({ name: 'Nick', age: 36 }); // TS 不報錯，但運行時會出問題</code></pre>
+<h4 id="-定義一個精確的-type">⭕️ 定義一個精確的 type</h4>
+<pre><code class="language-typescript">// 使用 type 定義 User 結構
 type UserProfile = {
   id: number;
   name: string;
@@ -34,7 +216,11 @@ function processUserDataSafe(user: UserProfile) {
 
 // 傳入錯誤的物件結構時，TS 會在編譯階段就提示錯誤
 // processUserDataSafe({ name: 'Nick', age: 36 }); // TS 報錯：缺少屬性 'id' 和 'email'
-processUserDataSafe({ id: 101, name: 'Nick', email: 'nick@example.com' }); // 正常運行</code></pre><h3 id=2函式輸入參數與回傳值難以重構和追蹤>2.函式輸入參數與回傳值（難以重構和追蹤）</h3><p>在函式參數和回傳值上使用 <code>any</code> 會使得函式的行為變得模糊，難以理解它的預期輸入和輸出。</p><h4 id=-使用-any-1>❌ 使用 <code>any</code></h4><pre><code class=language-typescript>// 函式的行為完全不透明
+processUserDataSafe({ id: 101, name: 'Nick', email: 'nick@example.com' }); // 正常運行</code></pre>
+<h3 id="2函式輸入參數與回傳值難以重構和追蹤">2.函式輸入參數與回傳值（難以重構和追蹤）</h3>
+<p>在函式參數和回傳值上使用 <code>any</code> 會使得函式的行為變得模糊，難以理解它的預期輸入和輸出。</p>
+<h4 id="-使用-any-1">❌ 使用 <code>any</code></h4>
+<pre><code class="language-typescript">// 函式的行為完全不透明
 function calculate(data: any): any {
   // ... 一堆複雜的邏輯
   return data.value * 2;
@@ -42,7 +228,10 @@ function calculate(data: any): any {
 
 // 當我們呼叫它時，不知道 data 該有什麼結構，也不知道回傳值是什麼類型
 const result = calculate({ value: 5 });
-console.log(result.toFixed(2)); // 如果 calculate 回傳的不是 number，這裡會報錯</code></pre><h4 id=-使用泛型generics或精確-type>⭕️ 使用泛型（Generics）或精確 type</h4><p>如果函式處理的是特定結構，就用精確 <strong>type</strong>；如果函式處理的是通用結構，就用<strong>泛型</strong>。</p><pre><code class=language-typescript>// 使用 type 定義 Input 結構
+console.log(result.toFixed(2)); // 如果 calculate 回傳的不是 number，這裡會報錯</code></pre>
+<h4 id="-使用泛型generics或精確-type">⭕️ 使用泛型（Generics）或精確 type</h4>
+<p>如果函式處理的是特定結構，就用精確 <strong>type</strong>；如果函式處理的是通用結構，就用<strong>泛型</strong>。</p>
+<pre><code class="language-typescript">// 使用 type 定義 Input 結構
 type CalculationInput = {
   value: number;
   multiplier: number;
@@ -57,25 +246,32 @@ const safeResult = calculateSafe({ value: 10, multiplier: 3 }); // TS 知道 saf
 console.log(safeResult.toFixed(2)); // 30.00，安全且有自動補全
 
 // 另一個使用泛型的例子：
-type Item<t> = {
+type Item<T> = {
   data: T;
   timestamp: Date;
 };
 
-// 函式可以處理任何類型的 T，但結構被固定為 Item<t>
-function wrapItem<t>(input: T): Item<t> {
+// 函式可以處理任何類型的 T，但結構被固定為 Item<T>
+function wrapItem<T>(input: T): Item<T> {
   return { data: input, timestamp: new Date() };
 }
 
 const wrappedNumber = wrapItem(42); // wrappedNumber 類型是 Item<number>
-const wrappedUser = wrapItem({ id: 2, name: 'Charlie' }); // wrappedUser 類型是 Item<{ id: number; name: string; }></code></pre><h3 id=3處理外部或未確定結構的資料資料轉換>3.處理外部或未確定結構的資料（資料轉換）</h3><p>從 API 獲取的 JSON 資料，或是來自第三方庫的資料，其結構在運行時才能確定。</p><h4 id=-使用-any-2>❌ 使用 <code>any</code></h4><pre><code class=language-typescript>// 假設這是從 fetch API 拿到的原始資料
+const wrappedUser = wrapItem({ id: 2, name: 'Charlie' }); // wrappedUser 類型是 Item<{ id: number; name: string; }></code></pre>
+<h3 id="3處理外部或未確定結構的資料資料轉換">3.處理外部或未確定結構的資料（資料轉換）</h3>
+<p>從 API 獲取的 JSON 資料，或是來自第三方庫的資料，其結構在運行時才能確定。</p>
+<h4 id="-使用-any-2">❌ 使用 <code>any</code></h4>
+<pre><code class="language-typescript">// 假設這是從 fetch API 拿到的原始資料
 const apiResponse: any = {
   status: 'ok',
   payload: [{ id: 1, text: 'Hello' }],
 };
 
 // 直接使用 any 會讓後續的程式碼無法檢查 payload 是一個陣列
-apiResponse.payload.push({ id: 2, text: 'World' }); // 可以通過編譯，但如果 payload 實際是個字串就會出錯</code></pre><h4 id=-使用-unknown-與類型縮小type-narrowing>⭕️ 使用 unknown 與類型縮小（Type Narrowing）</h4><p>unknown 比 any 更安全。它告訴 TypeScript：「我不知道這是什麼，但在你使用它之前，你必須先檢查它的類型。」</p><pre><code class=language-ts>// 使用 unknown，強制進行類型檢查
+apiResponse.payload.push({ id: 2, text: 'World' }); // 可以通過編譯，但如果 payload 實際是個字串就會出錯</code></pre>
+<h4 id="-使用-unknown-與類型縮小type-narrowing">⭕️ 使用 unknown 與類型縮小（Type Narrowing）</h4>
+<p>unknown 比 any 更安全。它告訴 TypeScript：「我不知道這是什麼，但在你使用它之前，你必須先檢查它的類型。」</p>
+<pre><code class="language-ts">// 使用 unknown，強制進行類型檢查
 const apiResponseUnknown: unknown = {
   status: 'ok',
   payload: [{ id: 1, text: 'Hello' }],
@@ -106,11 +302,18 @@ if (
   });
 } else {
   console.error("API Response structure is invalid.");
-}</code></pre><h3 id=4事件處理器event-handlers>4.事件處理器（Event Handlers）</h3><p>在處理 DOM 事件時，any 經常被用於事件物件。</p><h4 id=-使用-any-3>❌ 使用 <code>any</code></h4><pre><code class=language-ts>// event: any 失去了事件物件的類型資訊
+}</code></pre>
+<h3 id="4事件處理器event-handlers">4.事件處理器（Event Handlers）</h3>
+<p>在處理 DOM 事件時，any 經常被用於事件物件。</p>
+<h4 id="-使用-any-3">❌ 使用 <code>any</code></h4>
+<pre><code class="language-ts">// event: any 失去了事件物件的類型資訊
 const handleClick = (event: any) => {
   // 假設我們在一個 <button> 上綁定這個事件
   console.log(event.target.value); // TS 允許，但 button 上沒有 value 屬性！
-};</code></pre><h4 id=-使用內建的-dom-類型>⭕️ 使用內建的 DOM 類型</h4><p>TypeScript 內建了所有 DOM 事件類型。</p><pre><code class=language-ts>// 對於一般的點擊事件
+};</code></pre>
+<h4 id="-使用內建的-dom-類型">⭕️ 使用內建的 DOM 類型</h4>
+<p>TypeScript 內建了所有 DOM 事件類型。</p>
+<pre><code class="language-ts">// 對於一般的點擊事件
 const handleClickSafe = (event: MouseEvent) => {
   // 斷言 event.currentTarget 是一個 HTMLButtonElement
   const buttonElement = event.currentTarget as HTMLButtonElement; 
@@ -120,9 +323,59 @@ const handleClickSafe = (event: MouseEvent) => {
 // 對於 input 欄位的變動，使用原生的 Event 類型，然後進行斷言
 const handleInputChange = (event: Event) => {
   // 由於 TypeScript 預設不知道 event.target 是什麼具體元素，
-  // 我們使用類型斷言 (<htmlinputelement>) 告訴編譯器它是一個 Input 元素。
+  // 我們使用類型斷言 (<HTMLInputElement>) 告訴編譯器它是一個 Input 元素。
   const inputElement = event.target as HTMLInputElement; 
   
   // 現在 inputElement 擁有 .value 屬性，且具有自動補全
   console.log(inputElement.value); 
-};</code></pre><h3 id=-結論>💡 結論</h3><blockquote><ul><li>將 <strong>any</strong> 技術債。每次使用就失去了 <strong>TypeScript</strong> 保護的機會。</li><li>盡量使用：<strong>string、number、boolean、T[]、type、泛型(<t>)</strong>。</li><li>如果真的無法確定：請使用 <strong>unknown</strong>，並強制進行類型檢查（Type Narrowing）。</li></ul></blockquote></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>Updated on 2025-07-04</span></div></div><div class=post-info-line><div class=post-info-md><span><a class=link-to-markdown href=/typescript%E6%87%89%E9%81%BF%E5%85%8D%E4%BD%BF%E7%94%A8any/index.md target=_blank>Read Markdown</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="Share on X" data-sharer=x data-url=https://north13.github.io/typescript%E6%87%89%E9%81%BF%E5%85%8D%E4%BD%BF%E7%94%A8any/ data-title="TypeScript 應避免使用 any"><i class="fab fa-x-twitter fa-fw" aria-hidden=true></i></a><a href=javascript:void(0); title="Share on Threads" data-sharer=threads data-url=https://north13.github.io/typescript%E6%87%89%E9%81%BF%E5%85%8D%E4%BD%BF%E7%94%A8any/ data-title="TypeScript 應避免使用 any"><i class="fab fa-threads fa-fw" aria-hidden=true></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://north13.github.io/typescript%E6%87%89%E9%81%BF%E5%85%8D%E4%BD%BF%E7%94%A8any/><i class="fab fa-facebook-square fa-fw" aria-hidden=true></i></a></span></div></div></div><div class=post-info-more><section class=post-tags></section><section><span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span></section></div><div class=post-nav><a href=/record%E6%98%AF%E4%BB%80%E9%BA%BC/ class=prev rel=prev title="Record 是什麼？"><i class="fas fa-angle-left fa-fw" aria-hidden=true></i>Record 是什麼？</a></div></div><div id=comments><div id=valine class=comment></div><noscript>Please enable JavaScript to view the comments powered by <a href=https://valine.js.org/>Valine</a>.</noscript></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line>Powered by <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.140.1">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.3.1-DEV"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden=true></i> LoveIt</a></div><div class=footer-line itemscope itemtype=http://schema.org/CreativeWork><i class="far fa-copyright fa-fw" aria-hidden=true></i><span itemprop=copyrightYear>2024 - 2025</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>Nick</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank></a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top"><i class="fas fa-arrow-up fa-fw" aria-hidden=true></i></a></div><div id=fixed-buttons-hidden><a href=# id=view-comments class=fixed-button title="View Comments"><i class="fas fa-comment fa-fw" aria-hidden=true></i></a></div><link rel=stylesheet href=/lib/valine/valine.min.css><script src=https://cdn.jsdelivr.net/npm/valine@1.5.3/dist/Valine.min.js></script><script src=https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js></script><script src=https://cdn.jsdelivr.net/npm/algoliasearch@5.20.2/dist/lite/builds/browser.umd.min.js></script><script src=https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js></script><script src=https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js></script><script src=https://cdn.jsdelivr.net/npm/sharer.js@0.5.2/sharer.min.js></script><script>window.config={comment:{valine:{appId:"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI",appKey:"WBmoGyJtbqUswvfLh6L8iEBr",avatar:"mp",el:"#valine",emojiCDN:"https://cdn.jsdelivr.net/npm/emoji-datasource-google@15.1.2/img/google/64/",emojiMaps:{100:"1f4af.png",alien:"1f47d.png",anger:"1f4a2.png",angry:"1f620.png",anguished:"1f627.png",astonished:"1f632.png",black_heart:"1f5a4.png",blue_heart:"1f499.png",blush:"1f60a.png",bomb:"1f4a3.png",boom:"1f4a5.png",broken_heart:"1f494.png",brown_heart:"1f90e.png",clown_face:"1f921.png",cold_face:"1f976.png",cold_sweat:"1f630.png",confounded:"1f616.png",confused:"1f615.png",cry:"1f622.png",crying_cat_face:"1f63f.png",cupid:"1f498.png",dash:"1f4a8.png",disappointed:"1f61e.png",disappointed_relieved:"1f625.png",dizzy:"1f4ab.png",dizzy_face:"1f635.png",drooling_face:"1f924.png",exploding_head:"1f92f.png",expressionless:"1f611.png",face_vomiting:"1f92e.png",face_with_cowboy_hat:"1f920.png",face_with_hand_over_mouth:"1f92d.png",face_with_head_bandage:"1f915.png",face_with_monocle:"1f9d0.png",face_with_raised_eyebrow:"1f928.png",face_with_rolling_eyes:"1f644.png",face_with_symbols_on_mouth:"1f92c.png",face_with_thermometer:"1f912.png",fearful:"1f628.png",flushed:"1f633.png",frowning:"1f626.png",ghost:"1f47b.png",gift_heart:"1f49d.png",green_heart:"1f49a.png",grimacing:"1f62c.png",grin:"1f601.png",grinning:"1f600.png",hankey:"1f4a9.png",hear_no_evil:"1f649.png",heart:"2764-fe0f.png",heart_decoration:"1f49f.png",heart_eyes:"1f60d.png",heart_eyes_cat:"1f63b.png",heartbeat:"1f493.png",heartpulse:"1f497.png",heavy_heart_exclamation_mark_ornament:"2763-fe0f.png",hole:"1f573-fe0f.png",hot_face:"1f975.png",hugging_face:"1f917.png",hushed:"1f62f.png",imp:"1f47f.png",innocent:"1f607.png",japanese_goblin:"1f47a.png",japanese_ogre:"1f479.png",joy:"1f602.png",joy_cat:"1f639.png",kiss:"1f48b.png",kissing:"1f617.png",kissing_cat:"1f63d.png",kissing_closed_eyes:"1f61a.png",kissing_heart:"1f618.png",kissing_smiling_eyes:"1f619.png",laughing:"1f606.png",left_speech_bubble:"1f5e8-fe0f.png",love_letter:"1f48c.png",lying_face:"1f925.png",mask:"1f637.png",money_mouth_face:"1f911.png",nauseated_face:"1f922.png",nerd_face:"1f913.png",neutral_face:"1f610.png",no_mouth:"1f636.png",open_mouth:"1f62e.png",orange_heart:"1f9e1.png",partying_face:"1f973.png",pensive:"1f614.png",persevere:"1f623.png",pleading_face:"1f97a.png",pouting_cat:"1f63e.png",purple_heart:"1f49c.png",rage:"1f621.png",relaxed:"263a-fe0f.png",relieved:"1f60c.png",revolving_hearts:"1f49e.png",right_anger_bubble:"1f5ef-fe0f.png",robot_face:"1f916.png",rolling_on_the_floor_laughing:"1f923.png",scream:"1f631.png",scream_cat:"1f640.png",see_no_evil:"1f648.png",shushing_face:"1f92b.png",skull:"1f480.png",skull_and_crossbones:"2620-fe0f.png",sleeping:"1f634.png",sleepy:"1f62a.png",slightly_frowning_face:"1f641.png",slightly_smiling_face:"1f642.png",smile:"1f604.png",smile_cat:"1f638.png",smiley:"1f603.png",smiley_cat:"1f63a.png",smiling_face_with_3_hearts:"1f970.png",smiling_imp:"1f608.png",smirk:"1f60f.png",smirk_cat:"1f63c.png",sneezing_face:"1f927.png",sob:"1f62d.png",space_invader:"1f47e.png",sparkling_heart:"1f496.png",speak_no_evil:"1f64a.png",speech_balloon:"1f4ac.png","star-struck":"1f929.png",stuck_out_tongue:"1f61b.png",stuck_out_tongue_closed_eyes:"1f61d.png",stuck_out_tongue_winking_eye:"1f61c.png",sunglasses:"1f60e.png",sweat:"1f613.png",sweat_drops:"1f4a6.png",sweat_smile:"1f605.png",thinking_face:"1f914.png",thought_balloon:"1f4ad.png",tired_face:"1f62b.png",triumph:"1f624.png",two_hearts:"1f495.png",unamused:"1f612.png",upside_down_face:"1f643.png",weary:"1f629.png",white_frowning_face:"2639-fe0f.png",white_heart:"1f90d.png",wink:"1f609.png",woozy_face:"1f974.png",worried:"1f61f.png",yawning_face:"1f971.png",yellow_heart:"1f49b.png",yum:"1f60b.png",zany_face:"1f92a.png",zipper_mouth_face:"1f910.png",zzz:"1f4a4.png"},enableQQ:!1,highlight:!0,lang:"en",pageSize:10,placeholder:"Your comment ...",recordIP:!0,serverURLs:"https://valine.hugoloveit.com",visitor:!0}},search:{algoliaAppID:"4D1IDY8JU6",algoliaIndex:"index",algoliaSearchKey:"05332ac5ed76655a511f0da583a9afac",highlightTag:"em",maxResultLength:10,noResultsFound:"No results found",snippetLength:30,type:"algolia"}}</script><script src=/js/theme.min.js></script></body></html>
+};</code></pre>
+<h3 id="-結論">💡 結論</h3>
+<blockquote>
+<ul>
+<li>將 <strong>any</strong> 技術債。每次使用就失去了 <strong>TypeScript</strong> 保護的機會。</li>
+<li>盡量使用：<strong>string、number、boolean、T[]、type、泛型(<T>)</strong>。</li>
+<li>如果真的無法確定：請使用 <strong>unknown</strong>，並強制進行類型檢查（Type Narrowing）。</li>
+</ul>
+</blockquote>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2025-07-04</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/typescript%E6%87%89%E9%81%BF%E5%85%8D%E4%BD%BF%E7%94%A8any/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on X" data-sharer="x" data-url="http://localhost:1313/typescript%E6%87%89%E9%81%BF%E5%85%8D%E4%BD%BF%E7%94%A8any/" data-title="TypeScript 應避免使用 any"><i class="fab fa-x-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Threads" data-sharer="threads" data-url="http://localhost:1313/typescript%E6%87%89%E9%81%BF%E5%85%8D%E4%BD%BF%E7%94%A8any/" data-title="TypeScript 應避免使用 any"><i class="fab fa-threads fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://localhost:1313/typescript%E6%87%89%E9%81%BF%E5%85%8D%E4%BD%BF%E7%94%A8any/"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/record%E6%98%AF%E4%BB%80%E9%BA%BC/" class="prev" rel="prev" title="Record 是什麼？"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Record 是什麼？</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.140.1">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.3.1-DEV"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2024 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Nick</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/algoliasearch/lite/browser.umd.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script src="/lib/sharer/sharer.min.js"></script><script>window.config={"comment":{},"search":{"algoliaAppID":"4D1IDY8JU6","algoliaIndex":"index","algoliaSearchKey":"05332ac5ed76655a511f0da583a9afac","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script src="/js/theme.min.js"></script></body>
+</html>

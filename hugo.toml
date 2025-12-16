@@ -788,3 +788,6 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
         GitHub = "https://github.com/north13"
         Email = "northn13@gmail.com"
         RSS = true
+[[module.mounts]]
+  source = "layouts"
+  target = "layouts"

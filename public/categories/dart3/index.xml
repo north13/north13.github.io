@@ -1,4 +1,16 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Dart3 - Category - 資深菜鳥 Nick</title><link>https://north13.github.io/categories/dart3/</link><description>Dart3 - Category - 資深菜鳥 Nick</description><generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>northn13@gmail.com (Nick)</managingEditor><webMaster>northn13@gmail.com (Nick)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 12 May 2025 10:39:45 +0800</lastBuildDate><atom:link href="https://north13.github.io/categories/dart3/" rel="self" type="application/rss+xml"/><item><title>Record 是什麼？</title><link>https://north13.github.io/record%E6%98%AF%E4%BB%80%E9%BA%BC/</link><pubDate>Mon, 12 May 2025 10:39:45 +0800</pubDate><author>northn13@gmail.com (Nick)</author><guid>https://north13.github.io/record%E6%98%AF%E4%BB%80%E9%BA%BC/</guid><description><![CDATA[<h3 id="什麼是-record">什麼是 Record？</h3>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Dart3 - Category - 資深菜鳥 Nick</title>
+        <link>http://localhost:1313/categories/dart3/</link>
+        <description>Dart3 - Category - 資深菜鳥 Nick</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>northn13@gmail.com (Nick)</managingEditor>
+            <webMaster>northn13@gmail.com (Nick)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 12 May 2025 10:39:45 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/categories/dart3/" rel="self" type="application/rss+xml" /><item>
+    <title>Record 是什麼？</title>
+    <link>http://localhost:1313/record%E6%98%AF%E4%BB%80%E9%BA%BC/</link>
+    <pubDate>Mon, 12 May 2025 10:39:45 &#43;0800</pubDate>
+    <author>northn13@gmail.com (Nick)</author>
+    <guid>http://localhost:1313/record%E6%98%AF%E4%BB%80%E9%BA%BC/</guid>
+    <description><![CDATA[<h3 id="什麼是-record">什麼是 Record？</h3>
 <p><strong>Record</strong> 是一種新的資料類型，用來表示一組有序的值集合，包含具名或未具名欄位。可以想像成是不需要先定義一個 <strong>class</strong> 的 <strong>「輕量級的物件」</strong> 。</p>
 <h5 id="不具名-record"><code>不具名</code> Record</h5>
 <pre><code class="language-dart">var record = ('Nick', 35);
@@ -66,4 +78,7 @@ print(user['nameee']); // ❌ 錯字或 key 不存在不會報錯</code></pre>
   </tbody>
 </table>
 <h3 id="模式匹配pattern-matching">模式匹配（pattern matching）</h3>
-<p>它讓你像在 <strong>「解構資料」</strong> 一樣地做條件判斷或資料抽取。類似你在 <strong>JavaScript</strong> 用 <code>const { name } = user</code></p>]]></description></item></channel></rss>
+<p>它讓你像在 <strong>「解構資料」</strong> 一樣地做條件判斷或資料抽取。類似你在 <strong>JavaScript</strong> 用 <code>const { name } = user</code></p>]]></description>
+</item>
+</channel>
+</rss>
