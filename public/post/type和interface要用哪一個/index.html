@@ -1,341 +1,210 @@
-
 <!DOCTYPE html>
-<html lang="en-us"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
-  <meta charset="utf-8" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, viewport-fit=cover"
-  />
-
-  <title>
-    Type 和 Interface 要用哪一個? | 資深菜鳥 Nick
-  </title>
-  <meta
-    name="description"
-    content="前言
-TypeScript 中，Type 與 Interface 都是用來定義型別的關鍵字，但兩者之間存在著些許的差異。以下將深入探討 Type 與 Interface 的特性，並建議在不同的情境下如何選擇適合的型別定義方式，以提升 TypeScript 程式碼的可讀性與維護性。
-1. 擴展(Extends)的語法差異:
-// Interface 使用 extends
-interface Animal {
-  name: string;
-}
-
-interface Dog extends Animal {
-  bark(): void;
-}
-
-// Type 使用 &amp;
-type Animal = {
-  name: string;
-};
-
-type Dog = Animal &amp; {
-  bark(): void;
-};
-2. 合併聲明(Declaration Merging):
-// Interface 可以重複宣告,會自動合併
-interface User {
-  name: string;
-}
-
-interface User {
-  age: number;
-}
-/* 最終 User 將包含 name 和 age */
-
-// Type 不能重複宣告
-type User = {
-  name: string;
-};
-
-// 錯誤:不能重複宣告 type User
-type User = {
-  age: number;
-};
-3.映射類型 (Mapped Types)
-// Type 可以使用更複雜的類型運算
-type Keys = &#39;firstname&#39; | &#39;lastname&#39;;
-type DuplicateString = {
-  [key in Keys]: string;
-};
-
-// Interface 不支援映射類型，不能這樣寫
-interface DuplicateString {
-  [key in Keys]: string; // 錯誤
-}
-4.Tuple 和 Union 的定義:
-// Type 可以直接定義
-type StringOrNumber = string | number;
-type StringArray = [string, string];
-
-// Interface 需要間接定義
-interface StringArray extends Array&lt;string&gt; {
-  0: string;
-  1: string;
-  length: 2;
-}
-💡 結論
-
-無論使用哪一種方式都好，主要是跟團隊建立好專案的 Coding Guideline，良好的溝通和團隊合作才是上策。"
-  />
-  <link rel="canonical" href="http://localhost:1313/post/type%E5%92%8Cinterface%E8%A6%81%E7%94%A8%E5%93%AA%E4%B8%80%E5%80%8B/" />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css"
-  />
-  
-  <link rel="stylesheet" href="http://localhost:1313/scss/style.min.aa7209164f013c6883aa54384ea45a46e582eacf9a17e9565badebd557dd1059.css" />
-
-  <link rel="icon" href="/images/favicon.png" />
-
-  <meta property="og:url" content="http://localhost:1313/post/type%E5%92%8Cinterface%E8%A6%81%E7%94%A8%E5%93%AA%E4%B8%80%E5%80%8B/">
-  <meta property="og:site_name" content="資深菜鳥 Nick">
+<html lang="en">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Type 和 Interface 要用哪一個? - ＠＠資深菜鳥 Nick</title><meta name="Description" content="Hugo theme - LoveIt"><meta property="og:url" content="http://localhost:1313/post/type%E5%92%8Cinterface%E8%A6%81%E7%94%A8%E5%93%AA%E4%B8%80%E5%80%8B/">
+  <meta property="og:site_name" content="＠＠資深菜鳥 Nick">
   <meta property="og:title" content="Type 和 Interface 要用哪一個?">
   <meta property="og:description" content="前言 TypeScript 中，Type 與 Interface 都是用來定義型別的關鍵字，但兩者之間存在著些許的差異。以下將深入探討 Type 與 Interface 的特性，並建議在不同的情境下如何選擇適合的型別定義方式，以提升 TypeScript 程式碼的可讀性與維護性。
 1. 擴展(Extends)的語法差異: // Interface 使用 extends interface Animal { name: string; } interface Dog extends Animal { bark(): void; } // Type 使用 &amp; type Animal = { name: string; }; type Dog = Animal &amp; { bark(): void; }; 2. 合併聲明(Declaration Merging): // Interface 可以重複宣告,會自動合併 interface User { name: string; } interface User { age: number; } /* 最終 User 將包含 name 和 age */ // Type 不能重複宣告 type User = { name: string; }; // 錯誤:不能重複宣告 type User type User = { age: number; }; 3.映射類型 (Mapped Types) // Type 可以使用更複雜的類型運算 type Keys = &#39;firstname&#39; | &#39;lastname&#39;; type DuplicateString = { [key in Keys]: string; }; // Interface 不支援映射類型，不能這樣寫 interface DuplicateString { [key in Keys]: string; // 錯誤 } 4.Tuple 和 Union 的定義: // Type 可以直接定義 type StringOrNumber = string | number; type StringArray = [string, string]; // Interface 需要間接定義 interface StringArray extends Array&lt;string&gt; { 0: string; 1: string; length: 2; } 💡 結論 無論使用哪一種方式都好，主要是跟團隊建立好專案的 Coding Guideline，良好的溝通和團隊合作才是上策。">
-  <meta property="og:locale" content="en_us">
+  <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="post">
     <meta property="article:published_time" content="2025-01-02T10:59:25+08:00">
     <meta property="article:modified_time" content="2025-01-02T10:59:25+08:00">
- 
-  <meta name="twitter:card" content="summary">
+    <meta property="og:image" content="http://localhost:1313/favicon.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:1313/favicon.png">
   <meta name="twitter:title" content="Type 和 Interface 要用哪一個?">
   <meta name="twitter:description" content="前言 TypeScript 中，Type 與 Interface 都是用來定義型別的關鍵字，但兩者之間存在著些許的差異。以下將深入探討 Type 與 Interface 的特性，並建議在不同的情境下如何選擇適合的型別定義方式，以提升 TypeScript 程式碼的可讀性與維護性。
 1. 擴展(Extends)的語法差異: // Interface 使用 extends interface Animal { name: string; } interface Dog extends Animal { bark(): void; } // Type 使用 &amp; type Animal = { name: string; }; type Dog = Animal &amp; { bark(): void; }; 2. 合併聲明(Declaration Merging): // Interface 可以重複宣告,會自動合併 interface User { name: string; } interface User { age: number; } /* 最終 User 將包含 name 和 age */ // Type 不能重複宣告 type User = { name: string; }; // 錯誤:不能重複宣告 type User type User = { age: number; }; 3.映射類型 (Mapped Types) // Type 可以使用更複雜的類型運算 type Keys = &#39;firstname&#39; | &#39;lastname&#39;; type DuplicateString = { [key in Keys]: string; }; // Interface 不支援映射類型，不能這樣寫 interface DuplicateString { [key in Keys]: string; // 錯誤 } 4.Tuple 和 Union 的定義: // Type 可以直接定義 type StringOrNumber = string | number; type StringArray = [string, string]; // Interface 需要間接定義 interface StringArray extends Array&lt;string&gt; { 0: string; 1: string; length: 2; } 💡 結論 無論使用哪一種方式都好，主要是跟團隊建立好專案的 Coding Guideline，良好的溝通和團隊合作才是上策。">
- 
-</head>
-<body><nav class="navbar is-light" role="navigation">
-    <div class="container" style="justify-content: space-around;">
-        <div class="navbar-brand">
-            <a href="/" title="home" class="navbar-item">
-                <span class="logo">
-                    <h1>資深菜鳥 Nick</h1>
-                </span>
-            </a>
+<meta name="application-name" content="Nick">
+<meta name="apple-mobile-web-app-title" content="Nick">
+<meta name="referrer" content="no-referrer" /><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:1313/post/type%E5%92%8Cinterface%E8%A6%81%E7%94%A8%E5%93%AA%E4%B8%80%E5%80%8B/" /><link rel="prev" href="http://localhost:1313/post/%E9%82%8F%E8%BC%AF%E9%81%8B%E7%AE%97%E5%AD%90-%E7%9F%AD%E8%B7%AF/" /><link rel="next" href="http://localhost:1313/post/javascript-%E9%96%89%E5%8C%85closure/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/css/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Type 和 Interface 要用哪一個?",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/localhost:1313\/post\/type%E5%92%8Cinterface%E8%A6%81%E7%94%A8%E5%93%AA%E4%B8%80%E5%80%8B\/"
+        },"image": ["http:\/\/localhost:1313\/images\/Apple-Devices-Preview.png"],"genre": "post","wordcount":  203 ,
+        "url": "http:\/\/localhost:1313\/post\/type%E5%92%8Cinterface%E8%A6%81%E7%94%A8%E5%93%AA%E4%B8%80%E5%80%8B\/","datePublished": "2025-01-02T10:59:25+08:00","dateModified": "2025-01-02T10:59:25+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Nick","logo": "http:\/\/localhost:1313\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Nick"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>
+          const query = window.matchMedia('(prefers-color-scheme: dark)');
+          function applyTheme() {
+            let theme = window.localStorage?.getItem('theme') || 'auto';
+            let isDark = theme === 'dark' || (theme === 'auto' && query.matches);
+            document.body.setAttribute('theme', isDark? 'dark' : 'light');
+            document.body.setAttribute('cfg-theme', theme);
+          }
 
-            
-            <a id="theme-toggle" class="theme-toggle" href="#">
-                <img src="http://localhost:1313/svg/sun.svg" alt="sun icon" class="theme-icon" />
-            </a>
+          applyTheme();
+          query.addEventListener('change', applyTheme);
+        </script>
 
-            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-            </a>
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="＠＠資深菜鳥 Nick"></a>
         </div>
-
-        <div class="navbar-menu">
-            <div class="navbar-start">
-                
-                <a href="/categories" class="navbar-item">文章分類</a>
-                
-                <a href="/about" class="navbar-item">關於菜鳥</a>
-                
-            </div>
-
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> 分類 </a><a class="menu-item" href="/about/"> 關於菜鳥 </a><a class="menu-item" href="https://github.com/north13" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw' aria-hidden='true'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a><a href="javascript:void(0);" class="menu-item language" title="Select Language">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>                      
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/post/type%E5%92%8Cinterface%E8%A6%81%E7%94%A8%E5%93%AA%E4%B8%80%E5%80%8B/" selected>English</option></select>
+                </a></div>
         </div>
-        <div class="search">
-            <div id="fastSearch">
-                <input id="searchInput" tabindex="0" placeholder="文章搜尋">
-                <ul id="searchResults">
-
-                </ul>
-            </div>
-            <a id="search-btn" style="display: inline-block;" href="# ">
-                <div class="icon-search"><svg class="search-svg" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div>
-            </a>
-        </div>
-
-        <script src="/js/fuse.min.js"></script> 
-        <script src="/js/fastsearch.js"></script>
-
     </div>
-</nav>
-
-<script>
-    
-    document.addEventListener('DOMContentLoaded', function() {
-        var burger = document.querySelector('.navbar-burger');
-        burger.addEventListener('click', function() {
-            burger.classList.toggle('is-active');
-            document.querySelector('.navbar-menu').classList.toggle('is-active');
-        });
-    });
-
-    
-    function setTheme(theme) {
-        let body = document.body;
-        let themeIcon = document.querySelector(".theme-icon");
-        if (theme === "dark") {
-            body.classList.add("dark-mode");
-            themeIcon.src = "http:\/\/localhost:1313\/svg/moon.svg";
-            themeIcon.alt = "moon icon";
-        } else {
-            body.classList.remove("dark-mode");
-            themeIcon.src = "http:\/\/localhost:1313\/svg/sun.svg";
-            themeIcon.alt = "sun icon";
-        }
-        
-        localStorage.setItem("theme", theme);
-    }
-
-    
-    let theme = localStorage.getItem("theme") || "light";
-    const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    if (isDarkMode) {
-        
-        setTheme('dark');
-
-    } else {
-        
-        setTheme('light');
-    }
-    setTheme(theme);
-
-    
-    document.getElementById("theme-toggle").addEventListener("click", function() {
-        if (theme === "light") {
-            theme = "dark";
-        } else {
-            theme = "light";
-        }
-        setTheme(theme);
-    });
-
-
-
-</script>
-
-</header><main>
-<div class="single-container">
-    <div class="archive">
-        <h1 class="title is-1">Type 和 Interface 要用哪一個?</h1>
-        <div class="title subtitle heading is-6">
-            <div class="author-info columns is-vcentered">
-                <div class="column">
-                    <div class="columns is-vcentered is-mobile">
-                        
-                        <div class="column is-narrow">
-                            <img src="/images/avatar.jpg" class="author-image">
-                        </div>
-                        
-                        <div class="column">
-                            <p>Nick</p>
-                            <p><time>January 2, 2025</time>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="small-categories-container">
-                    <a href="/categories/%E5%89%8D%E7%AB%AF">前端</a>, <a href="/categories/typescript">TypeScript</a>
-                </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="＠＠資深菜鳥 Nick"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
             </div>
         </div>
-        <div class="content article-content">
-            <div class="toc-container">
-                
-    <div class="post-toc">
-        
-            <aside>
-                <button id="tocButton" ><h4 id="contents" style="margin-left: 1vw;color:rgb(96, 134, 180);margin-bottom: 0;">CONTENTS</h4></button>
-                <div id="hide"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#前言">前言</a>
-      <ul>
-        <li></li>
-        <li><a href="#-結論">💡 結論</a></li>
-      </ul>
-    </li>
-    <li><a href="#參考資料"><strong>參考資料</strong></a></li>
-  </ul>
-</nav></div>
-            </aside>
-        
-    </div><script>
-    
-        let button = document.getElementById('tocButton');
-        let hide = document.getElementById("hide");
-        let contents=document.getElementById("contents");
-        button.addEventListener("click", function() {
-        if (hide.style.display!='block') {
-            hide.style.display='block'
-        } else {
-            hide.style.display='none'
-            contents.style.color='rgb(96, 134, 180)'
-        }
-        });
-    
-
-
-
-
-</script>
-            </div>
-            <h2 id="前言">前言</h2>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">分類</a><a class="menu-item" href="/about/" title="">關於菜鳥</a><a class="menu-item" href="https://github.com/north13" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw' aria-hidden='true'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="Select Language">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/post/type%E5%92%8Cinterface%E8%A6%81%E7%94%A8%E5%93%AA%E4%B8%80%E5%80%8B/" selected>English</option></select>
+                </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title animate__animated animate__pulse animate__faster">Type 和 Interface 要用哪一個?</h1><div class="content" id="content"><h2 id="前言">前言</h2>
 <p>TypeScript 中，Type 與 Interface 都是用來定義型別的關鍵字，但兩者之間存在著些許的差異。以下將深入探討 Type 與 Interface 的特性，並建議在不同的情境下如何選擇適合的型別定義方式，以提升 TypeScript 程式碼的可讀性與維護性。</p>
 <h5 id="1-擴展extends的語法差異">1. 擴展(Extends)的語法差異:</h5>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">// Interface 使用 extends
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Animal</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>;
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Dog</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Animal</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">bark</span>()<span style="color:#f92672">:</span> <span style="color:#66d9ef">void</span>;
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// Type 使用 &amp;
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Animal</span> <span style="color:#f92672">=</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>;
-</span></span><span style="display:flex;"><span>};
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Dog</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Animal</span> <span style="color:#f92672">&amp;</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">bark</span>()<span style="color:#f92672">:</span> <span style="color:#66d9ef">void</span>;
-</span></span><span style="display:flex;"><span>};
-</span></span></code></pre></div><h5 id="2-合併聲明declaration-merging">2. 合併聲明(Declaration Merging):</h5>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#75715e">// Interface 可以重複宣告,會自動合併
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">User</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>;
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">User</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">age</span>: <span style="color:#66d9ef">number</span>;
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span><span style="color:#75715e">/* 最終 User 將包含 name 和 age */</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// Type 不能重複宣告
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">User</span> <span style="color:#f92672">=</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>;
-</span></span><span style="display:flex;"><span>};
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// 錯誤:不能重複宣告 type User
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">User</span> <span style="color:#f92672">=</span> {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">age</span>: <span style="color:#66d9ef">number</span>;
-</span></span><span style="display:flex;"><span>};
-</span></span></code></pre></div><h5 id="3映射類型-mapped-types">3.映射類型 (Mapped Types)</h5>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#75715e">// Type 可以使用更複雜的類型運算
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Keys</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;firstname&#39;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#39;lastname&#39;</span>;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">DuplicateString</span> <span style="color:#f92672">=</span> {
-</span></span><span style="display:flex;"><span>  [<span style="color:#a6e22e">key</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">Keys</span>]<span style="color:#f92672">:</span> <span style="color:#66d9ef">string</span>;
-</span></span><span style="display:flex;"><span>};
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// Interface 不支援映射類型，不能這樣寫
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">DuplicateString</span> {
-</span></span><span style="display:flex;"><span>  [<span style="color:#a6e22e">key</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">Keys</span>]<span style="color:#f92672">:</span> <span style="color:#66d9ef">string</span>; <span style="color:#75715e">// 錯誤
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
-</span></span></code></pre></div><h5 id="4tuple-和-union-的定義">4.Tuple 和 Union 的定義:</h5>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#75715e">// Type 可以直接定義
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">StringOrNumber</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">string</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">number</span>;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">StringArray</span> <span style="color:#f92672">=</span> [<span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">string</span>];
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// Interface 需要間接定義
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">StringArray</span> <span style="color:#66d9ef">extends</span> Array&lt;<span style="color:#f92672">string</span>&gt; {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">0</span>: <span style="color:#66d9ef">string</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">1</span>: <span style="color:#66d9ef">string</span>;
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">length</span>: <span style="color:#66d9ef">2</span>;
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h3 id="-結論">💡 結論</h3>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-typescript">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-typescript" data-lang="typescript"><span class="line"><span class="cl"><span class="c1">// Interface 使用 extends
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">interface</span> <span class="nx">Animal</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">name</span>: <span class="kt">string</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">interface</span> <span class="nx">Dog</span> <span class="kr">extends</span> <span class="nx">Animal</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">bark</span><span class="p">()</span><span class="o">:</span> <span class="k">void</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Type 使用 &amp;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">type</span> <span class="nx">Animal</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">name</span>: <span class="kt">string</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">type</span> <span class="nx">Dog</span> <span class="o">=</span> <span class="nx">Animal</span> <span class="o">&amp;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">bark</span><span class="p">()</span><span class="o">:</span> <span class="k">void</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span></span></span></code></pre></div></div>
+<h5 id="2-合併聲明declaration-merging">2. 合併聲明(Declaration Merging):</h5>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-ts">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="line"><span class="cl"><span class="c1">// Interface 可以重複宣告,會自動合併
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">interface</span> <span class="nx">User</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">name</span>: <span class="kt">string</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">interface</span> <span class="nx">User</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">age</span>: <span class="kt">number</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/* 最終 User 將包含 name 和 age */</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Type 不能重複宣告
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">type</span> <span class="nx">User</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">name</span>: <span class="kt">string</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 錯誤:不能重複宣告 type User
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">type</span> <span class="nx">User</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">age</span>: <span class="kt">number</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span></span></span></code></pre></div></div>
+<h5 id="3映射類型-mapped-types">3.映射類型 (Mapped Types)</h5>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-ts">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="line"><span class="cl"><span class="c1">// Type 可以使用更複雜的類型運算
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">type</span> <span class="nx">Keys</span> <span class="o">=</span> <span class="s1">&#39;firstname&#39;</span> <span class="o">|</span> <span class="s1">&#39;lastname&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">type</span> <span class="nx">DuplicateString</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">key</span> <span class="k">in</span> <span class="nx">Keys</span><span class="p">]</span><span class="o">:</span> <span class="kt">string</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Interface 不支援映射類型，不能這樣寫
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">interface</span> <span class="nx">DuplicateString</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">key</span> <span class="k">in</span> <span class="nx">Keys</span><span class="p">]</span><span class="o">:</span> <span class="kt">string</span><span class="p">;</span> <span class="c1">// 錯誤
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span></span></span></code></pre></div></div>
+<h5 id="4tuple-和-union-的定義">4.Tuple 和 Union 的定義:</h5>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-ts">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="line"><span class="cl"><span class="c1">// Type 可以直接定義
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">type</span> <span class="nx">StringOrNumber</span> <span class="o">=</span> <span class="kt">string</span> <span class="o">|</span> <span class="kt">number</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">type</span> <span class="nx">StringArray</span> <span class="o">=</span> <span class="p">[</span><span class="kt">string</span><span class="p">,</span> <span class="kt">string</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Interface 需要間接定義
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">interface</span> <span class="nx">StringArray</span> <span class="kr">extends</span> <span class="nb">Array</span><span class="p">&lt;</span><span class="nt">string</span><span class="p">&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">0</span>: <span class="kt">string</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">1</span>: <span class="kt">string</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">length</span>: <span class="kt">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
+<h3 id="-結論">💡 結論</h3>
 <blockquote>
 <p>無論使用哪一種方式都好，主要是跟團隊建立好專案的 <code>Coding Guideline</code>，良好的溝通和團隊合作才是上策。</p>
 <p>但若以獨立開發來說，根據過往經驗，從一開始做 Java 開發，到後來接觸前端也是習慣用 Interface 來做，畢竟這也比較接近 OOP 的概念，深入研究前端技術後也開始慢慢的轉為使用 Type</p>
@@ -357,52 +226,23 @@ interface StringArray extends Array&lt;string&gt; {
 </table>
 <h2 id="參考資料"><strong>參考資料</strong></h2>
 <ul>
-<li><a href="https://www.youtube.com/watch?v=Idf0zh9f3qQ">Why use Type and not Interface in TypeScript</a></li>
-<li><a href="https://www.youtube.com/watch?v=QYO-sieqLD4">Interfaces vs Type Aliases: what&rsquo;s the difference?</a></li>
+<li><a href="https://www.youtube.com/watch?v=Idf0zh9f3qQ" target="_blank" rel="noopener noreffer ">Why use Type and not Interface in TypeScript</a></li>
+<li><a href="https://www.youtube.com/watch?v=QYO-sieqLD4" target="_blank" rel="noopener noreffer ">Interfaces vs Type Aliases: what&rsquo;s the difference?</a></li>
 </ul>
-
+</div></div></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.140.1">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.3.1-DEV"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2024 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Nick</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank"></a></span></div>
         </div>
-    </div>
-    <a href="#" id="scrollToTopButton">
-        <svg t="1686753152588" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
-            p-id="3988" width="48" height="48">
-            <path
-                d="M518.5 360.3c-3.2-4.4-9.7-4.4-12.9 0l-178 246c-3.8 5.3 0 12.7 6.5 12.7H381c10.2 0 19.9-4.9 25.9-13.2L512 460.4l105.2 145.4c6 8.3 15.6 13.2 25.9 13.2H690c6.5 0 10.3-7.4 6.5-12.7l-178-246z"
-                p-id="3989" fill="#363636"></path>
-            <path
-                d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64z m0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
-                p-id="3990" fill="#363636"></path>
-        </svg>
-    </a>
+    </footer></div>
 
-<div class="pp-container">
-        <section class="pre-and-post">
-            <div class="has-text-left">
-                
-                <p>Previous post</p>
-                <a href="http://localhost:1313/post/%E9%82%8F%E8%BC%AF%E9%81%8B%E7%AE%97%E5%AD%90-%E7%9F%AD%E8%B7%AF/">邏輯運算子 - 短路</a>
-                
-            </div>
-            <div class="has-text-right">
-                
-                <p>Next post</p>
-                <a href="http://localhost:1313/post/javascript-%E9%96%89%E5%8C%85closure/">JavaScript 閉包(Closure)</a>
-                
-            </div>
-        </section>
-    </div>
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a>
+        </div>
 
-</div>
-
-        </main><footer class="footer">
-    <div class="content has-text-centered">
-    <span>&copy; 2025 <a href="http://localhost:1313/">資深菜鳥 Nick</a></span>
-    <span>
-        Powered by
-        <a href="https://gohugo.io/" target="_blank">Hugo</a> &
-        <a href="https://github.com/hotjuicew/hugo-JuiceBar" target="_blank">JuiceBar</a>
-    </span>
-    </div>
-  </footer></body>
+        <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/algoliasearch/lite/browser.umd.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script src="/lib/sharer/sharer.min.js"></script><script>window.config={"comment":{},"search":{"algoliaAppID":"4D1IDY8JU6","algoliaIndex":"index","algoliaSearchKey":"05332ac5ed76655a511f0da583a9afac","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script src="/js/theme.min.js"></script></body>
 </html>
-
