@@ -45,31 +45,43 @@
 <h3 id="1物件屬性訪問錯誤失去類型安全">1.物件屬性訪問錯誤（失去類型安全）</h3>
 <p>當我們使用 <code>any</code> 時，編譯器不會檢查我們是否正在訪問一個不存在的屬性。</p>
 <h4 id="-使用-any">❌ 使用 <code>any</code></h4>
-<pre><code class="language-typescript">// 使用了 any，編譯器不會報錯
-function processUserData(user: any) {
-  // 這裡假設我們想要訪問 'email'，但卻錯誤地寫成了 'mail'
-  console.log(user.mail); // 執行時是 undefined
-  return user.id.toString(); // 如果 user 沒有 id，運行時會拋出錯誤！
-}
-
-processUserData({ name: 'Nick', age: 36 }); // TS 不報錯，但運行時會出問題</code></pre>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-typescript">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-typescript" data-lang="typescript"><span class="line"><span class="cl"><span class="c1">// 使用了 any，編譯器不會報錯
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">function</span> <span class="nx">processUserData</span><span class="p">(</span><span class="nx">user</span>: <span class="kt">any</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 這裡假設我們想要訪問 &#39;email&#39;，但卻錯誤地寫成了 &#39;mail&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">mail</span><span class="p">);</span> <span class="c1">// 執行時是 undefined
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">return</span> <span class="nx">user</span><span class="p">.</span><span class="nx">id</span><span class="p">.</span><span class="nx">toString</span><span class="p">();</span> <span class="c1">// 如果 user 沒有 id，運行時會拋出錯誤！
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">processUserData</span><span class="p">({</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Nick&#39;</span><span class="p">,</span> <span class="nx">age</span>: <span class="kt">36</span> <span class="p">});</span> <span class="c1">// TS 不報錯，但運行時會出問題
+</span></span></span></code></pre></div></div>
 <h4 id="-定義一個精確的-type">⭕️ 定義一個精確的 type</h4>
-<pre><code class="language-typescript">// 使用 type 定義 User 結構
-type UserProfile = {
-  id: number;
-  name: string;
-  email: string;
-};
-
-function processUserDataSafe(user: UserProfile) {
-  // 這裡如果寫成 user.mail，TS 會立即報錯：'Property 'mail' does not exist on type 'UserProfile'.'
-  console.log(`User ID: ${user.id}, Name: ${user.name}`);
-  return user.id.toString();
-}
-
-// 傳入錯誤的物件結構時，TS 會在編譯階段就提示錯誤
-// processUserDataSafe({ name: 'Nick', age: 36 }); // TS 報錯：缺少屬性 'id' 和 'email'
-processUserDataSafe({ id: 101, name: 'Nick', email: 'nick@example.com' }); // 正常運行</code></pre>
+<div class="code-block code-line-numbers" style="counter-reset: code-block 0">
+    <div class="code-header language-typescript">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-typescript" data-lang="typescript"><span class="line"><span class="cl"><span class="c1">// 使用 type 定義 User 結構
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">type</span> <span class="nx">UserProfile</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">id</span>: <span class="kt">number</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">name</span>: <span class="kt">string</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">email</span>: <span class="kt">string</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">processUserDataSafe</span><span class="p">(</span><span class="nx">user</span>: <span class="kt">UserProfile</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 這裡如果寫成 user.mail，TS 會立即報錯：&#39;Property &#39;mail&#39; does not exist on type &#39;UserProfile&#39;.&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`User ID: </span><span class="si">${</span><span class="nx">user</span><span class="p">.</span><span class="nx">id</span><span class="si">}</span><span class="sb">, Name: </span><span class="si">${</span><span class="nx">user</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">user</span><span class="p">.</span><span class="nx">id</span><span class="p">.</span><span class="nx">toString</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 傳入錯誤的物件結構時，TS 會在編譯階段就提示錯誤
+</span></span></span><span class="line"><span class="cl"><span class="c1">// processUserDataSafe({ name: &#39;Nick&#39;, age: 36 }); // TS 報錯：缺少屬性 &#39;id&#39; 和 &#39;email&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">processUserDataSafe</span><span class="p">({</span> <span class="nx">id</span>: <span class="kt">101</span><span class="p">,</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Nick&#39;</span><span class="p">,</span> <span class="nx">email</span><span class="o">:</span> <span class="s1">&#39;nick@example.com&#39;</span> <span class="p">});</span> <span class="c1">// 正常運行
+</span></span></span></code></pre></div></div>
 <h3 id="2函式輸入參數與回傳值難以重構和追蹤">2.函式輸入參數與回傳值（難以重構和追蹤）</h3>
 <p>在函式參數和回傳值上使用 <code>any</code> 會使得函式的行為變得模糊，難以理解它的預期輸入和輸出。</p>]]></description>
 </item>
@@ -82,17 +94,32 @@ processUserDataSafe({ id: 101, name: 'Nick', email: 'nick@example.com' }); // �
     <description><![CDATA[<h3 id="什麼是-record">什麼是 Record？</h3>
 <p><strong>Record</strong> 是一種新的資料類型，用來表示一組有序的值集合，包含具名或未具名欄位。可以想像成是不需要先定義一個 <strong>class</strong> 的 <strong>「輕量級的物件」</strong> 。</p>
 <h5 id="不具名-record"><code>不具名</code> Record</h5>
-<pre><code class="language-dart">var record = ('Nick', 35);
-print(record.$1); // Nick
-print(record.$2); // 35</code></pre>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-dart">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-dart" data-lang="dart"><span class="line"><span class="cl"><span class="kd">var</span> <span class="n">record</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Nick&#39;</span><span class="p">,</span> <span class="m">35</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">print</span><span class="p">(</span><span class="n">record</span><span class="p">.</span><span class="n">$1</span><span class="p">);</span> <span class="c1">// Nick
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">print</span><span class="p">(</span><span class="n">record</span><span class="p">.</span><span class="n">$2</span><span class="p">);</span> <span class="o">//</span> <span class="m">35</span></span></span></code></pre></div></div>
 <h5 id="具名-record"><code>具名</code> Record</h5>
-<pre><code class="language-dart">var record = (name: 'Nick', age: 35);
-print(record.name); // Nick
-print(record.age);  // 35</code></pre>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-dart">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-dart" data-lang="dart"><span class="line"><span class="cl"><span class="kd">var</span> <span class="n">record</span> <span class="o">=</span> <span class="p">(</span><span class="nl">name:</span> <span class="s1">&#39;Nick&#39;</span><span class="p">,</span> <span class="nl">age:</span> <span class="m">35</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">print</span><span class="p">(</span><span class="n">record</span><span class="p">.</span><span class="n">name</span><span class="p">);</span> <span class="c1">// Nick
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">print</span><span class="p">(</span><span class="n">record</span><span class="p">.</span><span class="n">age</span><span class="p">);</span>  <span class="o">//</span> <span class="m">35</span></span></span></code></pre></div></div>
 <h5 id="混合型-record"><code>混合型</code> Record</h5>
-<pre><code class="language-dart">var record = ('Nick', age: 35);
-print(record.$1);   // Nick
-print(record.age);  // 35</code></pre>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-dart">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-dart" data-lang="dart"><span class="line"><span class="cl"><span class="kd">var</span> <span class="n">record</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Nick&#39;</span><span class="p">,</span> <span class="nl">age:</span> <span class="m">35</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">print</span><span class="p">(</span><span class="n">record</span><span class="p">.</span><span class="n">$1</span><span class="p">);</span>   <span class="c1">// Nick
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">print</span><span class="p">(</span><span class="n">record</span><span class="p">.</span><span class="n">age</span><span class="p">);</span>  <span class="o">//</span> <span class="m">35</span></span></span></code></pre></div></div>
 <table>
   <thead>
       <tr>
@@ -108,46 +135,7 @@ print(record.age);  // 35</code></pre>
   </tbody>
 </table>
 <h3 id="為什麼有-record">為什麼有 Record？</h3>
-<p>如果 <strong>Dart</strong> 函數要回傳多個值，通常要用 <strong>class</strong> 或 <strong>Map</strong>，但這樣太冗長或效能不佳。而 <strong>Record</strong> 的應用有</p>
-<ul>
-<li>更簡潔的語法</li>
-<li>更好的編譯期型別檢查</li>
-<li>更快的效能（比 Map 好）</li>
-</ul>
-<h4 id="-使用-map-不建議">❌ 使用 Map (不建議)</h4>
-<pre><code class="language-dart">Map<String, dynamic> getUser() => {
-  'name': 'Nick',
-  'age': 35,
-  'isMember': true
-};
-
-var user = getUser();
-print(user['nameee']); // ❌ 錯字或 key 不存在不會報錯</code></pre>
-<h4 id="-使用-class-不建議">❌ 使用 Class (不建議)</h4>
-<pre><code class="language-dart">class User {
-  final String name;
-  final int age;
-  final bool isMember;
-  User(this.name, this.age, this.isMember);
-}</code></pre>
-<h4 id="-使用-record-建議">⭕️ 使用 Record (建議)</h4>
-<pre><code class="language-dart">({String name, int age, bool isMember}) user = (name: 'Nick', age: 35, isMember: true);</code></pre>
-<table>
-  <thead>
-      <tr>
-          <th></th>
-          <th></th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td></td>
-          <td></td>
-      </tr>
-  </tbody>
-</table>
-<h3 id="模式匹配pattern-matching">模式匹配（pattern matching）</h3>
-<p>它讓你像在 <strong>「解構資料」</strong> 一樣地做條件判斷或資料抽取。類似你在 <strong>JavaScript</strong> 用 <code>const { name } = user</code></p>]]></description>
+<p>如果 <strong>Dart</strong> 函數要回傳多個值，通常要用 <strong>class</strong> 或 <strong>Map</strong>，但這樣太冗長或效能不佳。而 <strong>Record</strong> 的應用有</p>]]></description>
 </item>
 <item>
     <title>Ref 與 Reactive</title>
@@ -157,24 +145,29 @@ print(user['nameee']); // ❌ 錯字或 key 不存在不會報錯</code></pre>
     <guid>http://localhost:1313/ref%E8%88%87reactive%E7%9A%84%E5%B7%AE%E7%95%B0/</guid>
     <description><![CDATA[<p>這篇主要記錄關於 <code>Vue</code> 的 <code>ref</code> 和 <code>reactive</code>詳細內容和範例，之前寫過一篇 <strong>Angular</strong> 和 <strong>Vue</strong> 中使用響應式狀態的介紹，可參考 <strong><a href="http://localhost:1313/post/angular%E5%92%8Cvue%E7%9A%84%E9%9F%BF%E6%87%89%E5%BC%8F%E7%8B%80%E6%85%8B%E7%AE%A1%E7%90%86/" target="_blank" rel="noopener noreffer ">Angular 和 Vue 的響應式狀態管理</a></strong></p>
 <h3 id="ref-範例"><code>Ref</code> 範例</h3>
-<pre><code class="language-ts">// 基本類型使用 ref
-const count = ref(0);
-
-// 需要使用 .value 來修改值
-function increment() {
-  count.value++;
-}
-
-// ref 也可以包裝物件
-const user = ref({
-  name: 'John',
-  age: 25,
-});
-
-// 物件屬性修改也需要 .value
-function updateUser() {
-  user.value.age++;
-}</code></pre>
+<div class="code-block code-line-numbers" style="counter-reset: code-block 0">
+    <div class="code-header language-ts">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="line"><span class="cl"><span class="c1">// 基本類型使用 ref
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">count</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 需要使用 .value 來修改值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">function</span> <span class="nx">increment() {</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">count</span><span class="p">.</span><span class="nx">value</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// ref 也可以包裝物件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;John&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">age</span>: <span class="kt">25</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 物件屬性修改也需要 .value
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">function</span> <span class="nx">updateUser() {</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">user</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">age</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
 <table>
   <thead>
       <tr>
@@ -190,21 +183,27 @@ function updateUser() {
   </tbody>
 </table>
 <h3 id="reactive-範例"><code>Reactive</code> 範例</h3>
-<pre><code class="language-ts">// 物件、陣列使用 reactive
-let user = reactive({
-  name: 'Mary',
-  age: 30,
-});
-
-let arr = reactive(['Vue', 'Angular', 'React']);
-
-// 直接修改屬性，不需要 .value
-function updateSettings() {
-  user.age += 1;
-}
-
-// reactive 不能用於基本類型
-const count = reactive(33); // error</code></pre>
+<div class="code-block code-line-numbers" style="counter-reset: code-block 0">
+    <div class="code-header language-ts">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="line"><span class="cl"><span class="c1">// 物件、陣列使用 reactive
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">let</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">reactive</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Mary&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">age</span>: <span class="kt">30</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="nx">reactive</span><span class="p">([</span><span class="s1">&#39;Vue&#39;</span><span class="p">,</span> <span class="s1">&#39;Angular&#39;</span><span class="p">,</span> <span class="s1">&#39;React&#39;</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 直接修改屬性，不需要 .value
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">function</span> <span class="nx">updateSettings() {</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">user</span><span class="p">.</span><span class="nx">age</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// reactive 不能用於基本類型
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">count</span> <span class="o">=</span> <span class="nx">reactive</span><span class="p">(</span><span class="mi">33</span><span class="p">);</span> <span class="c1">// error
+</span></span></span></code></pre></div></div>
 <table>
   <thead>
       <tr>
@@ -220,9 +219,15 @@ const count = reactive(33); // error</code></pre>
   </tbody>
 </table>
 <h3 id="-解構-reactive">❌ 解構 Reactive</h3>
-<pre><code class="language-ts">let { name, age } = user;
-user.name = 'John';
-console.log(name); // 'Mary'</code></pre>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-ts">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="line"><span class="cl"><span class="kd">let</span> <span class="p">{</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">age</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">user</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">user</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">&#39;John&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span> <span class="c1">// &#39;Mary&#39;
+</span></span></span></code></pre></div></div>
 <p>解構會從響應式對象中取值，並將其存入新的變數中，這些變數（<code>name</code> 和 <code>age</code>）僅僅是值，不再是響應式的。它們不會隨著 <code>user.name</code> 或 <code>user.age</code> 的變化而變化。</p>]]></description>
 </item>
 <item>
@@ -252,47 +257,53 @@ console.log(name); // 'Mary'</code></pre>
   </tbody>
 </table>
 <h4 id="範例">範例</h4>
-<pre><code class="language-typescript">const bankAccount = (function () {
-  let balance: number = 0;
-
-  function validateAmount(amount: number): boolean {
-    return amount > 0;
-  }
-
-  return {
-    deposit: function (amount: number): string {
-      if (!validateAmount(amount)) {
-        return '請輸入有效金額';
-      }
-      balance += amount;
-      return `存款成功，當前餘額: ${balance}`;
-    },
-
-    withdraw: function (amount: number): string {
-      if (!validateAmount(amount)) {
-        return '請輸入有效金額';
-      }
-      if (amount > balance) {
-        return '餘額不足';
-      }
-      balance -= amount;
-      return `當前餘額: ${balance}`;
-    },
-
-    getBalance: function (): string {
-      return `當前餘額: ${balance}`;
-    },
-  };
-})();
-
-console.log(bankAccount.getBalance()); // 當前餘額: 0
-console.log(bankAccount.deposit(1000)); // 存款成功，當前餘額: 1000
-console.log(bankAccount.withdraw(500)); // 提款成功，當前餘額: 500
-console.log(bankAccount.withdraw(1000)); // 餘額不足
-
-// 無法直接訪問私有變數和方法
-console.log(bankAccount.balance); // undefined
-console.log(bankAccount.validateAmount); // undefined</code></pre>
+<div class="code-block code-line-numbers" style="counter-reset: code-block 0">
+    <div class="code-header language-typescript">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-typescript" data-lang="typescript"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">bankAccount</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">let</span> <span class="nx">balance</span>: <span class="kt">number</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kd">function</span> <span class="nx">validateAmount</span><span class="p">(</span><span class="nx">amount</span>: <span class="kt">number</span><span class="p">)</span><span class="o">:</span> <span class="kr">boolean</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">amount</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">deposit</span>: <span class="kt">function</span> <span class="p">(</span><span class="nx">amount</span>: <span class="kt">number</span><span class="p">)</span><span class="o">:</span> <span class="kt">string</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">validateAmount</span><span class="p">(</span><span class="nx">amount</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s1">&#39;請輸入有效金額&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">balance</span> <span class="o">+=</span> <span class="nx">amount</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="sb">`存款成功，當前餘額: </span><span class="si">${</span><span class="nx">balance</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">withdraw</span>: <span class="kt">function</span> <span class="p">(</span><span class="nx">amount</span>: <span class="kt">number</span><span class="p">)</span><span class="o">:</span> <span class="kt">string</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">validateAmount</span><span class="p">(</span><span class="nx">amount</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s1">&#39;請輸入有效金額&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="nx">amount</span> <span class="o">&gt;</span> <span class="nx">balance</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s1">&#39;餘額不足&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">balance</span> <span class="o">-=</span> <span class="nx">amount</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="sb">`當前餘額: </span><span class="si">${</span><span class="nx">balance</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">getBalance</span>: <span class="kt">function</span> <span class="p">()</span><span class="o">:</span> <span class="kt">string</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="sb">`當前餘額: </span><span class="si">${</span><span class="nx">balance</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="p">})();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bankAccount</span><span class="p">.</span><span class="nx">getBalance</span><span class="p">());</span> <span class="c1">// 當前餘額: 0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bankAccount</span><span class="p">.</span><span class="nx">deposit</span><span class="p">(</span><span class="mi">1000</span><span class="p">));</span> <span class="c1">// 存款成功，當前餘額: 1000
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bankAccount</span><span class="p">.</span><span class="nx">withdraw</span><span class="p">(</span><span class="mi">500</span><span class="p">));</span> <span class="c1">// 提款成功，當前餘額: 500
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bankAccount</span><span class="p">.</span><span class="nx">withdraw</span><span class="p">(</span><span class="mi">1000</span><span class="p">));</span> <span class="c1">// 餘額不足
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 無法直接訪問私有變數和方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bankAccount</span><span class="p">.</span><span class="nx">balance</span><span class="p">);</span> <span class="c1">// undefined
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bankAccount</span><span class="p">.</span><span class="nx">validateAmount</span><span class="p">);</span> <span class="c1">// undefined
+</span></span></span></code></pre></div></div>
 <table>
   <thead>
       <tr>
@@ -312,18 +323,23 @@ console.log(bankAccount.validateAmount); // undefined</code></pre>
 <li>閉包能夠「記住」外層函式的變數
 在例子中，<code>balance</code> 是 <code>bankAccount</code> 的私有變數，但因為 <code>deposit</code>、<code>withdraw</code>、<code>getBalance</code> 在內部被 <strong>return</strong>，這些 <strong>function</strong> 形成閉包，可以持續訪問這些變數，即使外層函式已經執行完成。</li>
 </ol>
-<pre><code class="language-typescript">let balance: number = 0;
-
-return {
-  deposit: function (amount: number): string {
-    if (!validateAmount(amount)) {
-      return '請輸入有效金額';
-    }
-    balance += amount;
-    return `存款成功，當前餘額: ${balance}`;
-  },
-  // 其他方法同理
-};</code></pre>
+<div class="code-block code-line-numbers" style="counter-reset: code-block 0">
+    <div class="code-header language-typescript">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-typescript" data-lang="typescript"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">balance</span>: <span class="kt">number</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">return</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">deposit</span>: <span class="kt">function</span> <span class="p">(</span><span class="nx">amount</span>: <span class="kt">number</span><span class="p">)</span><span class="o">:</span> <span class="kt">string</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">validateAmount</span><span class="p">(</span><span class="nx">amount</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="s1">&#39;請輸入有效金額&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">balance</span> <span class="o">+=</span> <span class="nx">amount</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="sb">`存款成功，當前餘額: </span><span class="si">${</span><span class="nx">balance</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 其他方法同理
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span></span></span></code></pre></div></div>
 <p>這段程式碼中，<code>balance</code> 是閉包捕獲的變數，這些變數的值會根據執行的操作（例如存款或提款）而變化，並且被所有內部函式共享。</p>]]></description>
 </item>
 <item>
@@ -335,65 +351,85 @@ return {
     <description><![CDATA[<h2 id="前言">前言</h2>
 <p>TypeScript 中，Type 與 Interface 都是用來定義型別的關鍵字，但兩者之間存在著些許的差異。以下將深入探討 Type 與 Interface 的特性，並建議在不同的情境下如何選擇適合的型別定義方式，以提升 TypeScript 程式碼的可讀性與維護性。</p>
 <h5 id="1-擴展extends的語法差異">1. 擴展(Extends)的語法差異:</h5>
-<pre><code class="language-typescript">// Interface 使用 extends
-interface Animal {
-  name: string;
-}
-
-interface Dog extends Animal {
-  bark(): void;
-}
-
-// Type 使用 &
-type Animal = {
-  name: string;
-};
-
-type Dog = Animal & {
-  bark(): void;
-};</code></pre>
+<div class="code-block code-line-numbers" style="counter-reset: code-block 0">
+    <div class="code-header language-typescript">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-typescript" data-lang="typescript"><span class="line"><span class="cl"><span class="c1">// Interface 使用 extends
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">interface</span> <span class="nx">Animal</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">name</span>: <span class="kt">string</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">interface</span> <span class="nx">Dog</span> <span class="kr">extends</span> <span class="nx">Animal</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">bark</span><span class="p">()</span><span class="o">:</span> <span class="k">void</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Type 使用 &amp;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">type</span> <span class="nx">Animal</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">name</span>: <span class="kt">string</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">type</span> <span class="nx">Dog</span> <span class="o">=</span> <span class="nx">Animal</span> <span class="o">&amp;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">bark</span><span class="p">()</span><span class="o">:</span> <span class="k">void</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span></span></span></code></pre></div></div>
 <h5 id="2-合併聲明declaration-merging">2. 合併聲明(Declaration Merging):</h5>
-<pre><code class="language-ts">// Interface 可以重複宣告,會自動合併
-interface User {
-  name: string;
-}
-
-interface User {
-  age: number;
-}
-/* 最終 User 將包含 name 和 age */
-
-// Type 不能重複宣告
-type User = {
-  name: string;
-};
-
-// 錯誤:不能重複宣告 type User
-type User = {
-  age: number;
-};</code></pre>
+<div class="code-block code-line-numbers" style="counter-reset: code-block 0">
+    <div class="code-header language-ts">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="line"><span class="cl"><span class="c1">// Interface 可以重複宣告,會自動合併
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">interface</span> <span class="nx">User</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">name</span>: <span class="kt">string</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">interface</span> <span class="nx">User</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">age</span>: <span class="kt">number</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/* 最終 User 將包含 name 和 age */</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Type 不能重複宣告
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">type</span> <span class="nx">User</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">name</span>: <span class="kt">string</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 錯誤:不能重複宣告 type User
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">type</span> <span class="nx">User</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">age</span>: <span class="kt">number</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span></span></span></code></pre></div></div>
 <h5 id="3映射類型-mapped-types">3.映射類型 (Mapped Types)</h5>
-<pre><code class="language-ts">// Type 可以使用更複雜的類型運算
-type Keys = 'firstname' | 'lastname';
-type DuplicateString = {
-  [key in Keys]: string;
-};
-
-// Interface 不支援映射類型，不能這樣寫
-interface DuplicateString {
-  [key in Keys]: string; // 錯誤
-}</code></pre>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-ts">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="line"><span class="cl"><span class="c1">// Type 可以使用更複雜的類型運算
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">type</span> <span class="nx">Keys</span> <span class="o">=</span> <span class="s1">&#39;firstname&#39;</span> <span class="o">|</span> <span class="s1">&#39;lastname&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">type</span> <span class="nx">DuplicateString</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">key</span> <span class="k">in</span> <span class="nx">Keys</span><span class="p">]</span><span class="o">:</span> <span class="kt">string</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Interface 不支援映射類型，不能這樣寫
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">interface</span> <span class="nx">DuplicateString</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">key</span> <span class="k">in</span> <span class="nx">Keys</span><span class="p">]</span><span class="o">:</span> <span class="kt">string</span><span class="p">;</span> <span class="c1">// 錯誤
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span></span></span></code></pre></div></div>
 <h5 id="4tuple-和-union-的定義">4.Tuple 和 Union 的定義:</h5>
-<pre><code class="language-ts">// Type 可以直接定義
-type StringOrNumber = string | number;
-type StringArray = [string, string];
-
-// Interface 需要間接定義
-interface StringArray extends Array<string> {
-  0: string;
-  1: string;
-  length: 2;
-}</code></pre>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-ts">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="line"><span class="cl"><span class="c1">// Type 可以直接定義
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">type</span> <span class="nx">StringOrNumber</span> <span class="o">=</span> <span class="kt">string</span> <span class="o">|</span> <span class="kt">number</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">type</span> <span class="nx">StringArray</span> <span class="o">=</span> <span class="p">[</span><span class="kt">string</span><span class="p">,</span> <span class="kt">string</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Interface 需要間接定義
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">interface</span> <span class="nx">StringArray</span> <span class="kr">extends</span> <span class="nb">Array</span><span class="p">&lt;</span><span class="nt">string</span><span class="p">&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">0</span>: <span class="kt">string</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">1</span>: <span class="kt">string</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">length</span>: <span class="kt">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
 <h3 id="-結論">💡 結論</h3>
 <blockquote>
 <p>無論使用哪一種方式都好，主要是跟團隊建立好專案的 <code>Coding Guideline</code>，良好的溝通和團隊合作才是上策。</p>]]></description>
@@ -441,12 +477,14 @@ interface StringArray extends Array<string> {
   </tbody>
 </table>
 <h3 id="邏輯-and-">邏輯 AND (&amp;&amp;)</h3>
-<pre><code class="language-js">let result = condition && "Yes";</code></pre>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-js">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">condition</span> <span class="o">&amp;&amp;</span> <span class="s2">&#34;Yes&#34;</span><span class="p">;</span></span></span></code></pre></div></div>
 <p>說明：
-當 condition 為 <code>true</code> 時，result 將會是 &ldquo;Yes&rdquo;；如果 condition 為 <code>false</code>，則 result 的值會是 condition 自己 <strong>（通常為 false 或 undefined 等）</strong>。</p>
-<blockquote>
-<p>💡 典型用途：用於在條件為 true 時執行某些操作，否則忽略。</p>
-<p>例如檢查某物件是否存在，再執行方法：isAdmin &amp;&amp; performAdminAction()。</p>]]></description>
+當 condition 為 <code>true</code> 時，result 將會是 &ldquo;Yes&rdquo;；如果 condition 為 <code>false</code>，則 result 的值會是 condition 自己 <strong>（通常為 false 或 undefined 等）</strong>。</p>]]></description>
 </item>
 <item>
     <title>Angular 和 Vue 的響應式狀態管理</title>
@@ -479,15 +517,20 @@ interface StringArray extends Array<string> {
 <li><strong>同步數據流：</strong> 和 <code>RxJS</code> 的異步操作不同，<code>Signals</code> 提供 <strong>同步</strong> 的數據流，使用起來更加直觀。</li>
 <li><strong>預測性：</strong> <code>Angular Signals</code> 透過明確的讀寫 <code>API</code>，讓數據變更更易於預測和調試。</li>
 </ol>
-<pre><code class="language-jsx">import { signal } from "@angular/core";
-
-export class MyComponent {
-  count = signal(0);
-
-  increment() {
-    this.count.set(this.count() + 1);
-  }
-}</code></pre>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-jsx">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">signal</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&#34;@angular/core&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="kr">class</span> <span class="nx">MyComponent</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">count</span> <span class="o">=</span> <span class="nx">signal</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">increment</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">count</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">count</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
 <ul>
 <li><code>signal()</code> 用於建立可追蹤的響應式狀態。</li>
 <li>使用 <code>.set()</code>、<code>.update()</code> 來修改值，使用 <code>signal()</code> 本身讀取當前值。</li>
@@ -526,8 +569,14 @@ export class MyComponent {
 在全域範疇中，使用 <code>var</code> 宣告的變數會成為全域物件（window 或 globalThis）的屬性。</li>
 </ul>
 <h3 id="var-範例函式作用域">var 範例（函式作用域）</h3>
-<pre><code class="language-js">var x = 10;
-console.log(window.x); // 10</code></pre>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-js">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">x</span><span class="p">);</span> <span class="c1">// 10
+</span></span></span></code></pre></div></div>
 <table>
   <thead>
       <tr>
@@ -559,8 +608,14 @@ console.log(window.x); // 10</code></pre>
 </li>
 </ul>
 <h3 id="let-範例區塊作用域">let 範例（區塊作用域）</h3>
-<pre><code class="language-js">let y = 20;
-console.log(window.y); // undefined</code></pre>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-js">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">y</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">y</span><span class="p">);</span> <span class="c1">// undefined
+</span></span></span></code></pre></div></div>
 <table>
   <thead>
       <tr>
@@ -575,11 +630,7 @@ console.log(window.y); // undefined</code></pre>
       </tr>
   </tbody>
 </table>
-<p><code>const</code></p>
-<ul>
-<li>
-<p><strong>作用域：</strong>
-與 <code>let</code> 一樣，<code>const</code> 是區塊作用域（Block Scope）。</p>]]></description>
+<p><code>const</code></p>]]></description>
 </item>
 <item>
     <title>閱讀筆記 - The Clean Coder 無暇程式碼番外篇 - 專業程式設計師的生存之道</title>

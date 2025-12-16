@@ -8,7 +8,7 @@
   <meta property="og:site_name" content="資深菜鳥 Nick">
   <meta property="og:title" content="Type 和 Interface 要用哪一個?">
   <meta property="og:description" content="前言 TypeScript 中，Type 與 Interface 都是用來定義型別的關鍵字，但兩者之間存在著些許的差異。以下將深入探討 Type 與 Interface 的特性，並建議在不同的情境下如何選擇適合的型別定義方式，以提升 TypeScript 程式碼的可讀性與維護性。
-1. 擴展(Extends)的語法差異: // Interface 使用 extends interface Animal { name: string; } interface Dog extends Animal { bark(): void; } // Type 使用 &amp; type Animal = { name: string; }; type Dog = Animal &amp; { bark(): void; }; 2. 合併聲明(Declaration Merging): // Interface 可以重複宣告,會自動合併 interface User { name: string; } interface User { age: number; } /* 最終 User 將包含 name 和 age */ // Type 不能重複宣告 type User = { name: string; }; // 錯誤:不能重複宣告 type User type User = { age: number; }; 3.映射類型 (Mapped Types) // Type 可以使用更複雜的類型運算 type Keys = &#39;firstname&#39; | &#39;lastname&#39;; type DuplicateString = { [key in Keys]: string; }; // Interface 不支援映射類型，不能這樣寫 interface DuplicateString { [key in Keys]: string; // 錯誤 } 4.Tuple 和 Union 的定義: // Type 可以直接定義 type StringOrNumber = string | number; type StringArray = [string, string]; // Interface 需要間接定義 interface StringArray extends Array { 0: string; 1: string; length: 2; } 💡 結論 無論使用哪一種方式都好，主要是跟團隊建立好專案的 Coding Guideline，良好的溝通和團隊合作才是上策。">
+1. 擴展(Extends)的語法差異: // Interface 使用 extends interface Animal { name: string; } interface Dog extends Animal { bark(): void; } // Type 使用 &amp; type Animal = { name: string; }; type Dog = Animal &amp; { bark(): void; }; 2. 合併聲明(Declaration Merging): // Interface 可以重複宣告,會自動合併 interface User { name: string; } interface User { age: number; } /* 最終 User 將包含 name 和 age */ // Type 不能重複宣告 type User = { name: string; }; // 錯誤:不能重複宣告 type User type User = { age: number; }; 3.映射類型 (Mapped Types) // Type 可以使用更複雜的類型運算 type Keys = &#39;firstname&#39; | &#39;lastname&#39;; type DuplicateString = { [key in Keys]: string; }; // Interface 不支援映射類型，不能這樣寫 interface DuplicateString { [key in Keys]: string; // 錯誤 } 4.Tuple 和 Union 的定義: // Type 可以直接定義 type StringOrNumber = string | number; type StringArray = [string, string]; // Interface 需要間接定義 interface StringArray extends Array&lt;string&gt; { 0: string; 1: string; length: 2; } 💡 結論 無論使用哪一種方式都好，主要是跟團隊建立好專案的 Coding Guideline，良好的溝通和團隊合作才是上策。">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -20,7 +20,7 @@
   <meta name="twitter:image" content="http://localhost:1313/">
   <meta name="twitter:title" content="Type 和 Interface 要用哪一個?">
   <meta name="twitter:description" content="前言 TypeScript 中，Type 與 Interface 都是用來定義型別的關鍵字，但兩者之間存在著些許的差異。以下將深入探討 Type 與 Interface 的特性，並建議在不同的情境下如何選擇適合的型別定義方式，以提升 TypeScript 程式碼的可讀性與維護性。
-1. 擴展(Extends)的語法差異: // Interface 使用 extends interface Animal { name: string; } interface Dog extends Animal { bark(): void; } // Type 使用 &amp; type Animal = { name: string; }; type Dog = Animal &amp; { bark(): void; }; 2. 合併聲明(Declaration Merging): // Interface 可以重複宣告,會自動合併 interface User { name: string; } interface User { age: number; } /* 最終 User 將包含 name 和 age */ // Type 不能重複宣告 type User = { name: string; }; // 錯誤:不能重複宣告 type User type User = { age: number; }; 3.映射類型 (Mapped Types) // Type 可以使用更複雜的類型運算 type Keys = &#39;firstname&#39; | &#39;lastname&#39;; type DuplicateString = { [key in Keys]: string; }; // Interface 不支援映射類型，不能這樣寫 interface DuplicateString { [key in Keys]: string; // 錯誤 } 4.Tuple 和 Union 的定義: // Type 可以直接定義 type StringOrNumber = string | number; type StringArray = [string, string]; // Interface 需要間接定義 interface StringArray extends Array { 0: string; 1: string; length: 2; } 💡 結論 無論使用哪一種方式都好，主要是跟團隊建立好專案的 Coding Guideline，良好的溝通和團隊合作才是上策。">
+1. 擴展(Extends)的語法差異: // Interface 使用 extends interface Animal { name: string; } interface Dog extends Animal { bark(): void; } // Type 使用 &amp; type Animal = { name: string; }; type Dog = Animal &amp; { bark(): void; }; 2. 合併聲明(Declaration Merging): // Interface 可以重複宣告,會自動合併 interface User { name: string; } interface User { age: number; } /* 最終 User 將包含 name 和 age */ // Type 不能重複宣告 type User = { name: string; }; // 錯誤:不能重複宣告 type User type User = { age: number; }; 3.映射類型 (Mapped Types) // Type 可以使用更複雜的類型運算 type Keys = &#39;firstname&#39; | &#39;lastname&#39;; type DuplicateString = { [key in Keys]: string; }; // Interface 不支援映射類型，不能這樣寫 interface DuplicateString { [key in Keys]: string; // 錯誤 } 4.Tuple 和 Union 的定義: // Type 可以直接定義 type StringOrNumber = string | number; type StringArray = [string, string]; // Interface 需要間接定義 interface StringArray extends Array&lt;string&gt; { 0: string; 1: string; length: 2; } 💡 結論 無論使用哪一種方式都好，主要是跟團隊建立好專案的 Coding Guideline，良好的溝通和團隊合作才是上策。">
 <meta name="application-name" content="Nick">
 <meta name="apple-mobile-web-app-title" content="Nick">
 <meta name="referrer" content="no-referrer" /><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/images/favicon.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:1313/type%E5%92%8Cinterface%E8%A6%81%E7%94%A8%E5%93%AA%E4%B8%80%E5%80%8B/" /><link rel="prev" href="http://localhost:1313/%E9%82%8F%E8%BC%AF%E9%81%8B%E7%AE%97%E5%AD%90-%E7%9F%AD%E8%B7%AF/" /><link rel="next" href="http://localhost:1313/javascript-%E9%96%89%E5%8C%85closure/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -151,65 +151,85 @@
             </div><div class="content" id="content"><h2 id="前言">前言</h2>
 <p>TypeScript 中，Type 與 Interface 都是用來定義型別的關鍵字，但兩者之間存在著些許的差異。以下將深入探討 Type 與 Interface 的特性，並建議在不同的情境下如何選擇適合的型別定義方式，以提升 TypeScript 程式碼的可讀性與維護性。</p>
 <h5 id="1-擴展extends的語法差異">1. 擴展(Extends)的語法差異:</h5>
-<pre><code class="language-typescript">// Interface 使用 extends
-interface Animal {
-  name: string;
-}
-
-interface Dog extends Animal {
-  bark(): void;
-}
-
-// Type 使用 &
-type Animal = {
-  name: string;
-};
-
-type Dog = Animal & {
-  bark(): void;
-};</code></pre>
+<div class="code-block code-line-numbers" style="counter-reset: code-block 0">
+    <div class="code-header language-typescript">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-typescript" data-lang="typescript"><span class="line"><span class="cl"><span class="c1">// Interface 使用 extends
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">interface</span> <span class="nx">Animal</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">name</span>: <span class="kt">string</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">interface</span> <span class="nx">Dog</span> <span class="kr">extends</span> <span class="nx">Animal</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">bark</span><span class="p">()</span><span class="o">:</span> <span class="k">void</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Type 使用 &amp;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">type</span> <span class="nx">Animal</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">name</span>: <span class="kt">string</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">type</span> <span class="nx">Dog</span> <span class="o">=</span> <span class="nx">Animal</span> <span class="o">&amp;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">bark</span><span class="p">()</span><span class="o">:</span> <span class="k">void</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span></span></span></code></pre></div></div>
 <h5 id="2-合併聲明declaration-merging">2. 合併聲明(Declaration Merging):</h5>
-<pre><code class="language-ts">// Interface 可以重複宣告,會自動合併
-interface User {
-  name: string;
-}
-
-interface User {
-  age: number;
-}
-/* 最終 User 將包含 name 和 age */
-
-// Type 不能重複宣告
-type User = {
-  name: string;
-};
-
-// 錯誤:不能重複宣告 type User
-type User = {
-  age: number;
-};</code></pre>
+<div class="code-block code-line-numbers" style="counter-reset: code-block 0">
+    <div class="code-header language-ts">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="line"><span class="cl"><span class="c1">// Interface 可以重複宣告,會自動合併
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">interface</span> <span class="nx">User</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">name</span>: <span class="kt">string</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">interface</span> <span class="nx">User</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">age</span>: <span class="kt">number</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/* 最終 User 將包含 name 和 age */</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Type 不能重複宣告
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">type</span> <span class="nx">User</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">name</span>: <span class="kt">string</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 錯誤:不能重複宣告 type User
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">type</span> <span class="nx">User</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">age</span>: <span class="kt">number</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span></span></span></code></pre></div></div>
 <h5 id="3映射類型-mapped-types">3.映射類型 (Mapped Types)</h5>
-<pre><code class="language-ts">// Type 可以使用更複雜的類型運算
-type Keys = 'firstname' | 'lastname';
-type DuplicateString = {
-  [key in Keys]: string;
-};
-
-// Interface 不支援映射類型，不能這樣寫
-interface DuplicateString {
-  [key in Keys]: string; // 錯誤
-}</code></pre>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-ts">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="line"><span class="cl"><span class="c1">// Type 可以使用更複雜的類型運算
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">type</span> <span class="nx">Keys</span> <span class="o">=</span> <span class="s1">&#39;firstname&#39;</span> <span class="o">|</span> <span class="s1">&#39;lastname&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">type</span> <span class="nx">DuplicateString</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">key</span> <span class="k">in</span> <span class="nx">Keys</span><span class="p">]</span><span class="o">:</span> <span class="kt">string</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Interface 不支援映射類型，不能這樣寫
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">interface</span> <span class="nx">DuplicateString</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">key</span> <span class="k">in</span> <span class="nx">Keys</span><span class="p">]</span><span class="o">:</span> <span class="kt">string</span><span class="p">;</span> <span class="c1">// 錯誤
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span></span></span></code></pre></div></div>
 <h5 id="4tuple-和-union-的定義">4.Tuple 和 Union 的定義:</h5>
-<pre><code class="language-ts">// Type 可以直接定義
-type StringOrNumber = string | number;
-type StringArray = [string, string];
-
-// Interface 需要間接定義
-interface StringArray extends Array<string> {
-  0: string;
-  1: string;
-  length: 2;
-}</code></pre>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-ts">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="line"><span class="cl"><span class="c1">// Type 可以直接定義
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">type</span> <span class="nx">StringOrNumber</span> <span class="o">=</span> <span class="kt">string</span> <span class="o">|</span> <span class="kt">number</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">type</span> <span class="nx">StringArray</span> <span class="o">=</span> <span class="p">[</span><span class="kt">string</span><span class="p">,</span> <span class="kt">string</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Interface 需要間接定義
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">interface</span> <span class="nx">StringArray</span> <span class="kr">extends</span> <span class="nb">Array</span><span class="p">&lt;</span><span class="nt">string</span><span class="p">&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">0</span>: <span class="kt">string</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">1</span>: <span class="kt">string</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">length</span>: <span class="kt">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
 <h3 id="-結論">💡 結論</h3>
 <blockquote>
 <p>無論使用哪一種方式都好，主要是跟團隊建立好專案的 <code>Coding Guideline</code>，良好的溝通和團隊合作才是上策。</p>

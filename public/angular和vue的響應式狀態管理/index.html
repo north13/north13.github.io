@@ -168,15 +168,20 @@ Signals 主要用途：
 <li><strong>同步數據流：</strong> 和 <code>RxJS</code> 的異步操作不同，<code>Signals</code> 提供 <strong>同步</strong> 的數據流，使用起來更加直觀。</li>
 <li><strong>預測性：</strong> <code>Angular Signals</code> 透過明確的讀寫 <code>API</code>，讓數據變更更易於預測和調試。</li>
 </ol>
-<pre><code class="language-jsx">import { signal } from "@angular/core";
-
-export class MyComponent {
-  count = signal(0);
-
-  increment() {
-    this.count.set(this.count() + 1);
-  }
-}</code></pre>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-jsx">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">signal</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&#34;@angular/core&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="kr">class</span> <span class="nx">MyComponent</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">count</span> <span class="o">=</span> <span class="nx">signal</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">increment</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">count</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">count</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
 <ul>
 <li><code>signal()</code> 用於建立可追蹤的響應式狀態。</li>
 <li>使用 <code>.set()</code>、<code>.update()</code> 來修改值，使用 <code>signal()</code> 本身讀取當前值。</li>
@@ -197,16 +202,21 @@ export class MyComponent {
 </table>
 <h3 id="vue-3-ref-的用途"><strong>Vue 3 ref 的用途</strong></h3>
 <p><code>Vue 3</code> 的 <code>ref</code> 也用於 響應式數據 管理。<code>ref</code> 會將一個變數包裹成 響應式對象，當數據變化時，<code>Vue</code> 會自動追蹤變更並更新 UI。</p>
-<pre><code class="language-ts">import { ref } from "vue";
-export default {
-  setup() {
-    const count = ref(0);
-    function increment() {
-      count.value++;
-    }
-    return { count, increment };
-  },
-};</code></pre>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-ts">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">ref</span> <span class="p">}</span> <span class="kr">from</span> <span class="s2">&#34;vue&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">setup() {</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">count</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">function</span> <span class="nx">increment() {</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">count</span><span class="p">.</span><span class="nx">value</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">{</span> <span class="nx">count</span><span class="p">,</span> <span class="nx">increment</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span></span></span></code></pre></div></div>
 <ul>
 <li><code>ref()</code> 將一個基本值轉換為響應式變數。</li>
 <li>使用 <code>.value</code> 來讀取或修改 <code>ref</code> 的值。</li>

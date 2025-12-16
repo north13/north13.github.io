@@ -45,31 +45,43 @@
 <h3 id="1物件屬性訪問錯誤失去類型安全">1.物件屬性訪問錯誤（失去類型安全）</h3>
 <p>當我們使用 <code>any</code> 時，編譯器不會檢查我們是否正在訪問一個不存在的屬性。</p>
 <h4 id="-使用-any">❌ 使用 <code>any</code></h4>
-<pre><code class="language-typescript">// 使用了 any，編譯器不會報錯
-function processUserData(user: any) {
-  // 這裡假設我們想要訪問 'email'，但卻錯誤地寫成了 'mail'
-  console.log(user.mail); // 執行時是 undefined
-  return user.id.toString(); // 如果 user 沒有 id，運行時會拋出錯誤！
-}
-
-processUserData({ name: 'Nick', age: 36 }); // TS 不報錯，但運行時會出問題</code></pre>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-typescript">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-typescript" data-lang="typescript"><span class="line"><span class="cl"><span class="c1">// 使用了 any，編譯器不會報錯
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">function</span> <span class="nx">processUserData</span><span class="p">(</span><span class="nx">user</span>: <span class="kt">any</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 這裡假設我們想要訪問 &#39;email&#39;，但卻錯誤地寫成了 &#39;mail&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">mail</span><span class="p">);</span> <span class="c1">// 執行時是 undefined
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">return</span> <span class="nx">user</span><span class="p">.</span><span class="nx">id</span><span class="p">.</span><span class="nx">toString</span><span class="p">();</span> <span class="c1">// 如果 user 沒有 id，運行時會拋出錯誤！
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">processUserData</span><span class="p">({</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Nick&#39;</span><span class="p">,</span> <span class="nx">age</span>: <span class="kt">36</span> <span class="p">});</span> <span class="c1">// TS 不報錯，但運行時會出問題
+</span></span></span></code></pre></div></div>
 <h4 id="-定義一個精確的-type">⭕️ 定義一個精確的 type</h4>
-<pre><code class="language-typescript">// 使用 type 定義 User 結構
-type UserProfile = {
-  id: number;
-  name: string;
-  email: string;
-};
-
-function processUserDataSafe(user: UserProfile) {
-  // 這裡如果寫成 user.mail，TS 會立即報錯：'Property 'mail' does not exist on type 'UserProfile'.'
-  console.log(`User ID: ${user.id}, Name: ${user.name}`);
-  return user.id.toString();
-}
-
-// 傳入錯誤的物件結構時，TS 會在編譯階段就提示錯誤
-// processUserDataSafe({ name: 'Nick', age: 36 }); // TS 報錯：缺少屬性 'id' 和 'email'
-processUserDataSafe({ id: 101, name: 'Nick', email: 'nick@example.com' }); // 正常運行</code></pre>
+<div class="code-block code-line-numbers" style="counter-reset: code-block 0">
+    <div class="code-header language-typescript">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-typescript" data-lang="typescript"><span class="line"><span class="cl"><span class="c1">// 使用 type 定義 User 結構
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">type</span> <span class="nx">UserProfile</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">id</span>: <span class="kt">number</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">name</span>: <span class="kt">string</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">email</span>: <span class="kt">string</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">processUserDataSafe</span><span class="p">(</span><span class="nx">user</span>: <span class="kt">UserProfile</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 這裡如果寫成 user.mail，TS 會立即報錯：&#39;Property &#39;mail&#39; does not exist on type &#39;UserProfile&#39;.&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`User ID: </span><span class="si">${</span><span class="nx">user</span><span class="p">.</span><span class="nx">id</span><span class="si">}</span><span class="sb">, Name: </span><span class="si">${</span><span class="nx">user</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">user</span><span class="p">.</span><span class="nx">id</span><span class="p">.</span><span class="nx">toString</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 傳入錯誤的物件結構時，TS 會在編譯階段就提示錯誤
+</span></span></span><span class="line"><span class="cl"><span class="c1">// processUserDataSafe({ name: &#39;Nick&#39;, age: 36 }); // TS 報錯：缺少屬性 &#39;id&#39; 和 &#39;email&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">processUserDataSafe</span><span class="p">({</span> <span class="nx">id</span>: <span class="kt">101</span><span class="p">,</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Nick&#39;</span><span class="p">,</span> <span class="nx">email</span><span class="o">:</span> <span class="s1">&#39;nick@example.com&#39;</span> <span class="p">});</span> <span class="c1">// 正常運行
+</span></span></span></code></pre></div></div>
 <h3 id="2函式輸入參數與回傳值難以重構和追蹤">2.函式輸入參數與回傳值（難以重構和追蹤）</h3>
 <p>在函式參數和回傳值上使用 <code>any</code> 會使得函式的行為變得模糊，難以理解它的預期輸入和輸出。</p>]]></description>
 </item>
@@ -82,65 +94,85 @@ processUserDataSafe({ id: 101, name: 'Nick', email: 'nick@example.com' }); // �
     <description><![CDATA[<h2 id="前言">前言</h2>
 <p>TypeScript 中，Type 與 Interface 都是用來定義型別的關鍵字，但兩者之間存在著些許的差異。以下將深入探討 Type 與 Interface 的特性，並建議在不同的情境下如何選擇適合的型別定義方式，以提升 TypeScript 程式碼的可讀性與維護性。</p>
 <h5 id="1-擴展extends的語法差異">1. 擴展(Extends)的語法差異:</h5>
-<pre><code class="language-typescript">// Interface 使用 extends
-interface Animal {
-  name: string;
-}
-
-interface Dog extends Animal {
-  bark(): void;
-}
-
-// Type 使用 &
-type Animal = {
-  name: string;
-};
-
-type Dog = Animal & {
-  bark(): void;
-};</code></pre>
+<div class="code-block code-line-numbers" style="counter-reset: code-block 0">
+    <div class="code-header language-typescript">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-typescript" data-lang="typescript"><span class="line"><span class="cl"><span class="c1">// Interface 使用 extends
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">interface</span> <span class="nx">Animal</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">name</span>: <span class="kt">string</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">interface</span> <span class="nx">Dog</span> <span class="kr">extends</span> <span class="nx">Animal</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">bark</span><span class="p">()</span><span class="o">:</span> <span class="k">void</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Type 使用 &amp;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">type</span> <span class="nx">Animal</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">name</span>: <span class="kt">string</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">type</span> <span class="nx">Dog</span> <span class="o">=</span> <span class="nx">Animal</span> <span class="o">&amp;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">bark</span><span class="p">()</span><span class="o">:</span> <span class="k">void</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span></span></span></code></pre></div></div>
 <h5 id="2-合併聲明declaration-merging">2. 合併聲明(Declaration Merging):</h5>
-<pre><code class="language-ts">// Interface 可以重複宣告,會自動合併
-interface User {
-  name: string;
-}
-
-interface User {
-  age: number;
-}
-/* 最終 User 將包含 name 和 age */
-
-// Type 不能重複宣告
-type User = {
-  name: string;
-};
-
-// 錯誤:不能重複宣告 type User
-type User = {
-  age: number;
-};</code></pre>
+<div class="code-block code-line-numbers" style="counter-reset: code-block 0">
+    <div class="code-header language-ts">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="line"><span class="cl"><span class="c1">// Interface 可以重複宣告,會自動合併
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">interface</span> <span class="nx">User</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">name</span>: <span class="kt">string</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">interface</span> <span class="nx">User</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">age</span>: <span class="kt">number</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/* 最終 User 將包含 name 和 age */</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Type 不能重複宣告
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">type</span> <span class="nx">User</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">name</span>: <span class="kt">string</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 錯誤:不能重複宣告 type User
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">type</span> <span class="nx">User</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">age</span>: <span class="kt">number</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span></span></span></code></pre></div></div>
 <h5 id="3映射類型-mapped-types">3.映射類型 (Mapped Types)</h5>
-<pre><code class="language-ts">// Type 可以使用更複雜的類型運算
-type Keys = 'firstname' | 'lastname';
-type DuplicateString = {
-  [key in Keys]: string;
-};
-
-// Interface 不支援映射類型，不能這樣寫
-interface DuplicateString {
-  [key in Keys]: string; // 錯誤
-}</code></pre>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-ts">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="line"><span class="cl"><span class="c1">// Type 可以使用更複雜的類型運算
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">type</span> <span class="nx">Keys</span> <span class="o">=</span> <span class="s1">&#39;firstname&#39;</span> <span class="o">|</span> <span class="s1">&#39;lastname&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">type</span> <span class="nx">DuplicateString</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">key</span> <span class="k">in</span> <span class="nx">Keys</span><span class="p">]</span><span class="o">:</span> <span class="kt">string</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Interface 不支援映射類型，不能這樣寫
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">interface</span> <span class="nx">DuplicateString</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">key</span> <span class="k">in</span> <span class="nx">Keys</span><span class="p">]</span><span class="o">:</span> <span class="kt">string</span><span class="p">;</span> <span class="c1">// 錯誤
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span></span></span></code></pre></div></div>
 <h5 id="4tuple-和-union-的定義">4.Tuple 和 Union 的定義:</h5>
-<pre><code class="language-ts">// Type 可以直接定義
-type StringOrNumber = string | number;
-type StringArray = [string, string];
-
-// Interface 需要間接定義
-interface StringArray extends Array<string> {
-  0: string;
-  1: string;
-  length: 2;
-}</code></pre>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-ts">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="line"><span class="cl"><span class="c1">// Type 可以直接定義
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">type</span> <span class="nx">StringOrNumber</span> <span class="o">=</span> <span class="kt">string</span> <span class="o">|</span> <span class="kt">number</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">type</span> <span class="nx">StringArray</span> <span class="o">=</span> <span class="p">[</span><span class="kt">string</span><span class="p">,</span> <span class="kt">string</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Interface 需要間接定義
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">interface</span> <span class="nx">StringArray</span> <span class="kr">extends</span> <span class="nb">Array</span><span class="p">&lt;</span><span class="nt">string</span><span class="p">&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">0</span>: <span class="kt">string</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">1</span>: <span class="kt">string</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">length</span>: <span class="kt">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
 <h3 id="-結論">💡 結論</h3>
 <blockquote>
 <p>無論使用哪一種方式都好，主要是跟團隊建立好專案的 <code>Coding Guideline</code>，良好的溝通和團隊合作才是上策。</p>]]></description>

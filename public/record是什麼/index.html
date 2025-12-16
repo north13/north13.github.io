@@ -8,8 +8,7 @@
   <meta property="og:site_name" content="資深菜鳥 Nick">
   <meta property="og:title" content="Record 是什麼？">
   <meta property="og:description" content="什麼是 Record？ Record 是一種新的資料類型，用來表示一組有序的值集合，包含具名或未具名欄位。可以想像成是不需要先定義一個 class 的 「輕量級的物件」 。
-不具名 Record var record = (&#39;Nick&#39;, 35); print(record.$1); // Nick print(record.$2); // 35 具名 Record var record = (name: &#39;Nick&#39;, age: 35); print(record.name); // Nick print(record.age); // 35 混合型 Record var record = (&#39;Nick&#39;, age: 35); print(record.$1); // Nick print(record.age); // 35 為什麼有 Record？ 如果 Dart 函數要回傳多個值，通常要用 class 或 Map，但這樣太冗長或效能不佳。而 Record 的應用有
-更簡潔的語法 更好的編譯期型別檢查 更快的效能（比 Map 好） ❌ 使用 Map (不建議) Map getUser() =&gt; { &#39;name&#39;: &#39;Nick&#39;, &#39;age&#39;: 35, &#39;isMember&#39;: true }; var user = getUser(); print(user[&#39;nameee&#39;]); // ❌ 錯字或 key 不存在不會報錯 ❌ 使用 Class (不建議) class User { final String name; final int age; final bool isMember; User(this.name, this.age, this.isMember); } ⭕️ 使用 Record (建議) ({String name, int age, bool isMember}) user = (name: &#39;Nick&#39;, age: 35, isMember: true); 模式匹配（pattern matching） 它讓你像在 「解構資料」 一樣地做條件判斷或資料抽取。類似你在 JavaScript 用 const { name } = user">
+不具名 Record var record = (&#39;Nick&#39;, 35); print(record.$1); // Nick print(record.$2); // 35 具名 Record var record = (name: &#39;Nick&#39;, age: 35); print(record.name); // Nick print(record.age); // 35 混合型 Record var record = (&#39;Nick&#39;, age: 35); print(record.$1); // Nick print(record.age); // 35 為什麼有 Record？ 如果 Dart 函數要回傳多個值，通常要用 class 或 Map，但這樣太冗長或效能不佳。而 Record 的應用有">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -21,8 +20,7 @@
   <meta name="twitter:image" content="http://localhost:1313/">
   <meta name="twitter:title" content="Record 是什麼？">
   <meta name="twitter:description" content="什麼是 Record？ Record 是一種新的資料類型，用來表示一組有序的值集合，包含具名或未具名欄位。可以想像成是不需要先定義一個 class 的 「輕量級的物件」 。
-不具名 Record var record = (&#39;Nick&#39;, 35); print(record.$1); // Nick print(record.$2); // 35 具名 Record var record = (name: &#39;Nick&#39;, age: 35); print(record.name); // Nick print(record.age); // 35 混合型 Record var record = (&#39;Nick&#39;, age: 35); print(record.$1); // Nick print(record.age); // 35 為什麼有 Record？ 如果 Dart 函數要回傳多個值，通常要用 class 或 Map，但這樣太冗長或效能不佳。而 Record 的應用有
-更簡潔的語法 更好的編譯期型別檢查 更快的效能（比 Map 好） ❌ 使用 Map (不建議) Map getUser() =&gt; { &#39;name&#39;: &#39;Nick&#39;, &#39;age&#39;: 35, &#39;isMember&#39;: true }; var user = getUser(); print(user[&#39;nameee&#39;]); // ❌ 錯字或 key 不存在不會報錯 ❌ 使用 Class (不建議) class User { final String name; final int age; final bool isMember; User(this.name, this.age, this.isMember); } ⭕️ 使用 Record (建議) ({String name, int age, bool isMember}) user = (name: &#39;Nick&#39;, age: 35, isMember: true); 模式匹配（pattern matching） 它讓你像在 「解構資料」 一樣地做條件判斷或資料抽取。類似你在 JavaScript 用 const { name } = user">
+不具名 Record var record = (&#39;Nick&#39;, 35); print(record.$1); // Nick print(record.$2); // 35 具名 Record var record = (name: &#39;Nick&#39;, age: 35); print(record.name); // Nick print(record.age); // 35 混合型 Record var record = (&#39;Nick&#39;, age: 35); print(record.$1); // Nick print(record.age); // 35 為什麼有 Record？ 如果 Dart 函數要回傳多個值，通常要用 class 或 Map，但這樣太冗長或效能不佳。而 Record 的應用有">
 <meta name="application-name" content="Nick">
 <meta name="apple-mobile-web-app-title" content="Nick">
 <meta name="referrer" content="no-referrer" /><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/images/favicon.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:1313/record%E6%98%AF%E4%BB%80%E9%BA%BC/" /><link rel="prev" href="http://localhost:1313/ref%E8%88%87reactive%E7%9A%84%E5%B7%AE%E7%95%B0/" /><link rel="next" href="http://localhost:1313/typescript%E6%87%89%E9%81%BF%E5%85%8D%E4%BD%BF%E7%94%A8any/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -36,7 +34,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/localhost:1313\/record%E6%98%AF%E4%BB%80%E9%BA%BC\/"
-        },"image": ["http:\/\/localhost:1313\/images\/Apple-Devices-Preview.png"],"genre": "posts","wordcount":  258 ,
+        },"image": ["http:\/\/localhost:1313\/images\/Apple-Devices-Preview.png"],"genre": "posts","wordcount":  259 ,
         "url": "http:\/\/localhost:1313\/record%E6%98%AF%E4%BB%80%E9%BA%BC\/","datePublished": "2025-05-12T10:39:45+08:00","dateModified": "2025-05-12T10:39:45+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "Nick","logo": "http:\/\/localhost:1313\/images\/avatar.png"},"author": {
@@ -121,7 +119,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Record 是什麼？</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Nick</a></span>&nbsp;<span class="post-category">included in <a href="/categories/dart3/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Dart3</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-05-12">2025-05-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;258 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2025-05-12">2025-05-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;259 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -165,17 +163,32 @@
             </div><div class="content" id="content"><h3 id="什麼是-record">什麼是 Record？</h3>
 <p><strong>Record</strong> 是一種新的資料類型，用來表示一組有序的值集合，包含具名或未具名欄位。可以想像成是不需要先定義一個 <strong>class</strong> 的 <strong>「輕量級的物件」</strong> 。</p>
 <h5 id="不具名-record"><code>不具名</code> Record</h5>
-<pre><code class="language-dart">var record = ('Nick', 35);
-print(record.$1); // Nick
-print(record.$2); // 35</code></pre>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-dart">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-dart" data-lang="dart"><span class="line"><span class="cl"><span class="kd">var</span> <span class="n">record</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Nick&#39;</span><span class="p">,</span> <span class="m">35</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">print</span><span class="p">(</span><span class="n">record</span><span class="p">.</span><span class="n">$1</span><span class="p">);</span> <span class="c1">// Nick
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">print</span><span class="p">(</span><span class="n">record</span><span class="p">.</span><span class="n">$2</span><span class="p">);</span> <span class="o">//</span> <span class="m">35</span></span></span></code></pre></div></div>
 <h5 id="具名-record"><code>具名</code> Record</h5>
-<pre><code class="language-dart">var record = (name: 'Nick', age: 35);
-print(record.name); // Nick
-print(record.age);  // 35</code></pre>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-dart">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-dart" data-lang="dart"><span class="line"><span class="cl"><span class="kd">var</span> <span class="n">record</span> <span class="o">=</span> <span class="p">(</span><span class="nl">name:</span> <span class="s1">&#39;Nick&#39;</span><span class="p">,</span> <span class="nl">age:</span> <span class="m">35</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">print</span><span class="p">(</span><span class="n">record</span><span class="p">.</span><span class="n">name</span><span class="p">);</span> <span class="c1">// Nick
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">print</span><span class="p">(</span><span class="n">record</span><span class="p">.</span><span class="n">age</span><span class="p">);</span>  <span class="o">//</span> <span class="m">35</span></span></span></code></pre></div></div>
 <h5 id="混合型-record"><code>混合型</code> Record</h5>
-<pre><code class="language-dart">var record = ('Nick', age: 35);
-print(record.$1);   // Nick
-print(record.age);  // 35</code></pre>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-dart">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-dart" data-lang="dart"><span class="line"><span class="cl"><span class="kd">var</span> <span class="n">record</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Nick&#39;</span><span class="p">,</span> <span class="nl">age:</span> <span class="m">35</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">print</span><span class="p">(</span><span class="n">record</span><span class="p">.</span><span class="n">$1</span><span class="p">);</span>   <span class="c1">// Nick
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">print</span><span class="p">(</span><span class="n">record</span><span class="p">.</span><span class="n">age</span><span class="p">);</span>  <span class="o">//</span> <span class="m">35</span></span></span></code></pre></div></div>
 <table>
   <thead>
       <tr>
@@ -198,23 +211,38 @@ print(record.age);  // 35</code></pre>
 <li>更快的效能（比 Map 好）</li>
 </ul>
 <h4 id="-使用-map-不建議">❌ 使用 Map (不建議)</h4>
-<pre><code class="language-dart">Map<String, dynamic> getUser() => {
-  'name': 'Nick',
-  'age': 35,
-  'isMember': true
-};
-
-var user = getUser();
-print(user['nameee']); // ❌ 錯字或 key 不存在不會報錯</code></pre>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-dart">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-dart" data-lang="dart"><span class="line"><span class="cl"><span class="n">Map</span><span class="o">&lt;</span><span class="kt">String</span><span class="p">,</span> <span class="kt">dynamic</span><span class="o">&gt;</span> <span class="n">getUser</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="s1">&#39;name&#39;</span><span class="o">:</span> <span class="s1">&#39;Nick&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="s1">&#39;age&#39;</span><span class="o">:</span> <span class="m">35</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="s1">&#39;isMember&#39;</span><span class="o">:</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="n">user</span> <span class="o">=</span> <span class="n">getUser</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">print</span><span class="p">(</span><span class="n">user</span><span class="p">[</span><span class="s1">&#39;nameee&#39;</span><span class="p">]);</span> <span class="o">//</span> <span class="err">❌</span> <span class="err">錯字或</span> <span class="n">key</span> <span class="err">不存在不會報錯</span></span></span></code></pre></div></div>
 <h4 id="-使用-class-不建議">❌ 使用 Class (不建議)</h4>
-<pre><code class="language-dart">class User {
-  final String name;
-  final int age;
-  final bool isMember;
-  User(this.name, this.age, this.isMember);
-}</code></pre>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-dart">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-dart" data-lang="dart"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">User</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">final</span> <span class="kt">String</span> <span class="n">name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">final</span> <span class="kt">int</span> <span class="n">age</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">final</span> <span class="kt">bool</span> <span class="n">isMember</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">User</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="n">age</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="n">isMember</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
 <h4 id="-使用-record-建議">⭕️ 使用 Record (建議)</h4>
-<pre><code class="language-dart">({String name, int age, bool isMember}) user = (name: 'Nick', age: 35, isMember: true);</code></pre>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-dart">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-dart" data-lang="dart"><span class="line"><span class="cl"><span class="p">({</span><span class="kt">String</span> <span class="n">name</span><span class="p">,</span> <span class="kt">int</span> <span class="n">age</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">isMember</span><span class="p">})</span> <span class="n">user</span> <span class="o">=</span> <span class="p">(</span><span class="nl">name:</span> <span class="s1">&#39;Nick&#39;</span><span class="p">,</span> <span class="nl">age:</span> <span class="m">35</span><span class="p">,</span> <span class="nl">isMember:</span> <span class="kc">true</span><span class="p">);</span></span></span></code></pre></div></div>
 <table>
   <thead>
       <tr>
@@ -234,34 +262,49 @@ print(user['nameee']); // ❌ 錯字或 key 不存在不會報錯</code></pre>
 <p>或<code>const [a, b] = tuple</code> 的感覺，但 <strong>Dart</strong> 的 <strong>pattern matching</strong></p>
 <p>更進一步整合到 <code>if</code>、<code>switch</code>、<code>case</code>、<code>解構賦值</code>等語法中。</p>
 <h4 id="if-模式匹配"><code>If</code> 模式匹配</h4>
-<pre><code class="language-dart">var user = ('Nick', 35);
-
-if (user case ('Nick', int age)) {
-  print('Nick is $age years old'); // Nick is 35 years old
-}</code></pre>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-dart">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-dart" data-lang="dart"><span class="line"><span class="cl"><span class="kd">var</span> <span class="n">user</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Nick&#39;</span><span class="p">,</span> <span class="m">35</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">user</span> <span class="k">case</span> <span class="p">(</span><span class="s1">&#39;Nick&#39;</span><span class="p">,</span> <span class="kt">int</span> <span class="n">age</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">print</span><span class="p">(</span><span class="s1">&#39;Nick is </span><span class="si">$</span><span class="n">age</span><span class="s1"> years old&#39;</span><span class="p">);</span> <span class="c1">// Nick is 35 years old
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span></span></span></code></pre></div></div>
 <h4 id="switch-模式匹配"><code>Switch</code> 模式匹配</h4>
-<pre><code class="language-dart">(Object result) {
-  switch (result) {
-    case ('Nick', int age):
-      print('Nick is $age');
-      break;
-    case (String name, int age):
-      print('$name is $age');
-      break;
-    default:
-      print('Unknown');
-  }
-}(('Nick', 35));</code></pre>
+<div class="code-block code-line-numbers" style="counter-reset: code-block 0">
+    <div class="code-header language-dart">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-dart" data-lang="dart"><span class="line"><span class="cl"><span class="p">(</span><span class="kt">Object</span> <span class="n">result</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">switch</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="p">(</span><span class="s1">&#39;Nick&#39;</span><span class="p">,</span> <span class="kt">int</span> <span class="n">age</span><span class="p">)</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">      <span class="n">print</span><span class="p">(</span><span class="s1">&#39;Nick is </span><span class="si">$</span><span class="n">age</span><span class="s1">&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="p">(</span><span class="kt">String</span> <span class="n">name</span><span class="p">,</span> <span class="kt">int</span> <span class="n">age</span><span class="p">)</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">      <span class="n">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">$</span><span class="n">name</span><span class="s1"> is </span><span class="si">$</span><span class="n">age</span><span class="s1">&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">default</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">      <span class="n">print</span><span class="p">(</span><span class="s1">&#39;Unknown&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}((</span><span class="s1">&#39;Nick&#39;</span><span class="p">,</span> <span class="m">35</span><span class="p">));</span></span></span></code></pre></div></div>
 <h4 id="具名-record-也能-match">具名 Record 也能 match</h4>
-<pre><code class="language-dart">var user = (name: 'Nick', age: 35);
-
-switch (user) {
-  case (name: 'Nick', age: var a):
-    print('Nick is $a years old'); // Nick is 35 years old
-    break;
-  default:
-    print('Not Nick');
-}</code></pre>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-dart">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-dart" data-lang="dart"><span class="line"><span class="cl"><span class="kd">var</span> <span class="n">user</span> <span class="o">=</span> <span class="p">(</span><span class="nl">name:</span> <span class="s1">&#39;Nick&#39;</span><span class="p">,</span> <span class="nl">age:</span> <span class="m">35</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">switch</span> <span class="p">(</span><span class="n">user</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">case</span> <span class="p">(</span><span class="nl">name:</span> <span class="s1">&#39;Nick&#39;</span><span class="p">,</span> <span class="nl">age:</span> <span class="kd">var</span> <span class="n">a</span><span class="p">)</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">print</span><span class="p">(</span><span class="s1">&#39;Nick is </span><span class="si">$</span><span class="n">a</span><span class="s1"> years old&#39;</span><span class="p">);</span> <span class="c1">// Nick is 35 years old
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">default</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">print</span><span class="p">(</span><span class="s1">&#39;Not Nick&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
 <table>
   <thead>
       <tr>

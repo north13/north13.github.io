@@ -175,7 +175,12 @@
   </tbody>
 </table>
 <h3 id="邏輯-and-">邏輯 AND (&amp;&amp;)</h3>
-<pre><code class="language-js">let result = condition && "Yes";</code></pre>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-js">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">condition</span> <span class="o">&amp;&amp;</span> <span class="s2">&#34;Yes&#34;</span><span class="p">;</span></span></span></code></pre></div></div>
 <p>說明：
 當 condition 為 <code>true</code> 時，result 將會是 &ldquo;Yes&rdquo;；如果 condition 為 <code>false</code>，則 result 的值會是 condition 自己 <strong>（通常為 false 或 undefined 等）</strong>。</p>
 <blockquote>
@@ -197,7 +202,12 @@
   </tbody>
 </table>
 <h3 id="邏輯-or-">邏輯 OR (||)</h3>
-<pre><code class="language-js">let result = condition || "Default";</code></pre>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-js">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">condition</span> <span class="o">||</span> <span class="s2">&#34;Default&#34;</span><span class="p">;</span></span></span></code></pre></div></div>
 <p>說明：
 當 condition 為 false <strong>（如 null、undefined、0、&quot;&quot; 等）</strong> 時，返回 &ldquo;Default&rdquo;；如果 condition 為 true，則返回 condition 的值。</p>
 <blockquote>
@@ -223,8 +233,14 @@
 <p><strong>邏輯 OR (||)</strong> 會將所有 falsy 值（例如 0, &lsquo;&rsquo;, null, undefined 等）視為 false；而 ?? 只針對 null 和 undefined。</p>
 </blockquote>
 <p>範例：</p>
-<pre><code class="language-js">const value1 = 0 || "default"; // 返回 "default"
-const value2 = 0 ?? "default"; // 返回 0</code></pre>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-js">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">value1</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">||</span> <span class="s2">&#34;default&#34;</span><span class="p">;</span> <span class="c1">// 返回 &#34;default&#34;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">value2</span> <span class="o">=</span> <span class="mi">0</span> <span class="o">??</span> <span class="s2">&#34;default&#34;</span><span class="p">;</span> <span class="c1">// 返回 0
+</span></span></span></code></pre></div></div>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">

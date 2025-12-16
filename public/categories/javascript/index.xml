@@ -31,47 +31,53 @@
   </tbody>
 </table>
 <h4 id="範例">範例</h4>
-<pre><code class="language-typescript">const bankAccount = (function () {
-  let balance: number = 0;
-
-  function validateAmount(amount: number): boolean {
-    return amount > 0;
-  }
-
-  return {
-    deposit: function (amount: number): string {
-      if (!validateAmount(amount)) {
-        return '請輸入有效金額';
-      }
-      balance += amount;
-      return `存款成功，當前餘額: ${balance}`;
-    },
-
-    withdraw: function (amount: number): string {
-      if (!validateAmount(amount)) {
-        return '請輸入有效金額';
-      }
-      if (amount > balance) {
-        return '餘額不足';
-      }
-      balance -= amount;
-      return `當前餘額: ${balance}`;
-    },
-
-    getBalance: function (): string {
-      return `當前餘額: ${balance}`;
-    },
-  };
-})();
-
-console.log(bankAccount.getBalance()); // 當前餘額: 0
-console.log(bankAccount.deposit(1000)); // 存款成功，當前餘額: 1000
-console.log(bankAccount.withdraw(500)); // 提款成功，當前餘額: 500
-console.log(bankAccount.withdraw(1000)); // 餘額不足
-
-// 無法直接訪問私有變數和方法
-console.log(bankAccount.balance); // undefined
-console.log(bankAccount.validateAmount); // undefined</code></pre>
+<div class="code-block code-line-numbers" style="counter-reset: code-block 0">
+    <div class="code-header language-typescript">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-typescript" data-lang="typescript"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">bankAccount</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">let</span> <span class="nx">balance</span>: <span class="kt">number</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kd">function</span> <span class="nx">validateAmount</span><span class="p">(</span><span class="nx">amount</span>: <span class="kt">number</span><span class="p">)</span><span class="o">:</span> <span class="kr">boolean</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">amount</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">deposit</span>: <span class="kt">function</span> <span class="p">(</span><span class="nx">amount</span>: <span class="kt">number</span><span class="p">)</span><span class="o">:</span> <span class="kt">string</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">validateAmount</span><span class="p">(</span><span class="nx">amount</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s1">&#39;請輸入有效金額&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">balance</span> <span class="o">+=</span> <span class="nx">amount</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="sb">`存款成功，當前餘額: </span><span class="si">${</span><span class="nx">balance</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">withdraw</span>: <span class="kt">function</span> <span class="p">(</span><span class="nx">amount</span>: <span class="kt">number</span><span class="p">)</span><span class="o">:</span> <span class="kt">string</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">validateAmount</span><span class="p">(</span><span class="nx">amount</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s1">&#39;請輸入有效金額&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="nx">amount</span> <span class="o">&gt;</span> <span class="nx">balance</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s1">&#39;餘額不足&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">balance</span> <span class="o">-=</span> <span class="nx">amount</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="sb">`當前餘額: </span><span class="si">${</span><span class="nx">balance</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">getBalance</span>: <span class="kt">function</span> <span class="p">()</span><span class="o">:</span> <span class="kt">string</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="sb">`當前餘額: </span><span class="si">${</span><span class="nx">balance</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="p">})();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bankAccount</span><span class="p">.</span><span class="nx">getBalance</span><span class="p">());</span> <span class="c1">// 當前餘額: 0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bankAccount</span><span class="p">.</span><span class="nx">deposit</span><span class="p">(</span><span class="mi">1000</span><span class="p">));</span> <span class="c1">// 存款成功，當前餘額: 1000
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bankAccount</span><span class="p">.</span><span class="nx">withdraw</span><span class="p">(</span><span class="mi">500</span><span class="p">));</span> <span class="c1">// 提款成功，當前餘額: 500
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bankAccount</span><span class="p">.</span><span class="nx">withdraw</span><span class="p">(</span><span class="mi">1000</span><span class="p">));</span> <span class="c1">// 餘額不足
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 無法直接訪問私有變數和方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bankAccount</span><span class="p">.</span><span class="nx">balance</span><span class="p">);</span> <span class="c1">// undefined
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bankAccount</span><span class="p">.</span><span class="nx">validateAmount</span><span class="p">);</span> <span class="c1">// undefined
+</span></span></span></code></pre></div></div>
 <table>
   <thead>
       <tr>
@@ -91,18 +97,23 @@ console.log(bankAccount.validateAmount); // undefined</code></pre>
 <li>閉包能夠「記住」外層函式的變數
 在例子中，<code>balance</code> 是 <code>bankAccount</code> 的私有變數，但因為 <code>deposit</code>、<code>withdraw</code>、<code>getBalance</code> 在內部被 <strong>return</strong>，這些 <strong>function</strong> 形成閉包，可以持續訪問這些變數，即使外層函式已經執行完成。</li>
 </ol>
-<pre><code class="language-typescript">let balance: number = 0;
-
-return {
-  deposit: function (amount: number): string {
-    if (!validateAmount(amount)) {
-      return '請輸入有效金額';
-    }
-    balance += amount;
-    return `存款成功，當前餘額: ${balance}`;
-  },
-  // 其他方法同理
-};</code></pre>
+<div class="code-block code-line-numbers" style="counter-reset: code-block 0">
+    <div class="code-header language-typescript">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-typescript" data-lang="typescript"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">balance</span>: <span class="kt">number</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">return</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">deposit</span>: <span class="kt">function</span> <span class="p">(</span><span class="nx">amount</span>: <span class="kt">number</span><span class="p">)</span><span class="o">:</span> <span class="kt">string</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">validateAmount</span><span class="p">(</span><span class="nx">amount</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="s1">&#39;請輸入有效金額&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">balance</span> <span class="o">+=</span> <span class="nx">amount</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="sb">`存款成功，當前餘額: </span><span class="si">${</span><span class="nx">balance</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 其他方法同理
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span></span></span></code></pre></div></div>
 <p>這段程式碼中，<code>balance</code> 是閉包捕獲的變數，這些變數的值會根據執行的操作（例如存款或提款）而變化，並且被所有內部函式共享。</p>]]></description>
 </item>
 <item>
@@ -148,12 +159,14 @@ return {
   </tbody>
 </table>
 <h3 id="邏輯-and-">邏輯 AND (&amp;&amp;)</h3>
-<pre><code class="language-js">let result = condition && "Yes";</code></pre>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-js">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">condition</span> <span class="o">&amp;&amp;</span> <span class="s2">&#34;Yes&#34;</span><span class="p">;</span></span></span></code></pre></div></div>
 <p>說明：
-當 condition 為 <code>true</code> 時，result 將會是 &ldquo;Yes&rdquo;；如果 condition 為 <code>false</code>，則 result 的值會是 condition 自己 <strong>（通常為 false 或 undefined 等）</strong>。</p>
-<blockquote>
-<p>💡 典型用途：用於在條件為 true 時執行某些操作，否則忽略。</p>
-<p>例如檢查某物件是否存在，再執行方法：isAdmin &amp;&amp; performAdminAction()。</p>]]></description>
+當 condition 為 <code>true</code> 時，result 將會是 &ldquo;Yes&rdquo;；如果 condition 為 <code>false</code>，則 result 的值會是 condition 自己 <strong>（通常為 false 或 undefined 等）</strong>。</p>]]></description>
 </item>
 <item>
     <title>ES6 作用域的比較</title>
@@ -172,8 +185,14 @@ return {
 在全域範疇中，使用 <code>var</code> 宣告的變數會成為全域物件（window 或 globalThis）的屬性。</li>
 </ul>
 <h3 id="var-範例函式作用域">var 範例（函式作用域）</h3>
-<pre><code class="language-js">var x = 10;
-console.log(window.x); // 10</code></pre>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-js">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">x</span><span class="p">);</span> <span class="c1">// 10
+</span></span></span></code></pre></div></div>
 <table>
   <thead>
       <tr>
@@ -205,8 +224,14 @@ console.log(window.x); // 10</code></pre>
 </li>
 </ul>
 <h3 id="let-範例區塊作用域">let 範例（區塊作用域）</h3>
-<pre><code class="language-js">let y = 20;
-console.log(window.y); // undefined</code></pre>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-js">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">y</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">y</span><span class="p">);</span> <span class="c1">// undefined
+</span></span></span></code></pre></div></div>
 <table>
   <thead>
       <tr>
@@ -221,11 +246,7 @@ console.log(window.y); // undefined</code></pre>
       </tr>
   </tbody>
 </table>
-<p><code>const</code></p>
-<ul>
-<li>
-<p><strong>作用域：</strong>
-與 <code>let</code> 一樣，<code>const</code> 是區塊作用域（Block Scope）。</p>]]></description>
+<p><code>const</code></p>]]></description>
 </item>
 </channel>
 </rss>

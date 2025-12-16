@@ -339,7 +339,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
       maxShownLines = 50
       [params.page.code.render]
         goat = false
-        mermaid = true
+        mermaid = false
     # KaTeX mathematical formulas config (KaTeX https://katex.org/)
     # KaTeX 数学公式配置 (KaTeX https://katex.org/)
     [params.page.math]
