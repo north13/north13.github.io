@@ -170,7 +170,7 @@
         <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
     </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-dart" data-lang="dart"><span class="line"><span class="cl"><span class="kd">var</span> <span class="n">record</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Nick&#39;</span><span class="p">,</span> <span class="m">35</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="n">print</span><span class="p">(</span><span class="n">record</span><span class="p">.</span><span class="n">$1</span><span class="p">);</span> <span class="c1">// Nick
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">print</span><span class="p">(</span><span class="n">record</span><span class="p">.</span><span class="n">$2</span><span class="p">);</span> <span class="o">//</span> <span class="m">35</span></span></span></code></pre></div></div>
+</span></span></span><span class="line"><span class="cl"><span class="n">print</span><span class="p">(</span><span class="n">record</span><span class="p">.</span><span class="n">$2</span><span class="p">);</span> <span class="o">//</span> <span class="m">35</span></span></span></code></pre></div></div>
 <h5 id="具名-record"><code>具名</code> Record</h5>
 <div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
     <div class="code-header language-dart">
@@ -179,7 +179,7 @@
         <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
     </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-dart" data-lang="dart"><span class="line"><span class="cl"><span class="kd">var</span> <span class="n">record</span> <span class="o">=</span> <span class="p">(</span><span class="nl">name:</span> <span class="s1">&#39;Nick&#39;</span><span class="p">,</span> <span class="nl">age:</span> <span class="m">35</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="n">print</span><span class="p">(</span><span class="n">record</span><span class="p">.</span><span class="n">name</span><span class="p">);</span> <span class="c1">// Nick
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">print</span><span class="p">(</span><span class="n">record</span><span class="p">.</span><span class="n">age</span><span class="p">);</span>  <span class="o">//</span> <span class="m">35</span></span></span></code></pre></div></div>
+</span></span></span><span class="line"><span class="cl"><span class="n">print</span><span class="p">(</span><span class="n">record</span><span class="p">.</span><span class="n">age</span><span class="p">);</span>  <span class="o">//</span> <span class="m">35</span></span></span></code></pre></div></div>
 <h5 id="混合型-record"><code>混合型</code> Record</h5>
 <div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
     <div class="code-header language-dart">
@@ -188,7 +188,7 @@
         <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
     </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-dart" data-lang="dart"><span class="line"><span class="cl"><span class="kd">var</span> <span class="n">record</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Nick&#39;</span><span class="p">,</span> <span class="nl">age:</span> <span class="m">35</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="n">print</span><span class="p">(</span><span class="n">record</span><span class="p">.</span><span class="n">$1</span><span class="p">);</span>   <span class="c1">// Nick
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">print</span><span class="p">(</span><span class="n">record</span><span class="p">.</span><span class="n">age</span><span class="p">);</span>  <span class="o">//</span> <span class="m">35</span></span></span></code></pre></div></div>
+</span></span></span><span class="line"><span class="cl"><span class="n">print</span><span class="p">(</span><span class="n">record</span><span class="p">.</span><span class="n">age</span><span class="p">);</span>  <span class="o">//</span> <span class="m">35</span></span></span></code></pre></div></div>
 <table>
   <thead>
       <tr>
@@ -271,9 +271,9 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">user</span> <span class="k">case</span> <span class="p">(</span><span class="s1">&#39;Nick&#39;</span><span class="p">,</span> <span class="kt">int</span> <span class="n">age</span><span class="p">))</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="n">print</span><span class="p">(</span><span class="s1">&#39;Nick is </span><span class="si">$</span><span class="n">age</span><span class="s1"> years old&#39;</span><span class="p">);</span> <span class="c1">// Nick is 35 years old
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span></span></span></code></pre></div></div>
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
 <h4 id="switch-模式匹配"><code>Switch</code> 模式匹配</h4>
-<div class="code-block code-line-numbers" style="counter-reset: code-block 0">
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
     <div class="code-header language-dart">
         <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
         <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
@@ -301,7 +301,7 @@
 </span></span><span class="line"><span class="cl"><span class="k">switch</span> <span class="p">(</span><span class="n">user</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="k">case</span> <span class="p">(</span><span class="nl">name:</span> <span class="s1">&#39;Nick&#39;</span><span class="p">,</span> <span class="nl">age:</span> <span class="kd">var</span> <span class="n">a</span><span class="p">)</span><span class="o">:</span>
 </span></span><span class="line"><span class="cl">    <span class="n">print</span><span class="p">(</span><span class="s1">&#39;Nick is </span><span class="si">$</span><span class="n">a</span><span class="s1"> years old&#39;</span><span class="p">);</span> <span class="c1">// Nick is 35 years old
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">break</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="cl">    <span class="k">break</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">  <span class="k">default</span><span class="o">:</span>
 </span></span><span class="line"><span class="cl">    <span class="n">print</span><span class="p">(</span><span class="s1">&#39;Not Nick&#39;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
@@ -355,8 +355,8 @@
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.140.1">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.3.1-DEV"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
-                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2024 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Nick</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank"></a></span></div>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.154.5">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.3.1-DEV"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2024 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Nick</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank"></a></span></div>
         </div>
     </footer></div>
 
