@@ -434,7 +434,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
       # Valine comment config (https://github.com/xCss/Valine)
       # Valine 评论系统设置 (https://github.com/xCss/Valine)
       [params.page.comment.valine]
-        enable = true
+        enable = false
         appId = "QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI"
         appKey = "WBmoGyJtbqUswvfLh6L8iEBr"
         placeholder = ""
@@ -500,14 +500,14 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
       [params.page.comment.giscus]
         # You can refer to the official documentation of giscus to use the following configuration.
         # 你可以参考官方文档来使用下列配置
-        enable = false
-        repo = ""
-        repoId = ""
+        enable = true
+        repo = "north13/north13.github.io"
+        repoId = "R_kgDONizEsg"
         category = "Announcements"
-        categoryId = ""
+        categoryId = "DIC_kwDONizEss4C1RlX"
         # automatically adapt the current theme i18n configuration when empty
         # 为空时自动适配当前主题 i18n 配置
-        lang = ""
+        lang = "zh-TW"
         mapping = "pathname"
         reactionsEnabled = "1"
         emitMetadata = "0"
