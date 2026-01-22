@@ -5,7 +5,7 @@ on:
     branches: ["main"]
   workflow_dispatch:
 
-# 添加必要的權限
+# 添加必要的權限，允許 Action 推送代碼到分支
 permissions:
   contents: write
 
@@ -28,15 +28,31 @@ jobs:
       - name: Build with Hugo
         run: hugo --minify
 
+      - name: Create .nojekyll
+        run: touch public/.nojekyll
+
       - name: Deploy to gh-pages
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          
+          # 切換到 orphan 分支 (無歷史的全新分支)
           git checkout --orphan gh-pages
+          
+          # 清空暫存區，但保留工作目錄檔案
           git reset
+
+          shopt -s dotglob
           mv public/* .
+          shopt -u dotglob
+          
+          # 刪除空的 public 資料夾
           rm -rf public
+          
+          # 加入所有檔案 (包含新移動過來的 .nojekyll)
           git add .
+          
+          # 提交並強制推送
           git commit -m "Deploy to gh-pages"
           git push origin gh-pages --force
         env:
