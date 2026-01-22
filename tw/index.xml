@@ -1,0 +1,10 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>資深菜鳥 Nick</title>
+        <link>http://localhost:1313/tw/</link>
+        <description>Hugo theme - LoveIt</description>
+        <generator>Hugo -- gohugo.io</generator><language>tw</language><managingEditor>northn13@gmail.com (Nick)</managingEditor>
+            <webMaster>northn13@gmail.com (Nick)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+            <atom:link href="http://localhost:1313/tw/index.xml" rel="self" type="application/rss+xml" />
+        </channel>
+</rss>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Angular 和 Vue 的響應式狀態管理 - ＠＠資深菜鳥 Nick</title><meta name="Description" content="Hugo theme - LoveIt"><meta property="og:url" content="http://localhost:1313/post/angular%E5%92%8Cvue%E7%9A%84%E9%9F%BF%E6%87%89%E5%BC%8F%E7%8B%80%E6%85%8B%E7%AE%A1%E7%90%86/">
+  <meta property="og:site_name" content="＠＠資深菜鳥 Nick">
+  <meta property="og:title" content="Angular 和 Vue 的響應式狀態管理">
+  <meta property="og:description" content="之前趁著 Udemy 黑五活動買了些有興趣的課程來進修，加上 YT 上免費的課程，聽聽不同的講師會有不同的收穫，就像是看醫生不要只看一間，不同的醫生看或許會有不同的見解。
+在自學時光是 Vue 就看了三個不同的教學影片，對於 ref、reactive 雖無實務經驗，但有一定程度的瞭解。之前工作上使用的框架是 Angular 且版本 &lt; 16 , 對於 Signals 的應用很模糊，嘗試用 Vue 的 ref 去解釋 Angular 的 Signals 好像一切都說得過去了！
+Angular Signals 的用途 Angular 引入 Signals 是為了解決 響應式狀態管理 的問題。傳統上 Angular 主要使用 RxJS 的 Observables 或 Component State 來管理狀態，但這種方式可能導致程式碼複雜性增加、追蹤數據變化困難。
+Signals 主要用途：
+響應式狀態管理： Signals 允許你輕鬆追蹤和響應狀態變化，無需手動訂閱或處理變更檢測。 效能提升： Signals 會在狀態變化時自動觸發 UI 更新，並只更新受影響的部分，而非整體重新渲染，這比傳統變更檢測更高效。 同步數據流： 和 RxJS 的異步操作不同，Signals 提供 同步 的數據流，使用起來更加直觀。 預測性： Angular Signals 透過明確的讀寫 API，讓數據變更更易於預測和調試。 import { signal } from &#34;@angular/core&#34;; export class MyComponent { count = signal(0); increment() { this.count.set(this.count() &#43; 1); } } signal() 用於建立可追蹤的響應式狀態。 使用 .set()、.update() 來修改值，使用 signal() 本身讀取當前值。 Vue 3 ref 的用途 Vue 3 的 ref 也用於 響應式數據 管理。ref 會將一個變數包裹成 響應式對象，當數據變化時，Vue 會自動追蹤變更並更新 UI。">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2024-12-27T10:06:49+08:00">
+    <meta property="article:modified_time" content="2024-12-27T10:06:49+08:00">
+    <meta property="og:image" content="http://localhost:1313/favicon.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:1313/favicon.png">
+  <meta name="twitter:title" content="Angular 和 Vue 的響應式狀態管理">
+  <meta name="twitter:description" content="之前趁著 Udemy 黑五活動買了些有興趣的課程來進修，加上 YT 上免費的課程，聽聽不同的講師會有不同的收穫，就像是看醫生不要只看一間，不同的醫生看或許會有不同的見解。
+在自學時光是 Vue 就看了三個不同的教學影片，對於 ref、reactive 雖無實務經驗，但有一定程度的瞭解。之前工作上使用的框架是 Angular 且版本 &lt; 16 , 對於 Signals 的應用很模糊，嘗試用 Vue 的 ref 去解釋 Angular 的 Signals 好像一切都說得過去了！
+Angular Signals 的用途 Angular 引入 Signals 是為了解決 響應式狀態管理 的問題。傳統上 Angular 主要使用 RxJS 的 Observables 或 Component State 來管理狀態，但這種方式可能導致程式碼複雜性增加、追蹤數據變化困難。
+Signals 主要用途：
+響應式狀態管理： Signals 允許你輕鬆追蹤和響應狀態變化，無需手動訂閱或處理變更檢測。 效能提升： Signals 會在狀態變化時自動觸發 UI 更新，並只更新受影響的部分，而非整體重新渲染，這比傳統變更檢測更高效。 同步數據流： 和 RxJS 的異步操作不同，Signals 提供 同步 的數據流，使用起來更加直觀。 預測性： Angular Signals 透過明確的讀寫 API，讓數據變更更易於預測和調試。 import { signal } from &#34;@angular/core&#34;; export class MyComponent { count = signal(0); increment() { this.count.set(this.count() &#43; 1); } } signal() 用於建立可追蹤的響應式狀態。 使用 .set()、.update() 來修改值，使用 signal() 本身讀取當前值。 Vue 3 ref 的用途 Vue 3 的 ref 也用於 響應式數據 管理。ref 會將一個變數包裹成 響應式對象，當數據變化時，Vue 會自動追蹤變更並更新 UI。">
+<meta name="application-name" content="Nick">
+<meta name="apple-mobile-web-app-title" content="Nick">
+<meta name="referrer" content="no-referrer" /><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:1313/post/angular%E5%92%8Cvue%E7%9A%84%E9%9F%BF%E6%87%89%E5%BC%8F%E7%8B%80%E6%85%8B%E7%AE%A1%E7%90%86/" /><link rel="prev" href="http://localhost:1313/post/es6-%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%9A%84%E6%AF%94%E8%BC%83/" /><link rel="next" href="http://localhost:1313/post/%E9%82%8F%E8%BC%AF%E9%81%8B%E7%AE%97%E5%AD%90-%E7%9F%AD%E8%B7%AF/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/css/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Angular 和 Vue 的響應式狀態管理",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/localhost:1313\/post\/angular%E5%92%8Cvue%E7%9A%84%E9%9F%BF%E6%87%89%E5%BC%8F%E7%8B%80%E6%85%8B%E7%AE%A1%E7%90%86\/"
+        },"image": ["http:\/\/localhost:1313\/images\/Apple-Devices-Preview.png"],"genre": "post","wordcount":  189 ,
+        "url": "http:\/\/localhost:1313\/post\/angular%E5%92%8Cvue%E7%9A%84%E9%9F%BF%E6%87%89%E5%BC%8F%E7%8B%80%E6%85%8B%E7%AE%A1%E7%90%86\/","datePublished": "2024-12-27T10:06:49+08:00","dateModified": "2024-12-27T10:06:49+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Nick","logo": "http:\/\/localhost:1313\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Nick"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>
+          const query = window.matchMedia('(prefers-color-scheme: dark)');
+          function applyTheme() {
+            let theme = window.localStorage?.getItem('theme') || 'auto';
+            let isDark = theme === 'dark' || (theme === 'auto' && query.matches);
+            document.body.setAttribute('theme', isDark? 'dark' : 'light');
+            document.body.setAttribute('cfg-theme', theme);
+          }
+
+          applyTheme();
+          query.addEventListener('change', applyTheme);
+        </script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="＠＠資深菜鳥 Nick"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> 分類 </a><a class="menu-item" href="/about/"> 關於菜鳥 </a><a class="menu-item" href="https://github.com/north13" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw' aria-hidden='true'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a><a href="javascript:void(0);" class="menu-item language" title="Select Language">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>                      
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/post/angular%E5%92%8Cvue%E7%9A%84%E9%9F%BF%E6%87%89%E5%BC%8F%E7%8B%80%E6%85%8B%E7%AE%A1%E7%90%86/" selected>English</option></select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="＠＠資深菜鳥 Nick"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">分類</a><a class="menu-item" href="/about/" title="">關於菜鳥</a><a class="menu-item" href="https://github.com/north13" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw' aria-hidden='true'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="Select Language">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/post/angular%E5%92%8Cvue%E7%9A%84%E9%9F%BF%E6%87%89%E5%BC%8F%E7%8B%80%E6%85%8B%E7%AE%A1%E7%90%86/" selected>English</option></select>
+                </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title animate__animated animate__pulse animate__faster">Angular 和 Vue 的響應式狀態管理</h1><div class="content" id="content"><p>之前趁著 <code>Udemy</code> 黑五活動買了些有興趣的課程來進修，加上 <code>YT</code> 上免費的課程，聽聽不同的講師會有不同的收穫，就像是看醫生不要只看一間，不同的醫生看或許會有不同的見解。</p>
+<p>在自學時光是 <code>Vue</code> 就看了三個不同的教學影片，對於 <code>ref</code>、<code>reactive</code> 雖無實務經驗，但有一定程度的瞭解。之前工作上使用的框架是 <code>Angular</code> 且版本 <strong>&lt; 16</strong> , 對於 <code>Signals</code> 的應用很模糊，嘗試用 <code>Vue</code> 的 <code>ref</code> 去解釋 <code>Angular</code> 的 <code>Signals</code> 好像一切都說得過去了！</p>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="angular-signals-的用途"><strong>Angular Signals 的用途</strong></h3>
+<p><code>Angular</code> 引入 <strong>Signals</strong> 是為了解決 <strong>響應式狀態管理</strong> 的問題。傳統上 <code>Angular</code> 主要使用 <code>RxJS</code> 的 <code>Observables</code> 或 <code>Component State</code> 來管理狀態，但這種方式可能導致程式碼複雜性增加、追蹤數據變化困難。</p>
+<p><strong>Signals 主要用途：</strong></p>
+<ol>
+<li><strong>響應式狀態管理：</strong> <code>Signals</code> 允許你輕鬆追蹤和響應狀態變化，無需手動訂閱或處理變更檢測。</li>
+<li><strong>效能提升：</strong> <code>Signals</code> 會在狀態變化時自動觸發 UI 更新，並只更新受影響的部分，而非整體重新渲染，這比傳統變更檢測更高效。</li>
+<li><strong>同步數據流：</strong> 和 <code>RxJS</code> 的異步操作不同，<code>Signals</code> 提供 <strong>同步</strong> 的數據流，使用起來更加直觀。</li>
+<li><strong>預測性：</strong> <code>Angular Signals</code> 透過明確的讀寫 <code>API</code>，讓數據變更更易於預測和調試。</li>
+</ol>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-jsx">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-jsx" data-lang="jsx"><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">signal</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&#34;@angular/core&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="kr">class</span> <span class="nx">MyComponent</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">count</span> <span class="o">=</span> <span class="nx">signal</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">increment</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">count</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">count</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
+<ul>
+<li><code>signal()</code> 用於建立可追蹤的響應式狀態。</li>
+<li>使用 <code>.set()</code>、<code>.update()</code> 來修改值，使用 <code>signal()</code> 本身讀取當前值。</li>
+</ul>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="vue-3-ref-的用途"><strong>Vue 3 ref 的用途</strong></h3>
+<p><code>Vue 3</code> 的 <code>ref</code> 也用於 響應式數據 管理。<code>ref</code> 會將一個變數包裹成 響應式對象，當數據變化時，<code>Vue</code> 會自動追蹤變更並更新 UI。</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-ts">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">ref</span> <span class="p">}</span> <span class="kr">from</span> <span class="s2">&#34;vue&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">setup() {</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">count</span> <span class="o">=</span> <span class="nx">ref</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">function</span> <span class="nx">increment() {</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">count</span><span class="p">.</span><span class="nx">value</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">{</span> <span class="nx">count</span><span class="p">,</span> <span class="nx">increment</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span></span></span></code></pre></div></div>
+<ul>
+<li><code>ref()</code> 將一個基本值轉換為響應式變數。</li>
+<li>使用 <code>.value</code> 來讀取或修改 <code>ref</code> 的值。</li>
+</ul>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="signals-與-ref-的比較"><strong><code>Signals</code> 與 <code>ref</code> 的比較</strong></h3>
+<table>
+  <thead>
+      <tr>
+          <th><strong>特性</strong></th>
+          <th><strong>Angular Signals</strong></th>
+          <th><strong>Vue 3 <code>ref</code></strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>核心用途</strong></td>
+          <td>響應式狀態管理，提供同步響應式 API</td>
+          <td>響應式數據管理，適用於單一值和基本類型</td>
+      </tr>
+      <tr>
+          <td><strong>變更檢測機制</strong></td>
+          <td><strong>精細化</strong>：僅更新變化部分</td>
+          <td><strong>自動</strong>：根據 <code>value</code> 追蹤並更新</td>
+      </tr>
+      <tr>
+          <td><strong>API 使用</strong></td>
+          <td><code>signal()</code> 建立，使用 <code>.set()</code> 修改值</td>
+          <td><code>ref()</code> 建立，使用 <code>.value</code> 修改值</td>
+      </tr>
+      <tr>
+          <td><strong>效能優化</strong></td>
+          <td>精細控制 UI 更新，無需依賴整體變更檢測</td>
+          <td>依賴 Vue 內建的響應式系統進行優化</td>
+      </tr>
+      <tr>
+          <td><strong>數據流方向</strong></td>
+          <td>同步，明確控制狀態變化</td>
+          <td>同步，通過 Proxy 進行響應式更新</td>
+      </tr>
+      <tr>
+          <td><strong>可讀性和擴展性</strong></td>
+          <td>需顯式地設置狀態變化（例如 <code>.set()</code>）</td>
+          <td>透過 <code>value</code> 自動進行值變更</td>
+      </tr>
+  </tbody>
+</table>
+</div></div></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.140.1">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.3.1-DEV"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2024 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Nick</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/algoliasearch/lite/browser.umd.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script src="/lib/sharer/sharer.min.js"></script><script>window.config={"comment":{},"search":{"algoliaAppID":"4D1IDY8JU6","algoliaIndex":"index","algoliaSearchKey":"05332ac5ed76655a511f0da583a9afac","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script src="/js/theme.min.js"></script></body>
+</html>

@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>JavaScript 閉包(Closure) - ＠＠資深菜鳥 Nick</title><meta name="Description" content="Hugo theme - LoveIt"><meta property="og:url" content="http://localhost:1313/post/javascript-%E9%96%89%E5%8C%85closure/">
+  <meta property="og:site_name" content="＠＠資深菜鳥 Nick">
+  <meta property="og:title" content="JavaScript 閉包(Closure)">
+  <meta property="og:description" content="什麼是閉包(Closure) 你知道什麼是 JS 的閉包(Closure)嗎？
+追蹤了不少國內外的工程師 Youtuber，某次在 YT 首頁看到 Closure 的影片縮圖大吃一驚
+一開始看到這個名詞時完全沒有頭緒，學過 var、let、const、作用域、this…等
+居然漏掉了什麼沒學到嗎!? 這怎麼可以!!
+拜讀了幾篇文章和影片後才發現，其實閉包無所不在，或許在不經意的情況下都寫過了勒!
+範例 const bankAccount = (function () { let balance: number = 0; function validateAmount(amount: number): boolean { return amount &gt; 0; } return { deposit: function (amount: number): string { if (!validateAmount(amount)) { return &#39;請輸入有效金額&#39;; } balance &#43;= amount; return `存款成功，當前餘額: ${balance}`; }, withdraw: function (amount: number): string { if (!validateAmount(amount)) { return &#39;請輸入有效金額&#39;; } if (amount &gt; balance) { return &#39;餘額不足&#39;; } balance -= amount; return `當前餘額: ${balance}`; }, getBalance: function (): string { return `當前餘額: ${balance}`; }, }; })(); console.log(bankAccount.getBalance()); // 當前餘額: 0 console.log(bankAccount.deposit(1000)); // 存款成功，當前餘額: 1000 console.log(bankAccount.withdraw(500)); // 提款成功，當前餘額: 500 console.log(bankAccount.withdraw(1000)); // 餘額不足 // 無法直接訪問私有變數和方法 console.log(bankAccount.balance); // undefined console.log(bankAccount.validateAmount); // undefined 這個例子展示了閉包的幾個重要特點： 閉包能夠「記住」外層函式的變數 在例子中，balance 是 bankAccount 的私有變數，但因為 deposit、withdraw、getBalance 在內部被 return，這些 function 形成閉包，可以持續訪問這些變數，即使外層函式已經執行完成。 let balance: number = 0; return { deposit: function (amount: number): string { if (!validateAmount(amount)) { return &#39;請輸入有效金額&#39;; } balance &#43;= amount; return `存款成功，當前餘額: ${balance}`; }, // 其他方法同理 }; 這段程式碼中，balance 是閉包捕獲的變數，這些變數的值會根據執行的操作（例如存款或提款）而變化，並且被所有內部函式共享。">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2025-01-09T15:35:23+08:00">
+    <meta property="article:modified_time" content="2025-01-09T15:35:23+08:00">
+    <meta property="og:image" content="http://localhost:1313/favicon.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:1313/favicon.png">
+  <meta name="twitter:title" content="JavaScript 閉包(Closure)">
+  <meta name="twitter:description" content="什麼是閉包(Closure) 你知道什麼是 JS 的閉包(Closure)嗎？
+追蹤了不少國內外的工程師 Youtuber，某次在 YT 首頁看到 Closure 的影片縮圖大吃一驚
+一開始看到這個名詞時完全沒有頭緒，學過 var、let、const、作用域、this…等
+居然漏掉了什麼沒學到嗎!? 這怎麼可以!!
+拜讀了幾篇文章和影片後才發現，其實閉包無所不在，或許在不經意的情況下都寫過了勒!
+範例 const bankAccount = (function () { let balance: number = 0; function validateAmount(amount: number): boolean { return amount &gt; 0; } return { deposit: function (amount: number): string { if (!validateAmount(amount)) { return &#39;請輸入有效金額&#39;; } balance &#43;= amount; return `存款成功，當前餘額: ${balance}`; }, withdraw: function (amount: number): string { if (!validateAmount(amount)) { return &#39;請輸入有效金額&#39;; } if (amount &gt; balance) { return &#39;餘額不足&#39;; } balance -= amount; return `當前餘額: ${balance}`; }, getBalance: function (): string { return `當前餘額: ${balance}`; }, }; })(); console.log(bankAccount.getBalance()); // 當前餘額: 0 console.log(bankAccount.deposit(1000)); // 存款成功，當前餘額: 1000 console.log(bankAccount.withdraw(500)); // 提款成功，當前餘額: 500 console.log(bankAccount.withdraw(1000)); // 餘額不足 // 無法直接訪問私有變數和方法 console.log(bankAccount.balance); // undefined console.log(bankAccount.validateAmount); // undefined 這個例子展示了閉包的幾個重要特點： 閉包能夠「記住」外層函式的變數 在例子中，balance 是 bankAccount 的私有變數，但因為 deposit、withdraw、getBalance 在內部被 return，這些 function 形成閉包，可以持續訪問這些變數，即使外層函式已經執行完成。 let balance: number = 0; return { deposit: function (amount: number): string { if (!validateAmount(amount)) { return &#39;請輸入有效金額&#39;; } balance &#43;= amount; return `存款成功，當前餘額: ${balance}`; }, // 其他方法同理 }; 這段程式碼中，balance 是閉包捕獲的變數，這些變數的值會根據執行的操作（例如存款或提款）而變化，並且被所有內部函式共享。">
+<meta name="application-name" content="Nick">
+<meta name="apple-mobile-web-app-title" content="Nick">
+<meta name="referrer" content="no-referrer" /><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:1313/post/javascript-%E9%96%89%E5%8C%85closure/" /><link rel="prev" href="http://localhost:1313/post/type%E5%92%8Cinterface%E8%A6%81%E7%94%A8%E5%93%AA%E4%B8%80%E5%80%8B/" /><link rel="next" href="http://localhost:1313/post/ref%E8%88%87reactive%E7%9A%84%E5%B7%AE%E7%95%B0/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/css/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "JavaScript 閉包(Closure)",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/localhost:1313\/post\/javascript-%E9%96%89%E5%8C%85closure\/"
+        },"image": ["http:\/\/localhost:1313\/images\/Apple-Devices-Preview.png"],"genre": "post","wordcount":  228 ,
+        "url": "http:\/\/localhost:1313\/post\/javascript-%E9%96%89%E5%8C%85closure\/","datePublished": "2025-01-09T15:35:23+08:00","dateModified": "2025-01-09T15:35:23+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Nick","logo": "http:\/\/localhost:1313\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Nick"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>
+          const query = window.matchMedia('(prefers-color-scheme: dark)');
+          function applyTheme() {
+            let theme = window.localStorage?.getItem('theme') || 'auto';
+            let isDark = theme === 'dark' || (theme === 'auto' && query.matches);
+            document.body.setAttribute('theme', isDark? 'dark' : 'light');
+            document.body.setAttribute('cfg-theme', theme);
+          }
+
+          applyTheme();
+          query.addEventListener('change', applyTheme);
+        </script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="＠＠資深菜鳥 Nick"></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> 分類 </a><a class="menu-item" href="/about/"> 關於菜鳥 </a><a class="menu-item" href="https://github.com/north13" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw' aria-hidden='true'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a><a href="javascript:void(0);" class="menu-item language" title="Select Language">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>                      
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/post/javascript-%E9%96%89%E5%8C%85closure/" selected>English</option></select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="＠＠資深菜鳥 Nick"></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">分類</a><a class="menu-item" href="/about/" title="">關於菜鳥</a><a class="menu-item" href="https://github.com/north13" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw' aria-hidden='true'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="Select Language">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/post/javascript-%E9%96%89%E5%8C%85closure/" selected>English</option></select>
+                </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="page single special"><h1 class="single-title animate__animated animate__pulse animate__faster">JavaScript 閉包(Closure)</h1><div class="content" id="content"><h4 id="什麼是閉包closure">什麼是閉包(Closure)</h4>
+<p><em><code>你知道什麼是 JS 的閉包(Closure)嗎？</code></em></p>
+<p>追蹤了不少國內外的工程師 Youtuber，某次在 YT 首頁看到 Closure 的影片縮圖大吃一驚</p>
+<p>一開始看到這個名詞時完全沒有頭緒，學過 var、let、const、作用域、this&hellip;等</p>
+<p>居然漏掉了什麼沒學到嗎!? 這怎麼可以!!</p>
+<p>拜讀了幾篇文章和影片後才發現，其實閉包無所不在，或許在不經意的情況下都寫過了勒!</p>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<h4 id="範例">範例</h4>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-typescript">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-typescript" data-lang="typescript"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">bankAccount</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">let</span> <span class="nx">balance</span>: <span class="kt">number</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kd">function</span> <span class="nx">validateAmount</span><span class="p">(</span><span class="nx">amount</span>: <span class="kt">number</span><span class="p">)</span><span class="o">:</span> <span class="kr">boolean</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">amount</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">deposit</span>: <span class="kt">function</span> <span class="p">(</span><span class="nx">amount</span>: <span class="kt">number</span><span class="p">)</span><span class="o">:</span> <span class="kt">string</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">validateAmount</span><span class="p">(</span><span class="nx">amount</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s1">&#39;請輸入有效金額&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">balance</span> <span class="o">+=</span> <span class="nx">amount</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="sb">`存款成功，當前餘額: </span><span class="si">${</span><span class="nx">balance</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">withdraw</span>: <span class="kt">function</span> <span class="p">(</span><span class="nx">amount</span>: <span class="kt">number</span><span class="p">)</span><span class="o">:</span> <span class="kt">string</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">validateAmount</span><span class="p">(</span><span class="nx">amount</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s1">&#39;請輸入有效金額&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="nx">amount</span> <span class="o">&gt;</span> <span class="nx">balance</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s1">&#39;餘額不足&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">balance</span> <span class="o">-=</span> <span class="nx">amount</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="sb">`當前餘額: </span><span class="si">${</span><span class="nx">balance</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">getBalance</span>: <span class="kt">function</span> <span class="p">()</span><span class="o">:</span> <span class="kt">string</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="sb">`當前餘額: </span><span class="si">${</span><span class="nx">balance</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="p">})();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bankAccount</span><span class="p">.</span><span class="nx">getBalance</span><span class="p">());</span> <span class="c1">// 當前餘額: 0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bankAccount</span><span class="p">.</span><span class="nx">deposit</span><span class="p">(</span><span class="mi">1000</span><span class="p">));</span> <span class="c1">// 存款成功，當前餘額: 1000
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bankAccount</span><span class="p">.</span><span class="nx">withdraw</span><span class="p">(</span><span class="mi">500</span><span class="p">));</span> <span class="c1">// 提款成功，當前餘額: 500
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bankAccount</span><span class="p">.</span><span class="nx">withdraw</span><span class="p">(</span><span class="mi">1000</span><span class="p">));</span> <span class="c1">// 餘額不足
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 無法直接訪問私有變數和方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bankAccount</span><span class="p">.</span><span class="nx">balance</span><span class="p">);</span> <span class="c1">// undefined
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bankAccount</span><span class="p">.</span><span class="nx">validateAmount</span><span class="p">);</span> <span class="c1">// undefined
+</span></span></span></code></pre></div></div>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<h4 id="這個例子展示了閉包的幾個重要特點">這個例子展示了閉包的幾個重要特點：</h4>
+<ol>
+<li>閉包能夠「記住」外層函式的變數
+在例子中，<code>balance</code> 是 <code>bankAccount</code> 的私有變數，但因為 <code>deposit</code>、<code>withdraw</code>、<code>getBalance</code> 在內部被 <strong>return</strong>，這些 <strong>function</strong> 形成閉包，可以持續訪問這些變數，即使外層函式已經執行完成。</li>
+</ol>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-typescript">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-typescript" data-lang="typescript"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">balance</span>: <span class="kt">number</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">return</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">deposit</span>: <span class="kt">function</span> <span class="p">(</span><span class="nx">amount</span>: <span class="kt">number</span><span class="p">)</span><span class="o">:</span> <span class="kt">string</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">validateAmount</span><span class="p">(</span><span class="nx">amount</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="s1">&#39;請輸入有效金額&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">balance</span> <span class="o">+=</span> <span class="nx">amount</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="sb">`存款成功，當前餘額: </span><span class="si">${</span><span class="nx">balance</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 其他方法同理
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span></span></span></code></pre></div></div>
+<p>這段程式碼中，<code>balance</code> 是閉包捕獲的變數，這些變數的值會根據執行的操作（例如存款或提款）而變化，並且被所有內部函式共享。</p>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<ol start="2">
+<li>資料封裝與隱藏
+閉包的另一個特點是能夠實現變數的封裝與隱藏，外部無法直接訪問閉包捕獲的變數，從而提高程式的安全性。</li>
+</ol>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-typescript">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-typescript" data-lang="typescript"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bankAccount</span><span class="p">.</span><span class="nx">balance</span><span class="p">);</span> <span class="c1">// undefined
+</span></span></span></code></pre></div></div>
+<p>外部無法直接訪問 <code>balance</code> ，因為這些變數只存在於閉包內部。</p>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<ol start="3">
+<li>閉包延長了變數的生命週期
+正常情況下函式執行完畢後，局部變數會被<code>垃圾回收機制(GC)</code>釋放。但閉包使得外層函式的變數在內層函式引用時不會被回收，從而延長了變數的生命週期。</li>
+</ol>
+<p>即使外層函式 <code>bankAccount</code> 已經執行結束，內部變數 <code>balance</code> 仍然存在，因為內部返回的函式對這些變數有引用。</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-typescript">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-typescript" data-lang="typescript"><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bankAccount</span><span class="p">.</span><span class="nx">getBalance</span><span class="p">());</span> <span class="c1">// 當前餘額: 0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bankAccount</span><span class="p">.</span><span class="nx">deposit</span><span class="p">(</span><span class="mi">1000</span><span class="p">));</span> <span class="c1">// 存款成功，當前餘額: 1000
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bankAccount</span><span class="p">.</span><span class="nx">getBalance</span><span class="p">());</span> <span class="c1">// 當前餘額: 1000
+</span></span></span></code></pre></div></div>
+<p><code>balance</code> 的值被持續保留和更新，說明閉包延長了它的生命週期。</p>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<ol start="4">
+<li>多個閉包共享同一個作用域
+在這個例子中，所有返回的函式（<code>deposit</code>、<code>withdraw</code>、<code>getBalance</code>）都共享同一個閉包作用域，因此它們能夠共同操作 <code>balance</code>。</li>
+</ol>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-typescript">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-typescript" data-lang="typescript"><span class="line"><span class="cl"><span class="nx">bankAccount</span><span class="p">.</span><span class="nx">deposit</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bankAccount</span><span class="p">.</span><span class="nx">withdraw</span><span class="p">(</span><span class="mi">500</span><span class="p">));</span> <span class="c1">// 提款成功，當前餘額: 500
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">bankAccount</span><span class="p">.</span><span class="nx">getBalance</span><span class="p">());</span> <span class="c1">// 當前餘額: 500
+</span></span></span></code></pre></div></div>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<ol start="5">
+<li>函式式編程的靈活性
+閉包使得函式成為功能強大的抽象工具，可以輕鬆實現封裝邏輯並返回自定義功能。</li>
+</ol>
+<p>例如這裡的 <code>validateAmount</code> 函式就是一個內部私有的函式，它被多個方法共用，但外部無法訪問。</p>
+<div class="code-block code-line-numbers open" style="counter-reset: code-block 0">
+    <div class="code-header language-typescript">
+        <span class="code-title"><i class="arrow fas fa-angle-right fa-fw" aria-hidden="true"></i></span>
+        <span class="ellipses"><i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i></span>
+        <span class="copy" title="Copy to clipboard"><i class="far fa-copy fa-fw" aria-hidden="true"></i></span>
+    </div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-typescript" data-lang="typescript"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">validateAmount</span><span class="p">(</span><span class="nx">amount</span>: <span class="kt">number</span><span class="p">)</span><span class="o">:</span> <span class="kr">boolean</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">amount</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="-結論">💡 結論</h3>
+<blockquote>
+<p><strong>捕獲外層作用域的變數</strong>：允許內層函式記住並操作外層函式的變數。</p>
+<p><strong>封裝性</strong>：防止外部直接訪問內部變數，提高安全性。</p>
+<p><strong>延長變數生命週期</strong>：內部函式引用的變數不會被垃圾回收機制釋放。</p>
+<p><strong>共享閉包作用域</strong>：多個閉包函式共享同一個封閉的作用域。</p>
+<p><strong>模組化與高可擴展性</strong>：閉包支持靈活的邏輯封裝和模組化設計。</p>
+<p>這種模式在實際開發中非常有用，特別是在需要封裝邏輯、保護資料時。例如在開發函式庫或插件時，經常會使用這種模式。</p>
+</blockquote>
+<table>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td></td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="參考資料"><strong>參考資料</strong></h2>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=0rP4YzGdvEU" target="_blank" rel="noopener noreffer ">什麼是閉包(closure)？解說+範例【JavaScript 基礎】</a></li>
+</ul>
+</div></div></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.140.1">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.3.1-DEV"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2024 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Nick</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/algoliasearch/lite/browser.umd.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script src="/lib/sharer/sharer.min.js"></script><script>window.config={"comment":{},"search":{"algoliaAppID":"4D1IDY8JU6","algoliaIndex":"index","algoliaSearchKey":"05332ac5ed76655a511f0da583a9afac","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script src="/js/theme.min.js"></script></body>
+</html>
